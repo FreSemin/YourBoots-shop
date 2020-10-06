@@ -1,0 +1,39 @@
+@import "../../../variables.scss";
+
+.menu {
+  &_bg-white {
+    background: $bg-white;
+  }
+  &__container {
+    position: fixed;
+    padding: 8px 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    justify-content: space-around;
+  }
+  &__logo {
+    &-link {
+    }
+    &-img {
+    }
+  }
+  &__nav {
+    &-list {
+    }
+  }
+  &__link {
+  }
+  &__cart {
+    &-counter {
+    }
+    &-number {
+    }
+    &-icon {
+    }
+    &-img {
+    }
+  }
+}
