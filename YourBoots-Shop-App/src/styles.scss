@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+// null styles
+* {
+  margin: 0;
+  padding: 0;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+button {
+  cursor: pointer;
+  outline: none;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+ul li {
+  list-style: none;
+}
+html {
+  scroll-behavior: smooth;
+}
