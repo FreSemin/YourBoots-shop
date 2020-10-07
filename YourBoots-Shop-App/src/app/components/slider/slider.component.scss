@@ -45,7 +45,31 @@
     background: $gr-main;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    // display: inline;
     font-weight: 900;
+  }
+  &__nav-btn {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    height: 100%;
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $text-white-transp;
+    font-size: 18px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+      background: $bg-white-transp;
+    }
+
+    &_left {
+      left: 0;
+    }
+    &_right {
+      right: 0;
+    }
   }
 }
