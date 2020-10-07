@@ -1,0 +1,51 @@
+@import "../../../variables.scss";
+
+.slider {
+  &__container {
+    position: relative;
+    max-width: 1440px;
+    height: 450px;
+    max-height: 450px;
+  }
+  &__slide {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__bg {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  &__bg-img {
+    height: 100%;
+    width: 100%;
+  }
+  &__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  &__text {
+    font-size: 58px;
+    font-weight: 300;
+    color: $text-white;
+    line-height: 90px;
+
+    &_d-block {
+      display: block;
+    }
+  }
+  &__text_eff {
+    background: $gr-main;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // display: inline;
+    font-weight: 900;
+  }
+}
