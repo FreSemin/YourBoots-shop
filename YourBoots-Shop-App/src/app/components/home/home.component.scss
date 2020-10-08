@@ -120,6 +120,128 @@
   }
 }
 
+.catalog {
+  &__container {
+    position: relative;
+  }
+  &__title-box {
+  }
+  &__title {
+    position: relative;
+    z-index: 2;
+    font-size: 46px;
+    color: $text-black;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  &__cards {
+    margin: 20px auto 150px auto;
+    max-width: 1390px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  &__card {
+    position: relative;
+    z-index: 2;
+    padding: 20px 10px 25px 10px;
+    margin: 30px;
+    width: 220px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: $sh-card;
+    background: $bg-white;
+    border-radius: 6px;
+    transition: all 0.3s;
+
+    &:hover {
+      box-shadow: $sh-card-yel;
+    }
+
+    &-head {
+    }
+    &-img-box {
+      width: 100%;
+      height: 150px;
+    }
+    &-img {
+      width: 100%;
+      height: 100%;
+    }
+    &-body {
+      width: 100%;
+    }
+    &-text {
+      margin-top: 20px;
+    }
+    &-title {
+      font-size: 17.5px;
+      color: $text-dark;
+      font-weight: 900;
+      line-height: 1.2;
+      text-align: center;
+    }
+    &-box {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &__price {
+    margin-right: 30px;
+    display: flex;
+    font-size: 18px;
+    color: $text-dark;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+  &__price-number {
+    margin-right: 5px;
+  }
+  &__price-currency {
+  }
+  &__btn-box {
+  }
+  &__btn-cart {
+    padding: 8px 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100px;
+    background: $gr-main;
+    border-radius: 30px;
+    font-size: 14px;
+    color: $text-white;
+    font-weight: 900;
+    line-height: 1.2;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__back-illstr {
+  }
+  &__img-illstr {
+    position: absolute;
+    max-height: 460px;
+    z-index: 1;
+    pointer-events: none;
+
+    &_right-center {
+      top: 20%;
+      right: -240px;
+      opacity: 0.8;
+      transform: rotate(30deg);
+    }
+  }
+}
+
 @media (min-width: 1440px) {
   .view__content {
     margin-left: auto;
