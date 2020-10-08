@@ -160,7 +160,7 @@
     transition: all 0.3s;
 
     &:hover {
-      box-shadow: $sh-card-yel;
+      box-shadow: $sh-yel;
     }
 
     &-head {
@@ -238,6 +238,53 @@
       right: -240px;
       opacity: 0.8;
       transform: rotate(30deg);
+    }
+  }
+}
+
+.inst {
+  &__container {
+    margin-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__half {
+    width: 50%;
+  }
+  &__inf {
+    margin-left: 50px;
+    max-width: 600px;
+  }
+  &__title {
+    font-size: 46px;
+    color: $text-black;
+    font-weight: 900;
+  }
+  &__text {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    font-size: 26px;
+    color: $text-dark;
+    line-height: 1.538;
+  }
+  &__btn-link {
+    padding: 10px 30px;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 30px;
+    background: $gr-main;
+    font-size: 26px;
+    color: $text-white;
+    font-weight: 900;
+    line-height: 1.538;
+    transition: all 0.3s;
+
+    &:hover {
+      box-shadow: $sh-yel;
     }
   }
 }
