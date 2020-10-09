@@ -244,12 +244,21 @@
 
 .inst {
   &__container {
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 100px;
+    max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
   }
   &__half {
     width: 50%;
+
+    &_inst-post {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   &__inf {
     margin-left: 50px;
