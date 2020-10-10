@@ -4,8 +4,7 @@
   &__container {
     position: relative;
     max-width: 1440px;
-    height: 450px;
-    max-height: 450px;
+    height: 350px;
   }
   &__slide {
     height: 100%;
@@ -21,10 +20,12 @@
     left: 0;
     height: 100%;
     width: 100%;
-  }
-  &__bg-img {
-    height: 100%;
-    width: 100%;
+    pointer-events: none;
+    &-img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
   &__content {
     position: relative;
@@ -32,14 +33,9 @@
     text-align: center;
   }
   &__text {
-    font-size: 58px;
+    font-size: 44px;
     font-weight: 300;
     color: $text-white;
-    line-height: 90px;
-
-    &_d-block {
-      display: block;
-    }
   }
   &__text_eff {
     background: $gr-main;
