@@ -6,6 +6,12 @@
     max-width: 1440px;
     height: 350px;
   }
+  &__slids {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+  }
   &__slide {
     height: 100%;
     width: 100%;
