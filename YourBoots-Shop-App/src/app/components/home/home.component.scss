@@ -21,6 +21,7 @@
     justify-content: center;
   }
   &__scroll-link {
+    animation: viewScrollLinkAnm 6s infinite;
   }
   &__scroll-img {
   }
@@ -471,5 +472,23 @@
   .choice__content {
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@keyframes viewScrollLinkAnm {
+  0% {
+    transform: translateY(-20px);
+  }
+  20% {
+    transform: translateY(0px);
+  }
+  60% {
+  transform: translateY(-15px);
+  }
+  80% {
+  transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-20px);
   }
 }
