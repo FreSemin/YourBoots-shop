@@ -128,6 +128,8 @@
 .catalog {
   &__container {
     position: relative;
+    margin: 0 auto;
+    max-width: 1140px;
   }
   &__title-box {
   }
@@ -463,12 +465,10 @@
     }
   }
 }
+
+/*------------------------------ Media ------------------------------*/
 @media (min-width: 1440px) {
   .choice__content {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .contact__container {
     margin-left: auto;
     margin-right: auto;
   }
