@@ -254,7 +254,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 100px;
-    max-width: 1200px;
+    max-width: 1090px;
     display: flex;
     flex-wrap: wrap;
   }
@@ -305,12 +305,12 @@
     }
   }
 }
+
 .contact {
   &__container {
     position: relative;
+    margin: 0 auto;
     max-width: 1440px;
-    margin-left: 30px;
-    margin-right: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -319,13 +319,14 @@
   &__illstr {
     position: absolute;
     z-index: 1;
+    top: -20px;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     &-img {
-      max-height: 360px;
+      max-height: 260px;
       opacity: 0.8;
       pointer-events: none;
     }
@@ -336,17 +337,20 @@
   }
   &__title {
     text-align: center;
-    font-size: 43px;
+    font-size: 32px;
     color: $text-black;
     font-weight: 900;
   }
   &__box {
     position: relative;
     z-index: 2;
-    margin-top: 40px;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
     margin-bottom: 90px;
-    padding: 30px 0;
+    padding: 20px 0;
     width: 100%;
+    max-width: 1090px;
     border-radius: 6px;
     display: flex;
     flex-wrap: wrap;
@@ -362,30 +366,31 @@
     &-text {
     }
     &-parg {
-      font-size: 30px;
+      font-size: 18px;
       color: $text-white;
       line-height: 1.2;
     }
   }
-
   &__btn-req {
-    padding: 15px 10px;
+    padding: 10px 20px;
     width: 100%;
-    max-width: 330px;
+    max-width: 210px;
     background-color: $bg-white;
     box-shadow: $sh-btn-req;
     text-align: center;
     border-radius: 30px;
-    font-size: 26px;
+    font-size: 18px;
     color: $text-black;
     font-weight: 900;
     line-height: 1.2;
+    box-sizing: border-box;
 
     &:hover {
       cursor: pointer;
     }
   }
 }
+
 .footer {
   position: relative;
   z-index: 2;
