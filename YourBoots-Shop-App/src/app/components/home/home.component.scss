@@ -395,23 +395,25 @@
   position: relative;
   z-index: 2;
   &__container {
+    padding: 50px 0;
     width: 100%;
-    min-height: 350px;
     background: $bg-black;
+  }
+  &__wrapper {
+    margin: 0 auto;
+    max-width: 680px;
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
   &__info-box {
-    margin-top: 60px;
-    margin: 0 auto;
     width: 100%;
-    max-width: 680px;
     display: flex;
     justify-content: space-between;
   }
   &__logo {
     &-img {
+      height: 52px;
     }
   }
   &__contact-box {
@@ -420,7 +422,7 @@
     align-items: center;
   }
   &__contact {
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
 
@@ -431,16 +433,16 @@
     &-ico {
       margin-right: 10px;
       color: $text-white;
-      font-size: 12px;
+      font-size: 10px;
     }
     &-inf {
       color: $text-white;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 1.2;
     }
   }
   &__nav {
-    margin: 80px auto 0 auto;
+    margin: 40px auto 0 auto;
     width: 100%;
     max-width: 680px;
   }
@@ -449,7 +451,7 @@
     justify-content: space-between;
   }
   &__link {
-    font-size: 18px;
+    font-size: 16px;
     color: $text-white;
     line-height: 1.2;
     font-weight: 300;
@@ -457,7 +459,7 @@
     &-ico {
       margin-right: 5px;
       color: $text-white;
-      font-size: 12px;
+      font-size: 10px;
     }
   }
 }
