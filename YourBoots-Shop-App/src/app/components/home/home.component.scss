@@ -1,4 +1,5 @@
 @import "../../../variables.scss";
+@import "../../../mixins.scss";
 
 .view {
   &__content {
@@ -220,20 +221,7 @@
   }
   &__btn-cart {
     padding: 8px 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 100px;
-    background: $gr-main;
-    border-radius: 30px;
-    font-size: 14px;
-    color: $text-white;
-    font-weight: 900;
-    line-height: 1.2;
-
-    &:hover {
-      cursor: pointer;
-    }
+    @include mainBtn;
   }
   &__back-illstr {
   }
@@ -289,23 +277,7 @@
   }
   &__btn-link {
     padding: 10px 20px;
-    width: 100%;
-    max-width: 210px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    border-radius: 30px;
-    background: $gr-main;
-    font-size: 18px;
-    color: $text-white;
-    font-weight: 900;
-    transition: all 0.3s;
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: $sh-yel;
-    }
+    @include mainBtn;
   }
 }
 
