@@ -1,0 +1,19 @@
+@import "./variables.scss";
+
+@mixin mainBtn {
+    padding: 8px 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 160px;
+    background: $gr-main;
+    border-radius: 30px;
+    font-size: 14px;
+    color: $text-white;
+    font-weight: 900;
+    line-height: 1.2;
+
+    &:hover {
+      cursor: pointer;
+    }
+}
