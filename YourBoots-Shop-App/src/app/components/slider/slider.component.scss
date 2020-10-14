@@ -81,9 +81,6 @@
       cursor: pointer;
       background: $bg-white-transp;
     }
-    &:focus {
-      outline: none;
-    }
 
     &_left {
       left: 0;
@@ -111,9 +108,7 @@
     &:hover {
       cursor: pointer;
     }
-    &:focus {
-      outline: none;
-    }
+
   }
 }
 
