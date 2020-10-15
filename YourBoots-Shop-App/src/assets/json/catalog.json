@@ -16,18 +16,7 @@
         {
             "title": "title 2",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "currentPriceNumber": "61",
-            "priceCurrency": "BR",
-            "sizes": [
-                41,
-                42,
-                43,
-                44
-            ]
-        },
-        {
-            "title": "title 3",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "beforePriceNumber": "120",
             "currentPriceNumber": "61",
             "priceCurrency": "BR",
             "sizes": [

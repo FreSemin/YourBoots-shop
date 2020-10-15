@@ -85,40 +85,10 @@
             </h5>
         </div>
         <div class="catalog__cards" *ngIf="((_catalogService.catalog$) | async).catalogElements.length > 0">
-            <!-- Catalog-cards: Start -->
-            <div class="catalog__card">
-                <div class="catalog__card-head">
-                    <div class="catalog__card-img-box">
-                        <img src="../../../assets/imgs/cards/card_1.png" alt="" class="catalog__card-img">
-                    </div>
-                </div>
-                <div class="catalog__card-body">
-                    <div class="catalog__card-text">
-                        <h6 class="catalog__card-title">
-                            Кроссовки Nike
-                        </h6>
-                        <h6 class="catalog__card-title">
-                            TEAM HUSTLE 9
-                        </h6>
-                    </div>
-                    <div class="catalog__card-box">
-                        <div class="catalog__price">
-                            <p class="catalog__price-number">
-                                40
-                            </p>
-                            <p class="catalog__price-currency">
-                                BR
-                            </p>
-                        </div>
-                        <div class="catalog__btn-box">
-                            <div class="catalog__btn-cart">
-                                В корзину
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Catalog-cards: End -->
+
+            <app-catalog-card *ngFor="let catalogEl of (_catalogService.catalog$ | async).catalogElements"
+                [catalogElement]="catalogEl"></app-catalog-card>
+
         </div>
         <div class="catalog__back-illstr">
             <img src="../../../assets/imgs/common/sneaker_3.png" alt=""

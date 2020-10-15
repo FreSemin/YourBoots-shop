@@ -16,6 +16,7 @@ import { CatalogEffects } from './store/effects/catalog.effects';
 import { CatalogService } from './services/catalog/catalog.service';
 import { MainAppService } from './services/main-app/main-app.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CatalogCardComponent } from './components/catalog-card/catalog-card.component';
 
 @NgModule({
 	declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 		MenuComponent,
 		HomeComponent,
 		CartComponent,
-		SliderComponent
+		SliderComponent,
+		CatalogCardComponent
 	],
 	imports: [
 		BrowserModule,

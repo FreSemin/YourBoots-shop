@@ -1,0 +1,34 @@
+<div class="catalog__card">
+    <div class="catalog__card-head">
+        <div class="catalog__card-img-box">
+            <img [src]="catalogElement.img" alt="" class="catalog__card-img">
+        </div>
+    </div>
+    <div class="catalog__card-body">
+        <div class="catalog__card-text">
+            <h6 class="catalog__card-title">
+                {{ catalogElement.title }}
+            </h6>
+        </div>
+        <div class="catalog__card-box">
+            <div class="catalog__price">
+                <p class="catalog__price-values">
+                    <span class="catalog__price-number catalog__price-number_strike">
+                        {{ catalogElement.beforePriceNumber }}
+                    </span>
+                    <span class="catalog__price-number">
+                        {{ catalogElement.currentPriceNumber }}
+                    </span>
+                </p>
+                <p class="catalog__price-currency">
+                    {{ catalogElement.priceCurrency }}
+                </p>
+            </div>
+            <div class="catalog__btn-box">
+                <div class="catalog__btn-cart">
+                    В корзину
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
