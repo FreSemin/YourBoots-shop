@@ -84,232 +84,8 @@
                 Каталог
             </h5>
         </div>
-        <div class="catalog__cards">
+        <div class="catalog__cards" *ngIf="((_catalogService.catalog$) | async).catalogElements.length > 0">
             <!-- Catalog-cards: Start -->
-            <div class="catalog__card">
-                <div class="catalog__card-head">
-                    <div class="catalog__card-img-box">
-                        <img src="../../../assets/imgs/cards/card_1.png" alt="" class="catalog__card-img">
-                    </div>
-                </div>
-                <div class="catalog__card-body">
-                    <div class="catalog__card-text">
-                        <h6 class="catalog__card-title">
-                            Кроссовки Nike
-                        </h6>
-                        <h6 class="catalog__card-title">
-                            TEAM HUSTLE 9
-                        </h6>
-                    </div>
-                    <div class="catalog__card-box">
-                        <div class="catalog__price">
-                            <p class="catalog__price-number">
-                                40
-                            </p>
-                            <p class="catalog__price-currency">
-                                BR
-                            </p>
-                        </div>
-                        <div class="catalog__btn-box">
-                            <div class="catalog__btn-cart">
-                                В корзину
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="catalog__card">
-                <div class="catalog__card-head">
-                    <div class="catalog__card-img-box">
-                        <img src="../../../assets/imgs/cards/card_1.png" alt="" class="catalog__card-img">
-                    </div>
-                </div>
-                <div class="catalog__card-body">
-                    <div class="catalog__card-text">
-                        <h6 class="catalog__card-title">
-                            Кроссовки Nike
-                        </h6>
-                        <h6 class="catalog__card-title">
-                            TEAM HUSTLE 9
-                        </h6>
-                    </div>
-                    <div class="catalog__card-box">
-                        <div class="catalog__price">
-                            <p class="catalog__price-number">
-                                40
-                            </p>
-                            <p class="catalog__price-currency">
-                                BR
-                            </p>
-                        </div>
-                        <div class="catalog__btn-box">
-                            <div class="catalog__btn-cart">
-                                В корзину
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="catalog__card">
-                <div class="catalog__card-head">
-                    <div class="catalog__card-img-box">
-                        <img src="../../../assets/imgs/cards/card_1.png" alt="" class="catalog__card-img">
-                    </div>
-                </div>
-                <div class="catalog__card-body">
-                    <div class="catalog__card-text">
-                        <h6 class="catalog__card-title">
-                            Кроссовки Nike
-                        </h6>
-                        <h6 class="catalog__card-title">
-                            TEAM HUSTLE 9
-                        </h6>
-                    </div>
-                    <div class="catalog__card-box">
-                        <div class="catalog__price">
-                            <p class="catalog__price-number">
-                                40
-                            </p>
-                            <p class="catalog__price-currency">
-                                BR
-                            </p>
-                        </div>
-                        <div class="catalog__btn-box">
-                            <div class="catalog__btn-cart">
-                                В корзину
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="catalog__card">
-                <div class="catalog__card-head">
-                    <div class="catalog__card-img-box">
-                        <img src="../../../assets/imgs/cards/card_1.png" alt="" class="catalog__card-img">
-                    </div>
-                </div>
-                <div class="catalog__card-body">
-                    <div class="catalog__card-text">
-                        <h6 class="catalog__card-title">
-                            Кроссовки Nike
-                        </h6>
-                        <h6 class="catalog__card-title">
-                            TEAM HUSTLE 9
-                        </h6>
-                    </div>
-                    <div class="catalog__card-box">
-                        <div class="catalog__price">
-                            <p class="catalog__price-number">
-                                40
-                            </p>
-                            <p class="catalog__price-currency">
-                                BR
-                            </p>
-                        </div>
-                        <div class="catalog__btn-box">
-                            <div class="catalog__btn-cart">
-                                В корзину
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="catalog__card">
-                <div class="catalog__card-head">
-                    <div class="catalog__card-img-box">
-                        <img src="../../../assets/imgs/cards/card_1.png" alt="" class="catalog__card-img">
-                    </div>
-                </div>
-                <div class="catalog__card-body">
-                    <div class="catalog__card-text">
-                        <h6 class="catalog__card-title">
-                            Кроссовки Nike
-                        </h6>
-                        <h6 class="catalog__card-title">
-                            TEAM HUSTLE 9
-                        </h6>
-                    </div>
-                    <div class="catalog__card-box">
-                        <div class="catalog__price">
-                            <p class="catalog__price-number">
-                                40
-                            </p>
-                            <p class="catalog__price-currency">
-                                BR
-                            </p>
-                        </div>
-                        <div class="catalog__btn-box">
-                            <div class="catalog__btn-cart">
-                                В корзину
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="catalog__card">
-                <div class="catalog__card-head">
-                    <div class="catalog__card-img-box">
-                        <img src="../../../assets/imgs/cards/card_1.png" alt="" class="catalog__card-img">
-                    </div>
-                </div>
-                <div class="catalog__card-body">
-                    <div class="catalog__card-text">
-                        <h6 class="catalog__card-title">
-                            Кроссовки Nike
-                        </h6>
-                        <h6 class="catalog__card-title">
-                            TEAM HUSTLE 9
-                        </h6>
-                    </div>
-                    <div class="catalog__card-box">
-                        <div class="catalog__price">
-                            <p class="catalog__price-number">
-                                40
-                            </p>
-                            <p class="catalog__price-currency">
-                                BR
-                            </p>
-                        </div>
-                        <div class="catalog__btn-box">
-                            <div class="catalog__btn-cart">
-                                В корзину
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="catalog__card">
-                <div class="catalog__card-head">
-                    <div class="catalog__card-img-box">
-                        <img src="../../../assets/imgs/cards/card_1.png" alt="" class="catalog__card-img">
-                    </div>
-                </div>
-                <div class="catalog__card-body">
-                    <div class="catalog__card-text">
-                        <h6 class="catalog__card-title">
-                            Кроссовки Nike
-                        </h6>
-                        <h6 class="catalog__card-title">
-                            TEAM HUSTLE 9
-                        </h6>
-                    </div>
-                    <div class="catalog__card-box">
-                        <div class="catalog__price">
-                            <p class="catalog__price-number">
-                                40
-                            </p>
-                            <p class="catalog__price-currency">
-                                BR
-                            </p>
-                        </div>
-                        <div class="catalog__btn-box">
-                            <div class="catalog__btn-cart">
-                                В корзину
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="catalog__card">
                 <div class="catalog__card-head">
                     <div class="catalog__card-img-box">
@@ -415,60 +191,60 @@
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__wrapper">
-        <div class="footer__info-box">
-            <div class="footer__logo">
-                <a href="#">
-                    <img src="../../../assets/imgs/logo/logo-white.png" alt="" class="footer__logo-img">
-                </a>
-            </div>
-            <div class="footer__contact-box">
-                <div class="footer__contact">
-                    <div class="footer__contact-ico">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <p class="footer__contact-inf">
-                        +375 (00) 000 00 00
-                    </p>
+            <div class="footer__info-box">
+                <div class="footer__logo">
+                    <a href="#">
+                        <img src="../../../assets/imgs/logo/logo-white.png" alt="" class="footer__logo-img">
+                    </a>
                 </div>
-                <div class="footer__contact">
-                    <div class="footer__contact-ico">
-                        <i class="fas fa-envelope"></i>
+                <div class="footer__contact-box">
+                    <div class="footer__contact">
+                        <div class="footer__contact-ico">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <p class="footer__contact-inf">
+                            +375 (00) 000 00 00
+                        </p>
                     </div>
-                    <p class="footer__contact-inf">
-                        example@gmail.com
-                    </p>
+                    <div class="footer__contact">
+                        <div class="footer__contact-ico">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <p class="footer__contact-inf">
+                            example@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__nav">
+                <div class="footer__nav-list">
+                    <a href="#" class="footer__link">
+                        <span class="footer__link-ico">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        главная
+                    </a>
+                    <a href="#catalog" class="footer__link">
+                        <span class="footer__link-ico">
+                            <i class="fas fa-shoe-prints"></i>
+                        </span>
+                        каталог
+                    </a>
+                    <a href="#contact" class="footer__link">
+                        <span class="footer__link-ico">
+                            <i class="fas fa-phone-square-alt"></i>
+                        </span>
+                        контакты
+                    </a>
+                    <a href="#about" class="footer__link">
+                        <span class="footer__link-ico">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        о нас
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="footer__nav">
-            <div class="footer__nav-list">
-                <a href="#" class="footer__link">
-                    <span class="footer__link-ico">
-                        <i class="fas fa-home"></i>
-                    </span>
-                    главная
-                </a>
-                <a href="#catalog" class="footer__link">
-                    <span class="footer__link-ico">
-                        <i class="fas fa-shoe-prints"></i>
-                    </span>
-                    каталог
-                </a>
-                <a href="#contact" class="footer__link">
-                    <span class="footer__link-ico">
-                        <i class="fas fa-phone-square-alt"></i>
-                    </span>
-                    контакты
-                </a>
-                <a href="#about" class="footer__link">
-                    <span class="footer__link-ico">
-                        <i class="fas fa-question-circle"></i>
-                    </span>
-                    о нас
-                </a>
-            </div>
-        </div>
-    </div>
     </div>
 </footer>
 <!-- Footer: End -->

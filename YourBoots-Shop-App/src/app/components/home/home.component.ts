@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { CatalogService } from 'src/app/services/catalog/catalog.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+	selector: 'app-home',
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+	constructor(
+		public _catalogService: CatalogService
+	) { }
 
-  ngOnInit(): void {
-  }
+	public ngOnInit(): void {
+		this._catalogService.loadCatalog();
+		console.log(this._catalogService.catalog$);
+	}
 
 }

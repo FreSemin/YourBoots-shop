@@ -7,6 +7,15 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { CatalogEffects } from './store/effects/catalog.effects';
+import { CatalogService } from './services/catalog/catalog.service';
+import { MainAppService } from './services/main-app/main-app.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -19,8 +28,15 @@ import { SliderComponent } from './components/slider/slider.component';
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
+		HttpClientModule,
+		StoreModule.forRoot(appReducers),
+		EffectsModule.forRoot([CatalogEffects]),
+		StoreDevtoolsModule.instrument({
+			maxAge: 25,
+			logOnly: environment.production,
+		}),
 	],
-	providers: [],
+	providers: [MainAppService, CatalogService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
