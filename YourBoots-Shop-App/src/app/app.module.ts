@@ -17,6 +17,7 @@ import { CatalogService } from './services/catalog/catalog.service';
 import { MainAppService } from './services/main-app/main-app.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CatalogCardComponent } from './components/catalog-card/catalog-card.component';
+import { OrdersEffects } from './store/effects/orders.effects';
 
 @NgModule({
 	declarations: [
@@ -32,7 +33,7 @@ import { CatalogCardComponent } from './components/catalog-card/catalog-card.com
 		AppRoutingModule,
 		HttpClientModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([CatalogEffects]),
+		EffectsModule.forRoot([CatalogEffects, OrdersEffects]),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 			logOnly: environment.production,

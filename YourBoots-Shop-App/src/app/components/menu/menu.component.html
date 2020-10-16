@@ -14,9 +14,10 @@
                     <a href="#contact" class="menu__link">Контакты</a>
                     <a href="#about" class="menu__link">О нас</a>
                     <a routerLink="cart" class="menu__cart">
-                        <div class="menu__cart-counter">
+                        <div class="menu__cart-counter"
+                            *ngIf="(catalogService.orders$ | async).ordersElements.length > 0">
                             <span class="menu__cart-number">
-                                3
+                                {{ (catalogService.orders$ | async).ordersElements.length }}
                             </span>
                         </div>
                         <div class="menu__cart-icon">

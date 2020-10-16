@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this._catalogService.loadCatalog();
-		console.log(this._catalogService.catalog$);
+		this._catalogService.loadOrders();
 	}
 
 }

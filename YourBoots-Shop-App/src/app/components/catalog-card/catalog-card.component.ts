@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICatalogElement } from '../models/catalogElement/catalog-element.model';
 
 @Component({
@@ -11,8 +11,15 @@ export class CatalogCardComponent implements OnInit {
   @Input()
   public catalogElement: ICatalogElement;
 
+  @Output()
+	public onAddToCart: EventEmitter<ICatalogElement> = new EventEmitter<ICatalogElement>();
+
   // tslint:disable-next-line: no-empty
   constructor() { }
+
+  public addToCart(): void {
+		this.onAddToCart.emit(this.catalogElement);
+  }
 
   // tslint:disable-next-line: no-empty
   public ngOnInit(): void {
