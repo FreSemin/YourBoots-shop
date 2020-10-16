@@ -18,6 +18,7 @@ import { MainAppService } from './services/main-app/main-app.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CatalogCardComponent } from './components/catalog-card/catalog-card.component';
 import { OrdersEffects } from './store/effects/orders.effects';
+import { OrderCardComponent } from './components/order-card/order-card.component';
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,8 @@ import { OrdersEffects } from './store/effects/orders.effects';
 		HomeComponent,
 		CartComponent,
 		SliderComponent,
-		CatalogCardComponent
+		CatalogCardComponent,
+		OrderCardComponent
 	],
 	imports: [
 		BrowserModule,
