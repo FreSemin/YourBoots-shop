@@ -7,18 +7,6 @@ export function ordersReducer(state: IOrders = initialOrdersState, action: Custo
 
 	switch (action.type) {
 
-		// case EOrdersActions.AddElementToOrders:
-		// 	return {
-		// 		...state,
-		// 		isLoading: true,
-		// 	};
-
-		// case EOrdersActions.AddElementToOrdersSucces:
-		// 	return {
-		// 		...state,
-		// 		isLoading: false,
-		// 	};
-
 		case EOrdersActions.GetOrdersLS:
 			return {
 				...state,
@@ -32,9 +20,35 @@ export function ordersReducer(state: IOrders = initialOrdersState, action: Custo
 				isLoading: false,
 			};
 
+		case EOrdersActions.AddElementToOrders:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case EOrdersActions.AddElementToOrdersSucces:
+			return {
+				...state,
+				ordersElements: action.payload,
+				isLoading: false,
+			};
+
 		case EOrdersActions.ErrorGetOrders:
 			return {
 				...state,
+				isLoading: false,
+			};
+
+		case EOrdersActions.UpdateOrdersLS:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case EOrdersActions.UpdateOrdersLSSucces:
+			return {
+				...state,
+				ordersElements: action.payload,
 				isLoading: false,
 			};
 

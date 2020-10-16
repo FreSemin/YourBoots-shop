@@ -7,7 +7,7 @@ import { CatalogGetElements } from 'src/app/store/actions/catalog.actions';
 import { selectCatalog } from 'src/app/store/selectors/catalog.selectors';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
-import { AddElementToOrders, GetOrdersLS } from 'src/app/store/actions/orders.actions';
+import { AddElementToOrders, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
 import { of } from 'rxjs';
 import { selectOrders } from 'src/app/store/selectors/orders.selectors';
 
@@ -16,6 +16,8 @@ import { selectOrders } from 'src/app/store/selectors/orders.selectors';
 })
 export class CatalogService implements OnInit, OnDestroy {
 	private static _catalogOrderListKey: string = 'app-shop-order-list';
+
+	public orderToAdd: ICatalogElement = null;
 
 	// tslint:disable-next-line: typedef
 	public catalog$ = this._store.pipe(select(selectCatalog));
@@ -51,11 +53,14 @@ export class CatalogService implements OnInit, OnDestroy {
 		return of(orderList);
 	}
 
-	public addCartToOrder(element: ICatalogElement): void {
-		// this._store.dispatch(new AddElementToOrders(element));
-		// need NGRX
-		// load LS
-		// update LS
+	public setOrdersLS(ordersElements: ICatalogElement[]): void {
+		localStorage.setItem(CatalogService._catalogOrderListKey, JSON.stringify(ordersElements));
+		this._store.dispatch(new UpdateOrdersLSSucces(ordersElements));
+	}
+
+	public addCartToOrder(elementOrder: ICatalogElement): void {
+		this.orderToAdd = elementOrder;
+		this._store.dispatch(new AddElementToOrders());
 	}
 
 	// tslint:disable-next-line: no-empty

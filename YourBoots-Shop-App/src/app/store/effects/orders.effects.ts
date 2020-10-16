@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { catchError, switchMap } from 'rxjs/operators';
-import { GetOrdersLS, EOrdersActions, GetOrdersLSSucces, ErrorGetOrders } from '../actions/orders.actions';
+import { GetOrdersLS, EOrdersActions, GetOrdersLSSucces, ErrorGetOrders, AddElementToOrders, AddElementToOrdersSucces, ErrorAddOrder, UpdateOrdersLS, UpdateOrdersLSSucces } from '../actions/orders.actions';
 
 @Injectable()
 export class OrdersEffects {
@@ -20,19 +20,17 @@ export class OrdersEffects {
 		catchError(() => of(new ErrorGetOrders()))
 	);
 
-	// @Effect()
-	// public addOrderElements$: Observable<any> = this._actions$.pipe(
-	// ofType<AddElementToOrders>(EOrdersActions.AddElementToOrders),
-	// switchMap((elementOrder: ICatalogElement) => this.)
-	// switchMap(() => this._catalogService.getCatalogElements()),
-	// switchMap((catalog: ICatalog) => {
-	// return of(new CatalogGetElementsSucces(catalog.catalogElements));
-	// }),
-	// catchError((err: any) => {
-	// console.log(err);
-	// return of(new CatalogGetElementsError());
-	// })
-	// );
+	@Effect()
+	public addOrderElement$: Observable<any> = this._actions$.pipe(
+		ofType<AddElementToOrders>(EOrdersActions.AddElementToOrders),
+		switchMap(() => this._catalogService.getOrdersLS()),
+		switchMap((orderLSElements: ICatalogElement[]) => {
+			orderLSElements.push(this._catalogService.orderToAdd);
+			this._catalogService.setOrdersLS(orderLSElements);
+			return of(new AddElementToOrdersSucces(orderLSElements));
+		}),
+		catchError(() => of(new ErrorAddOrder()))
+	);
 
 	constructor(
 		private _actions$: Actions,

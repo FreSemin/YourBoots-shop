@@ -11,18 +11,7 @@ export enum EOrdersActions {
 	UpdateOrdersLS = '[Orders] Update Orders LS',
 	UpdateOrdersLSSucces = '[Orders] Update Orders LS Succes',
 	ErrorGetOrders = '[Orders] Get Orders Error',
-}
-
-// tslint:disable-next-line: max-classes-per-file
-export class AddElementToOrders implements CustomAction {
-	public readonly type: string = EOrdersActions.AddElementToOrders;
-
-	constructor(public payload: ICatalogElement) { }
-}
-
-// tslint:disable-next-line: max-classes-per-file
-export class AddElementToOrdersSucces implements CustomAction {
-	public readonly type: string = EOrdersActions.AddElementToOrdersSucces;
+	ErrorAddOrder = '[Orders] Add Order Error',
 }
 
 // tslint:disable-next-line: max-classes-per-file
@@ -40,4 +29,33 @@ export class GetOrdersLSSucces implements CustomAction {
 // tslint:disable-next-line: max-classes-per-file
 export class ErrorGetOrders implements CustomAction {
 	public readonly type: string = EOrdersActions.ErrorGetOrders;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class AddElementToOrders implements CustomAction {
+	public readonly type: string = EOrdersActions.AddElementToOrders;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class AddElementToOrdersSucces implements CustomAction {
+	public readonly type: string = EOrdersActions.AddElementToOrdersSucces;
+
+	constructor(public payload: ICatalogElement[]) { }
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class ErrorAddOrder implements CustomAction {
+	public readonly type: string = EOrdersActions.ErrorAddOrder;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class UpdateOrdersLS implements CustomAction {
+	public readonly type: string = EOrdersActions.UpdateOrdersLS;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class UpdateOrdersLSSucces implements CustomAction {
+	public readonly type: string = EOrdersActions.UpdateOrdersLSSucces;
+
+	constructor(public payload: ICatalogElement[]) { }
 }
