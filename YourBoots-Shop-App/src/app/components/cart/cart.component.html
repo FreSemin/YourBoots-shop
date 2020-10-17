@@ -39,8 +39,10 @@
             </div>
             <div class="cart__half">
                 <div class="cart__orders" *ngIf="(catalogService.orders$ | async).ordersElements.length > 0">
-                    <app-order-card *ngFor="let orderEl of (catalogService.orders$ | async).ordersElements"
-                        [orderElement]="orderEl"></app-order-card>
+                    <app-order-card *ngFor="let orderEl of (catalogService.orders$ | async).ordersElements; let i = index"
+                        [orderElement]="orderEl" [orderIndex]="i"
+                        (onDeleteOrder)="catalogService.deleteOrder($event)">
+                    </app-order-card>
                 </div>
                 <div class="cart__buy-box">
                     <div class="cart__buy-text">

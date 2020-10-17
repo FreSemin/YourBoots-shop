@@ -7,9 +7,10 @@ import { CatalogGetElements } from 'src/app/store/actions/catalog.actions';
 import { selectCatalog } from 'src/app/store/selectors/catalog.selectors';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
-import { AddElementToOrders, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
+import { AddElementToOrders, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
 import { of } from 'rxjs';
 import { selectOrders } from 'src/app/store/selectors/orders.selectors';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,6 +19,7 @@ export class CatalogService implements OnInit, OnDestroy {
 	private static _catalogOrderListKey: string = 'app-shop-order-list';
 
 	public orderToAdd: ICatalogElement = null;
+	public indexToDelete: number = null;
 
 	// tslint:disable-next-line: typedef
 	public catalog$ = this._store.pipe(select(selectCatalog));
@@ -61,6 +63,11 @@ export class CatalogService implements OnInit, OnDestroy {
 	public addCartToOrder(elementOrder: ICatalogElement): void {
 		this.orderToAdd = elementOrder;
 		this._store.dispatch(new AddElementToOrders());
+	}
+
+	public deleteOrder(orderIndexToDelete: number): void {
+		this.indexToDelete = orderIndexToDelete;
+		this._store.dispatch(new DeleteOrder());
 	}
 
 	// tslint:disable-next-line: no-empty

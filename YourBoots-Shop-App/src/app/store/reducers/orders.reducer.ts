@@ -52,6 +52,25 @@ export function ordersReducer(state: IOrders = initialOrdersState, action: Custo
 				isLoading: false,
 			};
 
+		case EOrdersActions.DeleteOrder:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case EOrdersActions.DeleteOrderSucces:
+			return {
+				...state,
+				ordersElements: action.payload,
+				isLoading: false,
+			};
+
+		case EOrdersActions.ErrorDeleteOrder:
+			return {
+				...state,
+				isLoading: false,
+			};
+
 		default:
 			return state;
 	}

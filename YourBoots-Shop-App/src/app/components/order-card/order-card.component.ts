@@ -1,19 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { ICatalogElement } from '../models/catalogElement/catalog-element.model';
 
 @Component({
-  selector: 'app-order-card',
-  templateUrl: './order-card.component.html',
-  styleUrls: ['./order-card.component.scss']
+	selector: 'app-order-card',
+	templateUrl: './order-card.component.html',
+	styleUrls: ['./order-card.component.scss']
 })
 export class OrderCardComponent implements OnInit {
-  @Input()
-  public orderElement: ICatalogElement;
+	@Input()
+	public orderIndex: number;
 
-  constructor(public catalogService: CatalogService) { }
+	@Input()
+	public orderElement: ICatalogElement;
 
-  // tslint:disable-next-line: no-empty
-  public ngOnInit(): void { }
+	@Output()
+	public onDeleteOrder: EventEmitter<number> = new EventEmitter<number>();
+
+	constructor(public catalogService: CatalogService) { }
+
+	public deleteOrder(): void {
+		this.onDeleteOrder.emit(this.orderIndex);
+	}
+
+	// tslint:disable-next-line: no-empty
+	public ngOnInit(): void { }
 
 }
