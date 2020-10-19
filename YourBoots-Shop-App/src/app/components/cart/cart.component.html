@@ -39,9 +39,9 @@
             </div>
             <div class="cart__half">
                 <div class="cart__orders" *ngIf="(catalogService.orders$ | async).ordersElements.length > 0">
-                    <app-order-card *ngFor="let orderEl of (catalogService.orders$ | async).ordersElements; let i = index"
-                        [orderElement]="orderEl" [orderIndex]="i"
-                        (onDeleteOrder)="catalogService.deleteOrder($event)">
+                    <app-order-card
+                        *ngFor="let orderEl of (catalogService.orders$ | async).ordersElements; let i = index"
+                        [orderElement]="orderEl" [orderIndex]="i" (onDeleteOrder)="catalogService.deleteOrder($event)">
                     </app-order-card>
                 </div>
                 <div class="cart__buy-box">
@@ -49,14 +49,17 @@
                         <div class="cart__buy-inf">
                             К оплате:
                         </div>
+                        <div class="cart__buy-number cart__buy-number_strike" *ngIf="!(catalogService.ordersBeforeSum === 0)">
+                            {{ catalogService.ordersBeforeSum }}
+                        </div>
                         <div class="cart__buy-number">
-                            120
+                            {{ catalogService.ordersCurrentSum }}
                         </div>
                         <div class="cart__buy-currency">
                             б.р.
                         </div>
                     </div>
-                    <div class="cart__buy-btn">
+                    <div class="cart__buy-btn" (click)="catalogService.calcOrdersSum()">
                         Оформить заказ?
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
@@ -33,6 +34,7 @@ import { OrderCardComponent } from './components/order-card/order-card.component
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
+		FormsModule,
 		HttpClientModule,
 		StoreModule.forRoot(appReducers),
 		EffectsModule.forRoot([CatalogEffects, OrdersEffects]),

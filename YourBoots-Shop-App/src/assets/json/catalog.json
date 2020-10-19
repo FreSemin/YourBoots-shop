@@ -3,100 +3,108 @@
         {
             "title": "title 1",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "beforePriceNumber": "120",
-            "currentPriceNumber": "60",
+            "beforePriceNumber": 120,
+            "currentPriceNumber": 60,
             "priceCurrency": "BR",
             "sizes": [
                 41,
                 42,
                 43,
                 44
-            ]
+            ],
+            "count": 1
         },
         {
             "title": "title 2",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "beforePriceNumber": "120",
-            "currentPriceNumber": "61",
+            "beforePriceNumber": 120,
+            "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
                 41,
                 42,
                 43,
                 44
-            ]
+            ],
+            "count": 1
         },
         {
             "title": "title 3",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "currentPriceNumber": "61",
+            "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
                 41,
                 42,
                 43,
                 44
-            ]
+            ],
+            "count": 1
         },
         {
             "title": "title 4",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "currentPriceNumber": "61",
+            "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
                 41,
                 42,
                 43,
                 44
-            ]
+            ],
+            "count": 1
         },
         {
             "title": "title 5",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "currentPriceNumber": "61",
+            "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
                 41,
                 42,
                 43,
                 44
-            ]
+            ],
+            "count": 1
         },
         {
             "title": "title 6",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "currentPriceNumber": "61",
+            "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
                 41,
                 42,
                 43,
                 44
-            ]
+            ],
+            "count": 1
         },
         {
             "title": "title 7",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "currentPriceNumber": "61",
+            "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
                 41,
                 42,
                 43,
                 44
-            ]
+            ],
+            "count": 1
         },
         {
             "title": "title 8",
             "img": "../../../assets/imgs/cards/card_1.png",
-            "currentPriceNumber": "61",
+            "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
                 41,
                 42,
                 43,
                 44
-            ]
+            ],
+            "count": 1
         }
     ]
 }

@@ -23,7 +23,7 @@
             <div class="cart__order-param">
                 <label class="cart__order-lbl">Размер</label>
                 <select class="cart__order-select cart__order-input">
-                    <option value="size" class="cart__order-option" *ngFor="let size of orderElement.sizes">
+                    <option [value]="size" class="cart__order-option" *ngFor="let size of orderElement.sizes">
                         {{ size}}
                     </option>
                     <!-- <option class="cart__order-option" value="41">41</option> -->
@@ -34,7 +34,16 @@
             </div>
             <div class="cart__order-param">
                 <label for="" class="cart__order-lbl">Количество</label>
-                <input type="number" placeholder="1" class="cart__order-input cart__order-cout">
+                <input 
+                type="number"
+                placeholder="1"
+                max="99"
+                min="1"
+                maxlength="3"
+                [value]="value"
+                [(ngModel)]="value"
+                (ngModelChange)="catalogService.calcOrdersSum()"
+                class="cart__order-input cart__order-cout">
             </div>
         </div>
     </div>

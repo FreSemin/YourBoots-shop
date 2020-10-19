@@ -10,7 +10,7 @@ import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { AddElementToOrders, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
 import { of } from 'rxjs';
 import { selectOrders } from 'src/app/store/selectors/orders.selectors';
-import { switchMap } from 'rxjs/operators';
+import { IOrders } from 'src/app/components/models/orders/orders.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -19,7 +19,12 @@ export class CatalogService implements OnInit, OnDestroy {
 	private static _catalogOrderListKey: string = 'app-shop-order-list';
 
 	public orderToAdd: ICatalogElement = null;
+
 	public indexToDelete: number = null;
+	public ordersCurrentSum: number = 0;
+	public ordersBeforeSum: number = 0;
+
+	public ordersCountsList: number[] = [];
 
 	// tslint:disable-next-line: typedef
 	public catalog$ = this._store.pipe(select(selectCatalog));
@@ -68,6 +73,53 @@ export class CatalogService implements OnInit, OnDestroy {
 	public deleteOrder(orderIndexToDelete: number): void {
 		this.indexToDelete = orderIndexToDelete;
 		this._store.dispatch(new DeleteOrder());
+	}
+
+	public getCoutList(): void {
+		let ordersCountInputs: HTMLCollectionOf<Element>;
+
+		this.ordersCountsList = [];
+		ordersCountInputs = document.getElementsByClassName('cart__order-cout');
+
+		Array.from(ordersCountInputs).forEach(((orderCountInput: HTMLInputElement) => {
+			this.ordersCountsList.push(+orderCountInput.value);
+		}));
+	}
+
+	public calcCurrentSum(orders: ICatalogElement[]): void {
+		this.ordersCurrentSum = orders
+			.reduce(
+				(sumOfCurrentsPrices: number, orderEl: ICatalogElement, index: number) =>
+					sumOfCurrentsPrices + (orderEl.currentPriceNumber * this.ordersCountsList[index]),
+				0);
+	}
+
+	public calcBeforeSum(orders: ICatalogElement[]): void {
+		this.ordersBeforeSum = orders
+			.reduce(
+				(sumOfBeforePrices: number, orderEl: ICatalogElement, index: number) => {
+					if (orderEl.beforePriceNumber > 0) {
+						sumOfBeforePrices += orderEl.beforePriceNumber * this.ordersCountsList[index];
+					} else {
+						sumOfBeforePrices += orderEl.currentPriceNumber * this.ordersCountsList[index];
+					}
+					return sumOfBeforePrices;
+				},
+				0);
+
+		if (this.ordersBeforeSum === this.ordersCurrentSum) {
+			this.ordersBeforeSum = 0;
+		}
+	}
+
+	public calcOrdersSum(): void {
+		this.orders$
+			.subscribe((ordersState: IOrders) => {
+				this.getCoutList();
+				this.calcCurrentSum(ordersState.ordersElements);
+				this.calcBeforeSum(ordersState.ordersElements);
+			})
+			.unsubscribe();
 	}
 
 	// tslint:disable-next-line: no-empty

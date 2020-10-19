@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { CatalogService } from 'src/app/services/catalog/catalog.service';
 	templateUrl: './cart.component.html',
 	styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, DoCheck {
 
 	constructor(
 		public catalogService: CatalogService
@@ -16,4 +16,7 @@ export class CartComponent implements OnInit {
 		this.catalogService.loadOrders();
 	}
 
+	public ngDoCheck(): void {
+		this.catalogService.calcOrdersSum();
+	}
 }

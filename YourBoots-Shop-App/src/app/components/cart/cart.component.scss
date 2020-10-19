@@ -105,6 +105,13 @@
     margin-right: 5px;
     font-size: 22px;
     font-weight: 900;
+
+    &_strike {
+      margin-right: 5px;
+      font-size: 26px;
+      text-decoration: line-through;
+      opacity: 0.8;
+    }
   }
   &__buy-currency {
     font-size: 16px;

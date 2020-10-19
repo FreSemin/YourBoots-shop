@@ -8,6 +8,8 @@ import { ICatalogElement } from '../models/catalogElement/catalog-element.model'
 	styleUrls: ['./order-card.component.scss']
 })
 export class OrderCardComponent implements OnInit {
+	public value: number = 1;   // need for NgModel work and trigger ngModelChange
+
 	@Input()
 	public orderIndex: number;
 
