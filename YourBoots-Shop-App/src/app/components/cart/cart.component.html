@@ -3,23 +3,27 @@
     <div class="cart__wrapper">
         <div class="cart__container">
             <div class="cart__half">
-                <form action="" class="cart__form">
+                <form action="" class="cart__form" [formGroup]="catalogService.ordersForm"
+                    (ngSubmit)="catalogService.sendOrdersRequest()">
                     <h3 class="cart__form-title">
                         Оформить заказ
                     </h3>
                     <div class="cart__form-box">
                         <label for="orderName" class="cart__form-lbl">ФИО</label>
-                        <input type="text" id="orderName" placeholder="Иванов Иван Иванович" class="cart__form-input">
+                        <input type="text" id="orderName" placeholder="Иванов Иван Иванович" class="cart__form-input"
+                            formControlName="userName">
                         <p class="cart__form-hint">*Здесь нужно ввести имя</p>
                     </div>
                     <div class="cart__form-box">
                         <label for="orderTel" class="cart__form-lbl">Телефон</label>
-                        <input type="tel" placeholder="+375 00 000 00 00" id="orderTel" class="cart__form-input">
+                        <input type="tel" placeholder="+375 00 000 00 00" id="orderTel" class="cart__form-input"
+                            formControlName="userPhone">
                         <p class="cart__form-hint">*Тут номер</p>
                     </div>
                     <div class="cart__form-box">
                         <label for="orderAdress" class="cart__form-lbl">Адресс</label>
-                        <input type="text" placeholder="Адрес2" id="orderAdress" class="cart__form-input">
+                        <input type="text" placeholder="Адрес2" id="orderAdress" class="cart__form-input"
+                            formControlName="userAdress">
                         <p class="cart__form-hint">*Адрес, населенный пункт, индекс</p>
                     </div>
                     <div class="cart__form-box">
@@ -31,8 +35,11 @@
                         </div>
                     </div>
                     <div class="cart__form-box">
-                        <div class="cart__send-btn">
+                        <button type="submit" class="cart__send-btn" *ngIf="!(this.catalogService.ordersForm$ | async).isLoading">
                             Отправить?
+                        </button>
+                        <div *ngIf="(this.catalogService.ordersForm$ | async).isLoading">
+                            Отправка...
                         </div>
                     </div>
                 </form>
@@ -49,7 +56,8 @@
                         <div class="cart__buy-inf">
                             К оплате:
                         </div>
-                        <div class="cart__buy-number cart__buy-number_strike" *ngIf="!(catalogService.ordersBeforeSum === 0)">
+                        <div class="cart__buy-number cart__buy-number_strike"
+                            *ngIf="!(catalogService.ordersBeforeSum === 0)">
                             {{ catalogService.ordersBeforeSum }}
                         </div>
                         <div class="cart__buy-number">

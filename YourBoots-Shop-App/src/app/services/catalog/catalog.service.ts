@@ -11,6 +11,10 @@ import { AddElementToOrders, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } fr
 import { of } from 'rxjs';
 import { selectOrders } from 'src/app/store/selectors/orders.selectors';
 import { IOrders } from 'src/app/components/models/orders/orders.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SendData } from 'src/app/store/actions/orders-form.actions';
+import { selectOrdersForm } from 'src/app/store/selectors/orders-form.selectors';
+import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-form.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -31,6 +35,22 @@ export class CatalogService implements OnInit, OnDestroy {
 
 	// tslint:disable-next-line: typedef
 	public orders$ = this._store.pipe(select(selectOrders));
+
+	// tslint:disable-next-line: typedef
+	public ordersForm$ = this._store.pipe(select(selectOrdersForm));
+
+	public ordersForm: FormGroup = new FormGroup({
+		userName: new FormControl('', Validators.required),
+		userPhone: new FormControl('', Validators.pattern('[0-9]{10}')),
+		userAdress: new FormControl('', Validators.required),
+	});
+
+	public dataToSend: IOrdersDataToSend = {
+		userName: '',
+		userTel: '',
+		userAdress: '',
+		userOrders: [],
+	};
 
 	constructor(
 		private _http: HttpClient,
@@ -120,6 +140,28 @@ export class CatalogService implements OnInit, OnDestroy {
 				this.calcBeforeSum(ordersState.ordersElements);
 			})
 			.unsubscribe();
+	}
+
+	public getDataToSend(): Observable<IOrdersDataToSend> {
+		this.dataToSend.userOrders = [];
+
+		this.dataToSend.userName = this.ordersForm.controls['userName'].value;
+		this.dataToSend.userTel = this.ordersForm.controls['userPhone'].value;
+		this.dataToSend.userAdress = this.ordersForm.controls['userAdress'].value;
+
+		this.orders$
+			.subscribe((ordersState: IOrders) => {
+				ordersState.ordersElements.forEach((orderElement: ICatalogElement) => {
+					this.dataToSend.userOrders.push(JSON.stringify(orderElement));
+				});
+			})
+			.unsubscribe();
+
+		return of(this.dataToSend);
+	}
+
+	public sendOrdersRequest(): void {
+		this._store.dispatch(new SendData());
 	}
 
 	// tslint:disable-next-line: no-empty

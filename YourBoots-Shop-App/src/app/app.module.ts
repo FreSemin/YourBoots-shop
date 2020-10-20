@@ -7,7 +7,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { SliderComponent } from './components/slider/slider.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CatalogCardComponent } from './components/catalog-card/catalog-card.component';
 import { OrdersEffects } from './store/effects/orders.effects';
 import { OrderCardComponent } from './components/order-card/order-card.component';
+import { OrdersFormEffects } from './store/effects/orders-form.effects';
 
 @NgModule({
 	declarations: [
@@ -35,9 +36,10 @@ import { OrderCardComponent } from './components/order-card/order-card.component
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
+		ReactiveFormsModule,
 		HttpClientModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([CatalogEffects, OrdersEffects]),
+		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects]),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 			logOnly: environment.production,
