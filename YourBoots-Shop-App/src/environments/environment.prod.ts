@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  cardsImgUrl: './assets/imgs/',
+  imgsUrl: '/YourBoots/assets/imgs/',
 };
