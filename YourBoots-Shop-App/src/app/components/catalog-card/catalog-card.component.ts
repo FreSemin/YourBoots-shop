@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { ICatalogElement } from '../models/catalogElement/catalog-element.model';
 
 @Component({
@@ -7,6 +8,7 @@ import { ICatalogElement } from '../models/catalogElement/catalog-element.model'
   styleUrls: ['./catalog-card.component.scss']
 })
 export class CatalogCardComponent implements OnInit {
+  public imgsUrl: string = environment.imgsUrl;
 
   @Input()
   public catalogElement: ICatalogElement;

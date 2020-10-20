@@ -2,7 +2,7 @@
     "catalogElements": [
         {
             "title": "title 1",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "img": "card_1.png",
             "beforePriceNumber": 120,
             "currentPriceNumber": 60,
             "priceCurrency": "BR",
@@ -16,7 +16,7 @@
         },
         {
             "title": "title 2",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "img": "card_1.png",
             "beforePriceNumber": 120,
             "currentPriceNumber": 61,
             "priceCurrency": "BR",
@@ -30,7 +30,7 @@
         },
         {
             "title": "title 3",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "img": "card_1.png",
             "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
@@ -43,7 +43,7 @@
         },
         {
             "title": "title 4",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "img": "card_1.png",
             "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
@@ -56,7 +56,7 @@
         },
         {
             "title": "title 5",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "img": "card_1.png",
             "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
@@ -69,7 +69,7 @@
         },
         {
             "title": "title 6",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "img": "card_1.png",
             "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
@@ -82,7 +82,7 @@
         },
         {
             "title": "title 7",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "img": "card_1.png",
             "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
@@ -95,7 +95,7 @@
         },
         {
             "title": "title 8",
-            "img": "../../../assets/imgs/cards/card_1.png",
+            "img": "card_1.png",
             "currentPriceNumber": 61,
             "priceCurrency": "BR",
             "sizes": [
