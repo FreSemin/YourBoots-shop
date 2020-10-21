@@ -7,7 +7,7 @@ import { CatalogGetElements } from 'src/app/store/actions/catalog.actions';
 import { selectCatalog } from 'src/app/store/selectors/catalog.selectors';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
-import { AddElementToOrders, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
+import { AddElementToOrders, ClearOrdersList, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
 import { of } from 'rxjs';
 import { selectOrders } from 'src/app/store/selectors/orders.selectors';
 import { IOrders } from 'src/app/components/models/orders/orders.model';
@@ -96,6 +96,10 @@ export class CatalogService implements OnInit, OnDestroy {
 	public deleteOrder(orderIndexToDelete: number): void {
 		this.indexToDelete = orderIndexToDelete;
 		this._store.dispatch(new DeleteOrder());
+	}
+
+	public clearOrders(): void {
+		this._store.dispatch(new ClearOrdersList());
 	}
 
 	public getCoutList(): void {

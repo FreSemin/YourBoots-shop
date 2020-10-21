@@ -35,7 +35,8 @@
                         </div>
                     </div>
                     <div class="cart__form-box">
-                        <button type="submit" class="cart__send-btn" *ngIf="!(this.catalogService.ordersForm$ | async).isLoading">
+                        <button type="submit" class="cart__send-btn"
+                            *ngIf="!(this.catalogService.ordersForm$ | async).isLoading">
                             Отправить?
                         </button>
                         <div *ngIf="(this.catalogService.ordersForm$ | async).isLoading">
@@ -69,6 +70,10 @@
                     </div>
                     <div class="cart__buy-btn" (click)="catalogService.calcOrdersSum()">
                         Оформить заказ?
+                    </div>
+                    <div class="cart__buy-btn" *ngIf="(catalogService.orders$ | async).ordersElements.length > 0"
+                        (click)="catalogService.clearOrders()">
+                        Удалить все
                     </div>
                 </div>
             </div>

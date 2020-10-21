@@ -10,6 +10,9 @@ export enum EOrdersActions {
 	GetOrdersLSSucces = '[Orders] Get Orders from LS Succes',
 	UpdateOrdersLS = '[Orders] Update Orders LS',
 	UpdateOrdersLSSucces = '[Orders] Update Orders LS Succes',
+	ClearOrdersList = '[Orders] Clear Orders List',
+	ClearOrdersListSucces = '[Orders] Clear Orders List Succes',
+	ErrorClearOrdersList = '[Orders] Clear Orders List Error',
 	ErrorGetOrders = '[Orders] Get Orders Error',
 	ErrorAddOrder = '[Orders] Add Order Error',
 	ErrorDeleteOrder = '[Orders] Delete Order Error',
@@ -76,4 +79,19 @@ export class DeleteOrderSucces implements CustomAction {
 // tslint:disable-next-line: max-classes-per-file
 export class ErrorDeleteOrder implements CustomAction {
 	public readonly type: string = EOrdersActions.ErrorDeleteOrder;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class ClearOrdersList implements CustomAction {
+	public readonly type: string = EOrdersActions.ClearOrdersList;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class ErrorClearOrdersList implements CustomAction {
+	public readonly type: string = EOrdersActions.ErrorClearOrdersList;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class ClearOrdersListSucces implements CustomAction {
+	public readonly type: string = EOrdersActions.ClearOrdersListSucces;
 }
