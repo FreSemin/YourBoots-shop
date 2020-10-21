@@ -25,6 +25,7 @@ export class OrdersFormEffects {
 				}))
 				.finally(() => {
 					this._catalogService.ordersForm.reset();
+					this._catalogService.clearOrders();
 				});
 		}),
 		catchError(() => of(new SendDataError()))
