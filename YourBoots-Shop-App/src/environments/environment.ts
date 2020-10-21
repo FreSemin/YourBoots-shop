@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   assetsUrl: '../../../assets/',
   imgsUrl: '../../../assets/imgs/',
+  emailjsServiceID: 'service_shop_dev',
+  emailjsTemplateID: 'template_getMesTemp',
+  emailjsUserID: 'user_WJ6xuX9CpaHdPQooQh4pA',
 };
 
 /*
