@@ -15,12 +15,15 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SendData } from 'src/app/store/actions/orders-form.actions';
 import { selectOrdersForm } from 'src/app/store/selectors/orders-form.selectors';
 import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-form.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class CatalogService implements OnInit, OnDestroy {
 	private static _catalogOrderListKey: string = 'app-shop-order-list';
+
+	public assetsUrl: string = environment.assetsUrl;
 
 	public orderToAdd: ICatalogElement = null;
 
@@ -67,7 +70,7 @@ export class CatalogService implements OnInit, OnDestroy {
 
 	public getCatalogElements(): Observable<ICatalog> {
 		return this._http.get<ICatalog>(
-			`../../../assets/json/catalog.json`
+			`${this.assetsUrl}json/catalog.json`
 		);
 	}
 

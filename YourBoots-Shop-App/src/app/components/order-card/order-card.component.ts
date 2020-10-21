@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
+import { environment } from 'src/environments/environment';
 import { ICatalogElement } from '../models/catalogElement/catalog-element.model';
 
 @Component({
@@ -9,6 +10,8 @@ import { ICatalogElement } from '../models/catalogElement/catalog-element.model'
 })
 export class OrderCardComponent implements OnInit {
 	public value: number = 1;   // need for NgModel work and trigger ngModelChange
+
+	public imgsUrl: string = environment.imgsUrl;
 
 	@Input()
 	public orderIndex: number;
