@@ -54,6 +54,8 @@ export class CatalogService implements OnInit, OnDestroy {
 		userTel: '',
 		userAdress: '',
 		userOrders: [],
+		beforePrice: null,
+		currentPrice: null,
 	};
 
 	constructor(
@@ -167,6 +169,8 @@ export class CatalogService implements OnInit, OnDestroy {
 		this.dataToSend.userName = this.ordersForm.controls['userName'].value;
 		this.dataToSend.userTel = this.ordersForm.controls['userPhone'].value;
 		this.dataToSend.userAdress = this.ordersForm.controls['userAdress'].value;
+		this.dataToSend.beforePrice = this.ordersBeforeSum;
+		this.dataToSend.currentPrice = this.ordersCurrentSum;
 
 		this.getCoutList();
 		this.getSizesList();

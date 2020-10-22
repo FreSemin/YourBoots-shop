@@ -5,6 +5,8 @@ export interface IOrdersDataToSend {
 	userTel: string;
 	userAdress: string;
 	userOrders: any;
+	beforePrice: number;
+	currentPrice: number;
 }
 
 export interface IOrdersForm {
