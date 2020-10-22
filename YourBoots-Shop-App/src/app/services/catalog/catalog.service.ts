@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
+import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { IAppState } from 'src/app/store/states/app.state';
 import { select, Store } from '@ngrx/store';
 import { CatalogGetElements } from 'src/app/store/actions/catalog.actions';
@@ -32,6 +32,7 @@ export class CatalogService implements OnInit, OnDestroy {
 	public ordersBeforeSum: number = 0;
 
 	public ordersCountsList: number[] = [];
+	public ordersSizesList: number[] = [];
 
 	// tslint:disable-next-line: typedef
 	public catalog$ = this._store.pipe(select(selectCatalog));
@@ -113,6 +114,17 @@ export class CatalogService implements OnInit, OnDestroy {
 		}));
 	}
 
+	public getSizesList(): void {
+		let ordersSizesInputs: HTMLCollectionOf<Element>;
+
+		this.ordersSizesList = [];
+		ordersSizesInputs = document.getElementsByClassName('cart__order-size');
+
+		Array.from(ordersSizesInputs).forEach(((orderSizesInput: HTMLInputElement) => {
+			this.ordersSizesList.push(+orderSizesInput.value);
+		}));
+	}
+
 	public calcCurrentSum(orders: ICatalogElement[]): void {
 		this.ordersCurrentSum = orders
 			.reduce(
@@ -156,10 +168,19 @@ export class CatalogService implements OnInit, OnDestroy {
 		this.dataToSend.userTel = this.ordersForm.controls['userPhone'].value;
 		this.dataToSend.userAdress = this.ordersForm.controls['userAdress'].value;
 
+		this.getCoutList();
+		this.getSizesList();
+
 		this.orders$
 			.subscribe((ordersState: IOrders) => {
-				ordersState.ordersElements.forEach((orderElement: ICatalogElement) => {
-					this.dataToSend.userOrders.push(JSON.stringify(orderElement));
+				ordersState.ordersElements.forEach((orderElement: ICatalogElement, index: number) => {
+					this.dataToSend.userOrders.push(
+						JSON.stringify(new CatalogElement(
+							orderElement,
+							this.ordersCountsList[index],
+							this.ordersSizesList[index]
+						))
+					);
 				});
 			})
 			.unsubscribe();
