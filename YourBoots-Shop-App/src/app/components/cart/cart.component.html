@@ -84,13 +84,10 @@
                             {{ catalogService.ordersCurrentSum }}
                         </div>
                         <div class="cart__buy-currency">
-                            б.р.
+                            BR
                         </div>
                     </div>
-                    <div class="cart__buy-btn" (click)="catalogService.calcOrdersSum()">
-                        Оформить заказ?
-                    </div>
-                    <div class="cart__buy-btn" *ngIf="(catalogService.orders$ | async).ordersElements.length > 0"
+                    <div class="cart__buy-btn" *ngIf="(catalogService.orders$ | async).ordersElements.length > 1"
                         (click)="catalogService.clearOrders()">
                         Удалить все
                     </div>
