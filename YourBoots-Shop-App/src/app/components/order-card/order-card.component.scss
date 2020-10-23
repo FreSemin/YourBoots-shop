@@ -3,17 +3,12 @@
 .cart {
   &__order {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     padding-bottom: 5px;
     width: 100%;
     min-width: 510px;
     display: flex;
     border-bottom: 1px solid $bg-grey;
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-
     &-head {
       margin-right: 20px;
       display: flex;
@@ -22,7 +17,8 @@
     &-img {
       width: 105px;
       height: 70px;
-      object-fit: contain;
+      border-radius: 6px;
+      object-fit: cover;
     }
     &-body {
       display: flex;
@@ -30,24 +26,27 @@
       justify-content: center;
     }
     &-title {
+      max-width: 300px;
       font-size: 16px;
       color: $text-blue;
       font-weight: 300;
+      word-break: break-all;
     }
     &-body-box {
-      margin-top: 20px;
+      margin-top: 10px;
       display: flex;
       align-items: flex-end;
     }
     &-price {
       margin-right: 10px;
+      min-width: 100px;
       display: flex;
       align-items: flex-end;
       color: $text-dark;
       &-values {
         margin-right: 5px;
         display: flex;
-        align-items: flex-end;
+        align-items: baseline;
         font-weight: 900;
       }
       &-number {
@@ -55,12 +54,13 @@
 
         &_strike {
           margin-right: 5px;
-          font-size: 26px;
+          font-size: 24px;
           text-decoration: line-through;
           opacity: 0.8;
         }
       }
       &-currency {
+        margin-bottom: 2px;
         font-size: 16px;
       }
     }
@@ -75,7 +75,6 @@
       color: $text-dark;
     }
     &-select {
-      // appearance: none;
     }
     &-size {
     }
@@ -108,24 +107,18 @@
       right: 0px;
     }
     &-delete-btn {
-      width: 20px;
-      height: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 100%;
-      font-size: 12px;
+      font-size: 16px;
       color: $text-grey;
       background: $bg-white;
-      border: 1px solid $bg-grey;
       transition: all 0.3s;
 
       &:hover {
         cursor: pointer;
-        color: $text-white;
-        background: $bg-red-del;
+        color: $text-red;
         opacity: 0.95;
-        border: 1px solid transparent;
       }
     }
   }
