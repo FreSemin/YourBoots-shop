@@ -25,10 +25,12 @@
     padding: 25px 20px;
     width: 100%;
     max-width: 460px;
+    min-height: 410px;
     border-radius: 10px;
     box-shadow: $sh-cart-form;
     box-sizing: border-box;
     &-box {
+      position: relative;
       margin-bottom: 20px;
       display: flex;
       flex-direction: column;
@@ -38,41 +40,55 @@
       }
     }
     &-title {
-      margin-bottom: 40px;
+      margin-bottom: 18px;
       color: $text-black;
       font-size: 26px;
     }
-    &-lbl {
+    &-subtitle {
+      margin-bottom: 25px;
       color: $text-dark;
-      font-size: 16px;
-
-      &:hover {
-        cursor: pointer;
-      }
+      font-size: 18px;
     }
     &-input {
       padding: 8px 5px 8px 0;
-      margin-top: 5px;
       color: $text-form-grey;
       border-bottom: 1px solid $bg-input-grey;
-      font-size: 16px;
+      font-size: 17px;
 
       &:focus {
         border-color: $bg-yel;
       }
+      &_valid {
+        border-color: $bg-yel;
+      }
+      &_not-valid {
+        border-color: $bg-red;
+      }
     }
     &-hint {
-      margin-top: 5px;
+      position: absolute;
+      bottom: -15px;
       color: $text-form-grey;
       font-size: 10px;
+
+      &_invalid {
+        color: $text-red;
+      }
     }
   }
   &__send-btn {
-    margin-top: 20px;
     @include mainBtn;
+
+    &:disabled {
+      background: $bg-grey;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
   }
   &__deliver {
-    margin-top: 10px;
+    margin-top: 25px;
     display: flex;
     align-items: center;
     &-img {

@@ -45,7 +45,7 @@ export class CatalogService implements OnInit, OnDestroy {
 
 	public ordersForm: FormGroup = new FormGroup({
 		userName: new FormControl('', Validators.required),
-		userPhone: new FormControl('', Validators.pattern('[0-9]{10}')),
+		userPhone: new FormControl('', Validators.pattern('[0-9(/\+/)]{13}')),
 		userAdress: new FormControl('', Validators.required),
 	});
 

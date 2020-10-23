@@ -3,28 +3,46 @@
     <div class="cart__wrapper">
         <div class="cart__container">
             <div class="cart__half">
-                <form action="" class="cart__form" [formGroup]="catalogService.ordersForm"
+                <form action="" class="cart__form" [formGroup]="cartOrdersForm"
                     (ngSubmit)="catalogService.sendOrdersRequest()">
                     <h3 class="cart__form-title">
                         Оформить заказ
                     </h3>
+                    <p class="cart__form-subtitle">
+                        Оставьте заказ и мы свяжемся с вами!
+                    </p>
                     <div class="cart__form-box">
-                        <label for="orderName" class="cart__form-lbl">ФИО</label>
-                        <input type="text" id="orderName" placeholder="Иванов Иван Иванович" class="cart__form-input"
-                            formControlName="userName">
-                        <p class="cart__form-hint">*Здесь нужно ввести имя</p>
+                        <input type="text" id="orderName" placeholder="Ваше имя" class="cart__form-input"
+                            formControlName="userName" [ngClass]="{
+                            'cart__form-input_valid': cartOrdersForm.controls['userName'] && cartOrdersForm.controls['userName'].touched,
+                            'cart__form-input_not-valid': cartOrdersForm.controls['userName'].invalid && cartOrdersForm.controls['userName'].touched
+                          }">
+                        <label for="orderName" class="cart__form-hint cart__form-hint_invalid"
+                            *ngIf="cartOrdersForm.controls['userName'].touched && cartOrdersForm.controls['userName'].invalid">
+                            Заполните поле</label>
                     </div>
                     <div class="cart__form-box">
-                        <label for="orderTel" class="cart__form-lbl">Телефон</label>
-                        <input type="tel" placeholder="+375 00 000 00 00" id="orderTel" class="cart__form-input"
-                            formControlName="userPhone">
-                        <p class="cart__form-hint">*Тут номер</p>
+                        <input type="text" placeholder="Ваш телефон" id="orderTel" minlength="13" maxlength="13"
+                            class="cart__form-input" formControlName="userPhone" [ngClass]="{
+                                'cart__form-input_valid': cartOrdersForm.controls['userPhone'] && cartOrdersForm.controls['userPhone'].touched,
+                                'cart__form-input_not-valid': cartOrdersForm.controls['userPhone'].invalid && cartOrdersForm.controls['userPhone'].touched || ((cartOrdersForm.controls['userPhone'].value.length == 0) && cartOrdersForm.controls['userPhone'].touched) 
+                              }">
+                        <label for="orderTel" class="cart__form-hint cart__form-hint_invalid"
+                            *ngIf="cartOrdersForm.controls['userPhone'].touched && cartOrdersForm.controls['userPhone'].invalid || ((cartOrdersForm.controls['userPhone'].value.length == 0) && cartOrdersForm.controls['userPhone'].touched)">
+                            Укажите телефон (Например: +375290000000)</label>
                     </div>
                     <div class="cart__form-box">
-                        <label for="orderAdress" class="cart__form-lbl">Адресс</label>
-                        <input type="text" placeholder="Адрес2" id="orderAdress" class="cart__form-input"
-                            formControlName="userAdress">
-                        <p class="cart__form-hint">*Адрес, населенный пункт, индекс</p>
+                        <input type="text" placeholder="Ваш адресс" id="orderAdress" class="cart__form-input"
+                            formControlName="userAdress" [ngClass]="{
+                                'cart__form-input_valid': cartOrdersForm.controls['userAdress'] && cartOrdersForm.controls['userAdress'].touched,
+                                'cart__form-input_not-valid': cartOrdersForm.controls['userAdress'].invalid && cartOrdersForm.controls['userAdress'].touched
+                              }">
+                        <label for="orderAdress" class="cart__form-hint"
+                            *ngIf="!cartOrdersForm.controls['userAdress'].touched || !cartOrdersForm.controls['userAdress'].invalid">
+                            *Область, город, улица, почтовый индекс</label>
+                        <label for="orderAdress" class="cart__form-hint cart__form-hint_invalid"
+                            *ngIf="cartOrdersForm.controls['userAdress'].touched && cartOrdersForm.controls['userAdress'].invalid">
+                            Укажите адресс</label>
                     </div>
                     <div class="cart__form-box">
                         <div class="cart__deliver">
@@ -36,6 +54,7 @@
                     </div>
                     <div class="cart__form-box">
                         <button type="submit" class="cart__send-btn"
+                            [disabled]="cartOrdersForm.invalid || (cartOrdersForm.invalid && cartOrdersForm.touched)"
                             *ngIf="!(this.catalogService.ordersForm$ | async).isLoading">
                             Отправить?
                         </button>

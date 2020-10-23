@@ -1,4 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { environment } from 'src/environments/environment';
 
@@ -9,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CartComponent implements OnInit, DoCheck {
 	public imgsUrl: string = environment.imgsUrl;
+	public cartOrdersForm: FormGroup = this.catalogService.ordersForm;
 
 	constructor(
 		public catalogService: CatalogService
