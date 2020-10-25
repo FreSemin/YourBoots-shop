@@ -21,6 +21,7 @@ import { CatalogCardComponent } from './components/catalog-card/catalog-card.com
 import { OrdersEffects } from './store/effects/orders.effects';
 import { OrderCardComponent } from './components/order-card/order-card.component';
 import { OrdersFormEffects } from './store/effects/orders-form.effects';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
 	declarations: [
@@ -30,7 +31,8 @@ import { OrdersFormEffects } from './store/effects/orders-form.effects';
 		CartComponent,
 		SliderComponent,
 		CatalogCardComponent,
-		OrderCardComponent
+		OrderCardComponent,
+		LoaderComponent
 	],
 	imports: [
 		BrowserModule,

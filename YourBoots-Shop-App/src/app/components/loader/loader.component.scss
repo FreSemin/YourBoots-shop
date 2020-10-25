@@ -1,0 +1,56 @@
+@import "../../../variables.scss";
+
+.loader {
+  &__container {
+    position: fixed;
+    z-index: 102;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $bg-white;
+  }
+  &__box {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    position: relative;
+    margin: 0 auto;
+  }
+}
+
+#loader {
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 3px solid transparent;
+    border-top-color: $bg-red;
+  }
+
+  &:before {
+    z-index: 104;
+    animation: spin 1.2s infinite;
+  }
+
+  &:after {
+    z-index: 103;
+    border: 3px solid $bg-grey;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
