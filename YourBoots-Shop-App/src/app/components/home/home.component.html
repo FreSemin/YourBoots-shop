@@ -1,3 +1,7 @@
+<!-- Loader: Start -->
+<app-loader *ngIf="(_catalogService.catalog$ | async).isLoading"></app-loader>
+<!-- Loader: End -->
+
 <!-- View: Start -->
 <section class="view">
     <div class="view__content">

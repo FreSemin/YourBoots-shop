@@ -18,5 +18,4 @@ export class HomeComponent implements OnInit {
 		this._catalogService.loadCatalog();
 		this._catalogService.loadOrders();
 	}
-
 }

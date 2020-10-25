@@ -1,5 +1,11 @@
 <!-- Cart: Start -->
 <div class="cart">
+
+    <!-- Loader: Start -->
+    <app-loader *ngIf="(catalogService.orders$ | async).isLoading"></app-loader>
+    <!-- Loader: End -->
+
+    <!-- Content: Start -->
     <div class="cart__wrapper"
         *ngIf="!(catalogService.orders$ | async).isLoading && (catalogService.orders$ | async).ordersElements.length > 0">
         <div class="cart__container">
@@ -96,6 +102,7 @@
             </div>
         </div>
     </div>
+    <!-- Content: End -->
 
     <!-- Empty: Start -->
     <div class="cart__box-empty"
@@ -109,8 +116,5 @@
     </div>
     <!-- Empty: End -->
 
-    <!-- <div class="cart__loader" *ngIf="(catalogService.orders$ | async).isLoading"> -->
-        <!-- Загрузочка... -->
-    <!-- </div> -->
 </div>
 <!-- Cart: End -->
