@@ -1,6 +1,7 @@
 <!-- Cart: Start -->
 <div class="cart">
-    <div class="cart__wrapper">
+    <div class="cart__wrapper"
+        *ngIf="!(catalogService.orders$ | async).isLoading && (catalogService.orders$ | async).ordersElements.length > 0">
         <div class="cart__container">
             <div class="cart__half">
                 <form action="" class="cart__form" [formGroup]="cartOrdersForm"
@@ -95,5 +96,21 @@
             </div>
         </div>
     </div>
+
+    <!-- Empty: Start -->
+    <div class="cart__box-empty"
+        *ngIf="!(catalogService.orders$ | async).isLoading && (catalogService.orders$ | async).ordersElements.length === 0">
+        <p class="cart__empty-text">
+            Ваша корзина пуста, перейти в каталог?
+        </p>
+        <a href="#catalog" class="cart__send-btn">
+            В Каталог
+        </a>
+    </div>
+    <!-- Empty: End -->
+
+    <!-- <div class="cart__loader" *ngIf="(catalogService.orders$ | async).isLoading"> -->
+        <!-- Загрузочка... -->
+    <!-- </div> -->
 </div>
 <!-- Cart: End -->
