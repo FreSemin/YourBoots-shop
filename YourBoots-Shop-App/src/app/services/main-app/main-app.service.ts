@@ -38,6 +38,14 @@ export class MainAppService implements OnInit, OnDestroy {
 		this.mainSlider = null;
 	}
 
+	public setCookiesDuration(): void {
+		// tslint:disable-next-line: no-empty
+		if (document.cookie !== '') {
+		} else {
+			document.cookie = 'max-age=1576800';
+		}
+	}
+
 	// tslint:disable-next-line: no-empty
 	public ngOnInit(): void { }
 
