@@ -24,6 +24,7 @@ import { OrdersFormEffects } from './store/effects/orders-form.effects';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
 import { ContactModalEffects } from './store/effects/contact-modal.effects';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
@@ -49,6 +50,7 @@ import { ContactModalEffects } from './store/effects/contact-modal.effects';
 			maxAge: 25,
 			logOnly: environment.production,
 		}),
+		NoopAnimationsModule,
 	],
 	providers: [MainAppService, CatalogService],
 	bootstrap: [AppComponent]
