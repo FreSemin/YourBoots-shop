@@ -8,6 +8,7 @@ export const environment = {
   imgsUrl: '../../../assets/imgs/',
   emailjsServiceID: 'service_shop_dev',
   emailjsTemplateID: 'template_getMesTemp',
+  emailjsRecallTemplateID: 'template_recallRequest',
   emailjsUserID: 'user_WJ6xuX9CpaHdPQooQh4pA',
 };
 

@@ -22,6 +22,8 @@ import { OrdersEffects } from './store/effects/orders.effects';
 import { OrderCardComponent } from './components/order-card/order-card.component';
 import { OrdersFormEffects } from './store/effects/orders-form.effects';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
+import { ContactModalEffects } from './store/effects/contact-modal.effects';
 
 @NgModule({
 	declarations: [
@@ -32,7 +34,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 		SliderComponent,
 		CatalogCardComponent,
 		OrderCardComponent,
-		LoaderComponent
+		LoaderComponent,
+		ContactModalComponent
 	],
 	imports: [
 		BrowserModule,
@@ -41,7 +44,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 		ReactiveFormsModule,
 		HttpClientModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects]),
+		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects]),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 			logOnly: environment.production,

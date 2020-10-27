@@ -154,7 +154,7 @@
                 </div>
             </div>
             <div class="contact__box-half">
-                <div class="contact__btn-req">
+                <div class="contact__btn-req" (click)="modalService.openContactModal()">
                     Заказать звонок
                 </div>
             </div>
@@ -224,3 +224,7 @@
     </div>
 </footer>
 <!-- Footer: End -->
+
+<!-- Contact-Modal: Start -->
+<app-contact-modal></app-contact-modal>
+<!-- Contact-Modal: End -->
