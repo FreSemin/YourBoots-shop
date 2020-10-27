@@ -25,7 +25,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
 import { ContactModalEffects } from './store/effects/contact-modal.effects';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material-modules/meterial.module';
+import { MaterialModule } from './modules/material-modules/meterial.module';
 
 @NgModule({
 	declarations: [
