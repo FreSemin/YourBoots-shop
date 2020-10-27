@@ -25,6 +25,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
 import { ContactModalEffects } from './store/effects/contact-modal.effects';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material-modules/meterial.module';
 
 @NgModule({
 	declarations: [
@@ -44,6 +45,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
+		MaterialModule,
 		StoreModule.forRoot(appReducers),
 		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects]),
 		StoreDevtoolsModule.instrument({
