@@ -26,6 +26,7 @@ import { ContactModalComponent } from './components/contact-modal/contact-modal.
 import { ContactModalEffects } from './store/effects/contact-modal.effects';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material-modules/meterial.module';
+import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-snack-bar.component';
 
 @NgModule({
 	declarations: [
@@ -37,7 +38,8 @@ import { MaterialModule } from './modules/material-modules/meterial.module';
 		CatalogCardComponent,
 		OrderCardComponent,
 		LoaderComponent,
-		ContactModalComponent
+		ContactModalComponent,
+		CustomSnackBarComponent
 	],
 	imports: [
 		BrowserModule,

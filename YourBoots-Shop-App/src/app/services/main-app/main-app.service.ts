@@ -1,6 +1,9 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomSnackBarComponent } from 'src/app/components/custom-snack-bar/custom-snack-bar.component';
 import { tns } from 'tiny-slider/src/tiny-slider';
+import { ModalService } from '../modal/modal.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -8,8 +11,10 @@ import { tns } from 'tiny-slider/src/tiny-slider';
 export class MainAppService implements OnInit, OnDestroy {
 	public mainSlider: any = null;
 
-	// tslint:disable-next-line: no-empty
-	constructor() { }
+	constructor(
+		private _snackBar: MatSnackBar,
+		private _modalService: ModalService,
+	) { }
 
 	public initMainSlider(): void {
 		this.mainSlider = tns({
@@ -36,6 +41,24 @@ export class MainAppService implements OnInit, OnDestroy {
 
 	public destroyMainSlider(): void {
 		this.mainSlider = null;
+	}
+
+	public showSuccesMessage(): void {
+		this._modalService.isShowSucces = true; // use side service to avoid "Circular dependency"
+		this._snackBar.openFromComponent(CustomSnackBarComponent, {
+			duration: 5000,
+			horizontalPosition: 'center',
+			verticalPosition: 'top',
+		});
+	}
+
+	public showErrorMessage(): void {
+		this._modalService.isShowSucces = false; // use side service to avoid "Circular dependency"
+		this._snackBar.openFromComponent(CustomSnackBarComponent, {
+			duration: 5000,
+			horizontalPosition: 'center',
+			verticalPosition: 'top',
+		});
 	}
 
 	// tslint:disable-next-line: no-empty

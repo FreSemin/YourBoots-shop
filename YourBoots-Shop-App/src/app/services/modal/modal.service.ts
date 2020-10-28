@@ -12,6 +12,7 @@ import { IAppState } from 'src/app/store/states/app.state';
 	providedIn: 'root'
 })
 export class ModalService implements OnInit {
+	public isShowSucces: boolean;
 
 	// tslint:disable-next-line: typedef
 	public contactModal$ = this._store.pipe(select(selectContactModal));
