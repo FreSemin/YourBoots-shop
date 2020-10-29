@@ -69,17 +69,18 @@
     z-index: 4;
     bottom: 0;
     height: 100%;
-    width: 180px;
+    width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $text-white-transp;
+    color: $text-white;
     font-size: 18px;
     transition: all 0.3s ease;
+    opacity: 0.6;
 
     &:hover {
       cursor: pointer;
-      background: $bg-white-transp;
+      opacity: 1;
     }
 
     &_left {
@@ -99,19 +100,30 @@
   }
   &__nav-dot-el {
     margin: 0 4px;
-    height: 10px;
-    width: 10px;
-    background: $bg-white;
+    height: 8px;
+    width: 8px;
+    background: $bg-grey;
     border-radius: 100%;
     pointer-events: all;
+    opacity: 0.9;
 
     &:hover {
       cursor: pointer;
+      opacity: 1;
     }
-
   }
 }
-
 .tns-nav-active {
   background: $gr-main;
 }
+
+/*#region Media */
+@media (max-width: 576px) {
+  .slider__content {
+    max-width: 320px;
+  }
+  .slider__nav-btn {
+    width: 60px;
+  }
+}
+/*#endregion Media */

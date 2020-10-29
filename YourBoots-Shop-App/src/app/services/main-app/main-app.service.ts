@@ -18,19 +18,27 @@ export class MainAppService implements OnInit, OnDestroy {
 
 	public initMainSlider(): void {
 		this.mainSlider = tns({
-			container: '.slider__slids',
 			controls: true,
+			nav: false,
+			animateNormal: 'tns-fadeIn',
+			container: '.slider__slids',
 			controlsContainer: '.slider__nav-box',
 			navContainer: '.slider__nav-dots-box',
 			items: 1,
 			slideBy: 1,
 			autoplay: true,
-			animateNormal: 'tns-fadeIn',
+			arrowKeys: true,
 			autoplayButtonOutput: false,
-			nav: true,
+			autoplayHoverPause: true,
 			mouseDrag: true,
 			swipeAngle: false,
 			speed: 1000,
+			autoplayTimeout: 8000,
+			responsive: {
+				920: {
+					nav: true,
+				}
+			}
 		});
 
 		// delete some unused button
