@@ -91,7 +91,8 @@
         <div class="catalog__cards" *ngIf="((_catalogService.catalog$) | async).catalogElements.length > 0">
 
             <app-catalog-card *ngFor="let catalogEl of (_catalogService.catalog$ | async).catalogElements"
-                [catalogElement]="catalogEl" (onAddToCart)="_catalogService.addCartToOrder($event)"></app-catalog-card>
+                [catalogElement]="catalogEl" (onAddToCart)="_catalogService.addCartToOrder($event)">
+            </app-catalog-card>
 
         </div>
         <div class="catalog__back-illstr">

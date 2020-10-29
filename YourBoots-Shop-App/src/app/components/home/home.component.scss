@@ -399,6 +399,10 @@
   .choice__brand-box {
     margin: 10px;
   }
+  .catalog__cards {
+    justify-content: center;
+    max-width: 560px;
+  }
 }
 
 @media (max-width: 990px) {
@@ -427,6 +431,9 @@
   }
   .choice__brand-title {
     font-size: 24px;
+  }
+  .catalog__back-illstr {
+    display: none;
   }
 }
 
