@@ -293,21 +293,18 @@
     }
   }
   &__btn-req {
-    padding: 10px 20px;
-    width: 100%;
+    @include mainBtn;
     max-width: 210px;
-    background-color: $bg-white;
+    background: $bg-white;
     box-shadow: $sh-btn-req;
-    text-align: center;
-    border-radius: 30px;
     font-size: 18px;
     color: $text-black;
-    font-weight: 900;
-    line-height: 1.2;
-    box-sizing: border-box;
+    transition: all 0.3s ease;
 
     &:hover {
-      cursor: pointer;
+      background: $bg-black;
+      color: $text-white;
+      box-shadow: none;
     }
   }
 }
@@ -420,6 +417,19 @@
     align-items: center;
     text-align: center;
   }
+
+  .contact__box {
+    max-width: 560px;
+    flex-direction: column;
+
+    &-half {
+      width: 100%;
+    }
+    &-text {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+  }
 }
 
 @media (max-width: 990px) {
@@ -437,6 +447,12 @@
   }
   .choice__brand-title {
     font-size: 28px;
+  }
+  .contact__container {
+    margin: 0 30px;
+  }
+  .contact__illstr {
+    display: none;
   }
 }
 
