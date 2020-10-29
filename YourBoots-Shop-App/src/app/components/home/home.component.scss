@@ -189,22 +189,25 @@
 
     &_inst-post {
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
     }
   }
   &__post-link {
-    display: block;
-    width: 100%;
+    display: inline-flex;
     box-shadow: $sh-mat-light;
   }
   &__post-img {
     width: 100%;
+    max-width: 400px;
     object-fit: contain;
   }
   &__inf {
     margin-left: 50px;
-    max-width: 600px;
+    max-width: 360px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
   }
   &__title {
     font-size: 32px;
@@ -220,7 +223,6 @@
     line-height: 25px;
   }
   &__btn-link {
-    padding: 10px 20px;
     @include mainBtn;
   }
 }
@@ -402,6 +404,21 @@
   .catalog__cards {
     justify-content: center;
     max-width: 560px;
+  }
+  .inst__container {
+    flex-direction: column;
+  }
+  .inst__half {
+    width: 100%;
+
+    &_inst-post {
+      justify-content: center;
+    }
+  }
+  .inst__inf {
+    margin: 40px auto 0 auto;
+    align-items: center;
+    text-align: center;
   }
 }
 
