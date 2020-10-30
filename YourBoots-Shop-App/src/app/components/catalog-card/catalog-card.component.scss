@@ -4,10 +4,10 @@
 .catalog__card {
   position: relative;
   z-index: 2;
-  padding: 20px 10px 25px 10px;
   margin: 20px 0;
-  width: 220px;
-  height: 300px;
+  width: 100%;
+  min-width: 220px;
+  max-width: 220px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,10 +19,16 @@
   transition: all 0.3s;
 
   &:hover {
-    box-shadow: $sh-yel;
+    box-shadow: $sh-card-deep;
+
+    .catalog__card-sizes {
+      bottom: 0;
+    }
   }
 
   &-head {
+    position: relative;
+    overflow: hidden;
     width: 100%;
   }
   &-img-box {
@@ -34,11 +40,30 @@
     height: 100%;
     object-fit: fill;
   }
+  &-sizes {
+    position: absolute;
+    left: 0;
+    bottom: -100%;
+    padding: 6px 15px;
+    width: 100%;
+    background: $bg-black-transp;
+    transition: all 0.6s ease;
+    &-list {
+      display: flex;
+      justify-content: center;
+    }
+    &-el {
+      margin: 0 5px;
+      color: $text-grey;
+      font-size: 12px;
+      font-weight: 300;
+    }
+  }
   &-body {
+    padding: 20px 15px 15px 15px;
     width: 100%;
   }
   &-text {
-    margin-top: 20px;
   }
   &-title {
     font-size: 18px;
@@ -50,34 +75,25 @@
   &-box {
     margin-top: 20px;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
 }
-// .catalog__price {
-//   margin-right: 20px;
-//   display: flex;
-//   font-size: 18px;
-//   color: $text-dark;
-//   font-weight: 900;
-//   line-height: 1.2;
-// }
-// .catalog__price-number {
-//   margin-right: 5px;
-// }
 .catalog__price-currency {
 }
 .catalog__btn-box {
+  margin-top: 15px;
+  width: 100%;
 }
 .catalog__btn-cart {
-  padding: 8px 22px;
   @include mainBtn;
+  width: 100%;
+  max-width: none;
 }
-
 .catalog__price {
-  margin-right: 20px;
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   color: $text-dark;
   font-size: 18px;
   line-height: 1.2;
@@ -90,6 +106,7 @@
     font-size: 20px;
 
     &_strike {
+      margin-right: 5px;
       font-size: 26px;
       text-decoration: line-through;
       opacity: 0.8;
@@ -97,5 +114,18 @@
   }
   &-currency {
     font-size: 16px;
+  }
+}
+
+/*------------------------------ Media ------------------------------*/
+@media (max-width: 1160px) {
+  .catalog__card {
+    margin: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .catalog__card {
+    margin: 10px;
   }
 }

@@ -3,6 +3,13 @@
         <div class="catalog__card-img-box">
             <img [src]="imgsUrl + '/cards/' + catalogElement.img" alt="" class="catalog__card-img">
         </div>
+        <div class="catalog__card-sizes">
+            <ul class="catalog__card-sizes-list">
+                <li class="catalog__card-sizes-el" *ngFor="let size of catalogElement.sizes">
+                    {{ size }}
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="catalog__card-body">
         <div class="catalog__card-text">

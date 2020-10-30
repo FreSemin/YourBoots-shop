@@ -61,13 +61,9 @@
                     </div>
                     <div class="cart__form-box">
                         <button type="submit" class="cart__send-btn"
-                            [disabled]="cartOrdersForm.invalid || (cartOrdersForm.invalid && cartOrdersForm.touched)"
-                            *ngIf="!(this.catalogService.ordersForm$ | async).isLoading">
-                            Отправить?
+                            [disabled]="cartOrdersForm.invalid || (cartOrdersForm.invalid && cartOrdersForm.touched) || ((this.catalogService.ordersForm$ | async).isLoading === true)">
+                            {{ ((this.catalogService.ordersForm$ | async).isLoading) ? 'Отправка...' : 'Отправить'}}
                         </button>
-                        <div *ngIf="(this.catalogService.ordersForm$ | async).isLoading">
-                            Отправка...
-                        </div>
                     </div>
                 </form>
             </div>
@@ -94,7 +90,7 @@
                             BR
                         </div>
                     </div>
-                    <div class="cart__buy-btn" *ngIf="(catalogService.orders$ | async).ordersElements.length > 1"
+                    <div class="cart__delete-btn" *ngIf="(catalogService.orders$ | async).ordersElements.length > 1"
                         (click)="catalogService.clearOrders()">
                         Удалить все
                     </div>

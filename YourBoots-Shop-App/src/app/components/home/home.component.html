@@ -91,7 +91,8 @@
         <div class="catalog__cards" *ngIf="((_catalogService.catalog$) | async).catalogElements.length > 0">
 
             <app-catalog-card *ngFor="let catalogEl of (_catalogService.catalog$ | async).catalogElements"
-                [catalogElement]="catalogEl" (onAddToCart)="_catalogService.addCartToOrder($event)"></app-catalog-card>
+                [catalogElement]="catalogEl" (onAddToCart)="_catalogService.addCartToOrder($event)">
+            </app-catalog-card>
 
         </div>
         <div class="catalog__back-illstr">
@@ -116,11 +117,11 @@
                     Мы в Instagram
                 </h6>
                 <p class="inst__text">
-                    Вы можете всегда можете посмотреть
+                    Вы всегда можете посмотреть
                     актуальную информацию о наличии
                     товара, новое поступление обуви,
-                    акции, красивые фотосессии
-                    и многое другое в нашем инстаграмм аккаунте.
+                    акции, красивые фотосессии,
+                    полезные советы и многое другое в нашем инстаграмм аккаунте.
                 </p>
                 <a href="#" class="inst__btn-link">
                     Наш Instagram
@@ -154,7 +155,7 @@
                 </div>
             </div>
             <div class="contact__box-half">
-                <div class="contact__btn-req">
+                <div class="contact__btn-req" (click)="modalService.openContactModal()">
                     Заказать звонок
                 </div>
             </div>
@@ -184,10 +185,18 @@
                     </div>
                     <div class="footer__contact">
                         <div class="footer__contact-ico">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <p class="footer__contact-inf">
+                            +375 (00) 000 00 00
+                        </p>
+                    </div>
+                    <div class="footer__contact">
+                        <div class="footer__contact-ico">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <p class="footer__contact-inf">
-                            example@gmail.com
+                            yourbootsshop@gmail.com
                         </p>
                     </div>
                 </div>
@@ -224,3 +233,7 @@
     </div>
 </footer>
 <!-- Footer: End -->
+
+<!-- Contact-Modal: Start -->
+<app-contact-modal></app-contact-modal>
+<!-- Contact-Modal: End -->

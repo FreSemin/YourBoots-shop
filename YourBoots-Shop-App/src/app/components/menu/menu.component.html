@@ -1,11 +1,14 @@
 <!-- Menu: Start -->
-<div class="menu menu_bg-white">
+<div class="menu">
     <div class="menu__container menu__container_bg-white">
         <div class="menu__content">
             <div class="menu__logo">
                 <a href="#" class="menu__logo-link">
                     <img [src]="imgsUrl + 'logo/logo-black.png'" alt="" class="menu__logo-img">
                 </a>
+            </div>
+            <div class="menu__nav-btn" (click)="showMenu()">
+                <i class="fas fa-bars"></i>
             </div>
             <div class="menu__nav">
                 <nav class="menu__nav-list">
@@ -30,3 +33,42 @@
     </div>
 </div>
 <!-- Menu: End -->
+
+<!-- Mobile Menu: Start -->
+<div class="mb-menu" *ngIf="isMMenuActive">
+    <div class="mb-menu__container menu__container_bg-white" [ngClass]="{
+        'mb-menu__container_active': menuAnimation,
+        'mb-menu__container_not-active': !menuAnimation
+    }">
+        <div class="mb-menu__content">
+            <div class="mb-menu__nav-btn" (click)="hideMenu()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="mb-menu__logo">
+                <a href="#" class="mb-menu__logo-link">
+                    <img [src]="imgsUrl + 'logo/logo-black.png'" alt="" class="mb-menu__logo-img">
+                </a>
+            </div>
+            <div class="mb-menu__nav">
+                <nav class="mb-menu__nav-list">
+                    <a href="#" class="mb-menu__link" (click)="hideMenu()">Главная</a>
+                    <a href="#catalog" class="mb-menu__link" (click)="hideMenu()">Каталог</a>
+                    <a href="#contact" class="mb-menu__link" (click)="hideMenu()">Контакты</a>
+                    <a href="#about" class="mb-menu__link" (click)="hideMenu()">О нас</a>
+                    <a routerLink="cart" class="menu__cart mb-menu__cart" (click)="hideMenu()">
+                        <div class="menu__cart-counter"
+                            *ngIf="(catalogService.orders$ | async).ordersElements.length > 0">
+                            <span class="menu__cart-number">
+                                {{ (catalogService.orders$ | async).ordersElements.length }}
+                            </span>
+                        </div>
+                        <div class="menu__cart-icon">
+                            <img [src]="imgsUrl + 'menu/cart.png'" alt="shopping-cart" class="menu__cart-img">
+                        </div>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Mobile Menu: End -->

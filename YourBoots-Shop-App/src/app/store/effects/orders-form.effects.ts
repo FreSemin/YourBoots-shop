@@ -8,6 +8,7 @@ import emailjs from 'emailjs-com';
 import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-form.model';
 import { environment } from 'src/environments/environment';
 import { ClearOrdersList } from '../actions/orders.actions';
+import { MainAppService } from 'src/app/services/main-app/main-app.service';
 
 @Injectable()
 export class OrdersFormEffects {
@@ -17,10 +18,12 @@ export class OrdersFormEffects {
 		ofType<SendData>(EOrdersFormActions.SendData),
 		switchMap(() => this._catalogService.getDataToSend()),
 		concatMap((ordersData: IOrdersDataToSend) => {
-		return emailjs.send(environment.emailjsServiceID, environment.emailjsTemplateID, ordersData, environment.emailjsUserID)
+			return emailjs.send(environment.emailjsServiceID, environment.emailjsTemplateID, ordersData, environment.emailjsUserID)
 				.then(((response: any) => {
+					this._mainAppService.showSuccesMessage();
 					return new SendDataSucces(ordersData);
 				}), ((error: any) => {
+					this._mainAppService.showErrorMessage();
 					return new SendDataError();
 				}))
 				.finally(() => {
@@ -28,11 +31,15 @@ export class OrdersFormEffects {
 					this._catalogService.clearOrders();
 				});
 		}),
-		catchError(() => of(new SendDataError()))
+		catchError(() => {
+			this._mainAppService.showErrorMessage();
+			return of(new SendDataError());
+		})
 	);
 
 	constructor(
 		private _actions$: Actions,
 		private _catalogService: CatalogService,
+		private _mainAppService: MainAppService,
 	) { }
 }

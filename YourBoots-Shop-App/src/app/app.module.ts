@@ -22,6 +22,11 @@ import { OrdersEffects } from './store/effects/orders.effects';
 import { OrderCardComponent } from './components/order-card/order-card.component';
 import { OrdersFormEffects } from './store/effects/orders-form.effects';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ContactModalComponent } from './components/contact-modal/contact-modal.component';
+import { ContactModalEffects } from './store/effects/contact-modal.effects';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './modules/material-modules/meterial.module';
+import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-snack-bar.component';
 
 @NgModule({
 	declarations: [
@@ -32,7 +37,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 		SliderComponent,
 		CatalogCardComponent,
 		OrderCardComponent,
-		LoaderComponent
+		LoaderComponent,
+		ContactModalComponent,
+		CustomSnackBarComponent
 	],
 	imports: [
 		BrowserModule,
@@ -40,12 +47,14 @@ import { LoaderComponent } from './components/loader/loader.component';
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
+		MaterialModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects]),
+		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects]),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 			logOnly: environment.production,
 		}),
+		NoopAnimationsModule,
 	],
 	providers: [MainAppService, CatalogService],
 	bootstrap: [AppComponent]
