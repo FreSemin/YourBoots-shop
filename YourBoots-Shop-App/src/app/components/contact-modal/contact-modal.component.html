@@ -40,13 +40,9 @@
             </div>
             <div class="contact__form-box contact__form-box_center">
                 <button type="submit" class="contact__send-btn"
-                    [disabled]="contactForm.invalid || (contactForm.invalid && contactForm.touched)"
-                    *ngIf="!(modalService.contactModal$ | async).isLoading">
-                    Отправить?
+                    [disabled]="contactForm.invalid || (contactForm.invalid && contactForm.touched) || ((modalService.contactModal$ | async).isLoading === true)">
+                    {{ ((modalService.contactModal$ | async).isLoading) ? 'Отправка...' : 'Отправить' }}
                 </button>
-                <div *ngIf="(modalService.contactModal$ | async).isLoading">
-                    Отправка...
-                </div>
             </div>
         </form>
     </div>

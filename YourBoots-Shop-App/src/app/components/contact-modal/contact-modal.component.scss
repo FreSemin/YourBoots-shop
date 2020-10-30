@@ -26,13 +26,14 @@
     position: relative;
     z-index: 106;
     padding: 20px;
+    margin: 0 30px;
     width: 100%;
     max-width: 380px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 6px;
     background: $bg-white;
     box-shadow: $sh-cart-form;
     box-sizing: border-box;
