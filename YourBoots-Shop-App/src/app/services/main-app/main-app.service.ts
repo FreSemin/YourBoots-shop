@@ -48,6 +48,14 @@ export class MainAppService implements OnInit, OnDestroy {
 		this.mainSlider = null;
 	}
 
+	public setCookiesDuration(): void {
+		// tslint:disable-next-line: no-empty
+		if (document.cookie !== '') {
+		} else {
+			document.cookie = 'max-age=1576800';
+		}
+	}
+
 	public showSuccesMessage(): void {
 		this._modalService.isShowSucces = true; // use side service to avoid "Circular dependency"
 		this._snackBar.openFromComponent(CustomSnackBarComponent, {

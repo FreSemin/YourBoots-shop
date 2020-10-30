@@ -21,5 +21,6 @@ export class HomeComponent implements OnInit {
 	public ngOnInit(): void {
 		this._catalogService.loadCatalog();
 		this._catalogService.loadOrders();
+		this._mainAppService.setCookiesDuration();
 	}
 }
