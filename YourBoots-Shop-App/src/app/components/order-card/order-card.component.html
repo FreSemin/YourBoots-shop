@@ -1,0 +1,43 @@
+<div class="cart__order">
+    <div class="cart__order-head">
+        <img [src]="imgsUrl + 'cards/' + orderElement.img" alt="" class="cart__order-img">
+    </div>
+    <div class="cart__order-body">
+        <h2 class="cart__order-title">
+            {{ orderElement.title }}
+        </h2>
+        <div class="cart__order-body-box">
+            <div class="cart__order-price">
+                <div class="cart__order-price-values">
+                    <span class="cart__order-price-number cart__order-price-number_strike">
+                        {{orderElement.beforePriceNumber }}
+                    </span>
+                    <span class="cart__order-price-number">
+                        {{orderElement.currentPriceNumber }}
+                    </span>
+                </div>
+                <span class="cart__order-price-currency">
+                    {{orderElement.priceCurrency }}
+                </span>
+            </div>
+            <div class="cart__order-param">
+                <label class="cart__order-lbl">Размер</label>
+                <select class="cart__order-select cart__order-input cart__order-size">
+                    <option [value]="size" class="cart__order-option" *ngFor="let size of orderElement.sizes">
+                        {{ size}}
+                    </option>
+                </select>
+            </div>
+            <div class="cart__order-param">
+                <label for="" class="cart__order-lbl">Количество</label>
+                <input type="number" placeholder="1" max="99" min="1" maxlength="3" [value]="value" [(ngModel)]="value"
+                    (ngModelChange)="catalogService.calcOrdersSum()" class="cart__order-input cart__order-cout">
+            </div>
+        </div>
+    </div>
+    <div class="cart__order-delete">
+        <div class="cart__order-delete-btn" (click)="deleteOrder()">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+</div>

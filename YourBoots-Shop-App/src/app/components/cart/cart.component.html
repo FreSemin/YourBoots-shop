@@ -1,0 +1,116 @@
+<!-- Cart: Start -->
+<div class="cart">
+
+    <!-- Loader: Start -->
+    <app-loader *ngIf="(catalogService.orders$ | async).isLoading"></app-loader>
+    <!-- Loader: End -->
+
+    <!-- Content: Start -->
+    <div class="cart__wrapper"
+        *ngIf="!(catalogService.orders$ | async).isLoading && (catalogService.orders$ | async).ordersElements.length > 0">
+        <div class="cart__container">
+            <div class="cart__half">
+                <form action="" class="cart__form" [formGroup]="cartOrdersForm"
+                    (ngSubmit)="catalogService.sendOrdersRequest()">
+                    <h3 class="cart__form-title">
+                        Оформить заказ
+                    </h3>
+                    <p class="cart__form-subtitle">
+                        Оставьте заказ и мы свяжемся с вами!
+                    </p>
+                    <div class="cart__form-box">
+                        <input type="text" id="orderName" placeholder="Ваше имя" class="cart__form-input"
+                            formControlName="userName" [ngClass]="{
+                            'cart__form-input_valid': cartOrdersForm.controls['userName'] && cartOrdersForm.controls['userName'].touched,
+                            'cart__form-input_not-valid': cartOrdersForm.controls['userName'].invalid && cartOrdersForm.controls['userName'].touched
+                          }">
+                        <label for="orderName" class="cart__form-hint cart__form-hint_invalid"
+                            *ngIf="cartOrdersForm.controls['userName'].touched && cartOrdersForm.controls['userName'].invalid">
+                            Заполните поле</label>
+                    </div>
+                    <div class="cart__form-box">
+                        <input type="text" placeholder="Ваш телефон" id="orderTel" minlength="13" maxlength="13"
+                            class="cart__form-input" formControlName="userPhone" [ngClass]="{
+                                'cart__form-input_valid': cartOrdersForm.controls['userPhone'] && cartOrdersForm.controls['userPhone'].touched,
+                                'cart__form-input_not-valid': cartOrdersForm.controls['userPhone'].invalid && cartOrdersForm.controls['userPhone'].touched || ((cartOrdersForm.controls['userPhone'].value.length == 0) && cartOrdersForm.controls['userPhone'].touched) 
+                              }">
+                        <label for="orderTel" class="cart__form-hint cart__form-hint_invalid"
+                            *ngIf="cartOrdersForm.controls['userPhone'].touched && cartOrdersForm.controls['userPhone'].invalid || ((cartOrdersForm.controls['userPhone'].value.length == 0) && cartOrdersForm.controls['userPhone'].touched)">
+                            Укажите телефон (Например: +375290000000)</label>
+                    </div>
+                    <div class="cart__form-box">
+                        <input type="text" placeholder="Ваш адресс" id="orderAdress" class="cart__form-input"
+                            formControlName="userAdress" [ngClass]="{
+                                'cart__form-input_valid': cartOrdersForm.controls['userAdress'] && cartOrdersForm.controls['userAdress'].touched,
+                                'cart__form-input_not-valid': cartOrdersForm.controls['userAdress'].invalid && cartOrdersForm.controls['userAdress'].touched
+                              }">
+                        <label for="orderAdress" class="cart__form-hint"
+                            *ngIf="!cartOrdersForm.controls['userAdress'].touched || !cartOrdersForm.controls['userAdress'].invalid">
+                            *Область, город, улица, почтовый индекс</label>
+                        <label for="orderAdress" class="cart__form-hint cart__form-hint_invalid"
+                            *ngIf="cartOrdersForm.controls['userAdress'].touched && cartOrdersForm.controls['userAdress'].invalid">
+                            Укажите адресс</label>
+                    </div>
+                    <div class="cart__form-box">
+                        <div class="cart__deliver">
+                            <img [src]="imgsUrl + 'common/deliver.png'" alt="" class="cart__deliver-img">
+                            <p class="cart__deliver-text">
+                                Стоимость доставки уточняется при оформлении заказа
+                            </p>
+                        </div>
+                    </div>
+                    <div class="cart__form-box">
+                        <button type="submit" class="cart__send-btn"
+                            [disabled]="cartOrdersForm.invalid || (cartOrdersForm.invalid && cartOrdersForm.touched) || ((this.catalogService.ordersForm$ | async).isLoading === true)">
+                            {{ ((this.catalogService.ordersForm$ | async).isLoading) ? 'Отправка...' : 'Отправить'}}
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="cart__half">
+                <div class="cart__orders" *ngIf="(catalogService.orders$ | async).ordersElements.length > 0">
+                    <app-order-card
+                        *ngFor="let orderEl of (catalogService.orders$ | async).ordersElements; let i = index"
+                        [orderElement]="orderEl" [orderIndex]="i" (onDeleteOrder)="catalogService.deleteOrder($event)">
+                    </app-order-card>
+                </div>
+                <div class="cart__buy-box">
+                    <div class="cart__buy-text">
+                        <div class="cart__buy-inf">
+                            К оплате:
+                        </div>
+                        <div class="cart__buy-number cart__buy-number_strike"
+                            *ngIf="!(catalogService.ordersBeforeSum === 0)">
+                            {{ catalogService.ordersBeforeSum }}
+                        </div>
+                        <div class="cart__buy-number">
+                            {{ catalogService.ordersCurrentSum }}
+                        </div>
+                        <div class="cart__buy-currency">
+                            BR
+                        </div>
+                    </div>
+                    <div class="cart__delete-btn" *ngIf="(catalogService.orders$ | async).ordersElements.length > 1"
+                        (click)="catalogService.clearOrders()">
+                        Удалить все
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content: End -->
+
+    <!-- Empty: Start -->
+    <div class="cart__box-empty"
+        *ngIf="!(catalogService.orders$ | async).isLoading && (catalogService.orders$ | async).ordersElements.length === 0">
+        <p class="cart__empty-text">
+            Ваша корзина пуста, перейти в каталог?
+        </p>
+        <a href="#catalog" class="cart__send-btn">
+            В Каталог
+        </a>
+    </div>
+    <!-- Empty: End -->
+
+</div>
+<!-- Cart: End -->

@@ -5,7 +5,22 @@
 // null styles
 * {
   margin: 0;
+  border: 0;
   padding: 0;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
 }
 a:focus,
 a:active {
@@ -14,6 +29,11 @@ a:active {
 button {
   cursor: pointer;
   outline: none;
+}
+input,
+button,
+textarea {
+  font-family: inherit;
 }
 a,
 a:visited {

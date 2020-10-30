@@ -4,6 +4,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
+// const baseHrefUrl: string = environment.baseHref;
+
 if (environment.production) {
   enableProdMode();
 }

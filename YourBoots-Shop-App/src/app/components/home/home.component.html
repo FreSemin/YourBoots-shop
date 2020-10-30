@@ -1,0 +1,239 @@
+<!-- Loader: Start -->
+<app-loader *ngIf="(_catalogService.catalog$ | async).isLoading"></app-loader>
+<!-- Loader: End -->
+
+<!-- View: Start -->
+<section class="view">
+    <div class="view__content">
+        <div class="view__slider">
+            <app-slider></app-slider>
+        </div>
+        <div class="view__scroll-box">
+            <a href="#choice" class="view__scroll-link">
+                <img [src]="imgsUrl + 'common/loader.png'" alt="" class="view__scroll-img">
+            </a>
+        </div>
+    </div>
+</section>
+<!-- View: End -->
+
+<!-- Choice: Start -->
+<section class="choice" id="choice">
+    <div class="choice__content">
+        <div class="choice__title-box">
+            <h3 class="choice__title">
+                Выбери свою обувь по вкусу!
+            </h3>
+            <p class="choice__subtitle">
+                Минимализм, уникальность качество
+            </p>
+            <p class="choice__subtitle">
+                и доступная цена
+            </p>
+        </div>
+        <div class="choice__back-imgs">
+            <img [src]="imgsUrl + 'common/sneaker_1.jpg'" alt="" class="choice__back-img choice__back-img_left">
+            <img [src]="imgsUrl + 'common/sneaker_2.jpg'" alt="" class="choice__back-img choice__back-img_right">
+        </div>
+        <div class="choice__brands">
+            <div class="choice__brand-box">
+                <div class="choice__brand-img-box">
+                    <div class="choice__brand-img_eff_dark"></div>
+                    <img [src]="imgsUrl + 'common/choice-brand_1.jpg'" alt="" class="choice__brand-img">
+                </div>
+                <h4 class="choice__brand-title">
+                    Nike
+                </h4>
+            </div>
+            <div class="choice__brand-box">
+                <div class="choice__brand-img-box">
+                    <div class="choice__brand-img_eff_dark"></div>
+                    <img [src]="imgsUrl + 'common/choice-brand_2.jpg'" alt="" class="choice__brand-img">
+                </div>
+                <h4 class="choice__brand-title">
+                    Puma
+                </h4>
+            </div>
+            <div class="choice__brand-box">
+                <div class="choice__brand-img-box">
+                    <div class="choice__brand-img_eff_dark"></div>
+                    <img [src]="imgsUrl + 'common/choice-brand_3.jpg'" alt="" class="choice__brand-img">
+                </div>
+                <h4 class="choice__brand-title">
+                    New
+                </h4>
+                <h4 class="choice__brand-title">
+                    Balance
+                </h4>
+            </div>
+            <div class="choice__brand-box">
+                <div class="choice__brand-img-box">
+                    <div class="choice__brand-img_eff_dark"></div>
+                    <img [src]="imgsUrl + 'common/choice-brand_4.jpg'" alt="" class="choice__brand-img">
+                </div>
+                <h4 class="choice__brand-title">
+                    Adidas
+                </h4>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Choice: End -->
+
+<!-- Catalog: Start -->
+<section class="catalog" id="catalog">
+    <div class="catalog__container">
+        <div class="catalog__title-box">
+            <h5 class="catalog__title">
+                Каталог
+            </h5>
+        </div>
+        <div class="catalog__cards" *ngIf="((_catalogService.catalog$) | async).catalogElements.length > 0">
+
+            <app-catalog-card *ngFor="let catalogEl of (_catalogService.catalog$ | async).catalogElements"
+                [catalogElement]="catalogEl" (onAddToCart)="_catalogService.addCartToOrder($event)">
+            </app-catalog-card>
+
+        </div>
+        <div class="catalog__back-illstr">
+            <img [src]="imgsUrl + 'common/sneaker_3.jpg'" alt=""
+                class="catalog__img-illstr catalog__img-illstr_right-center">
+        </div>
+    </div>
+</section>
+<!-- Catalog: End -->
+
+<!-- Inst: Start -->
+<section class="inst" id="about">
+    <div class="inst__container">
+        <div class="inst__half inst__half_inst-post">
+            <a href="https://www.instagram.com/" class="inst__post-link">
+                <img [src]="imgsUrl + 'common/inst-post.jpg'" alt="" class="inst__post-img">
+            </a>
+        </div>
+        <div class="inst__half">
+            <div class="inst__inf">
+                <h6 class="inst__title">
+                    Мы в Instagram
+                </h6>
+                <p class="inst__text">
+                    Вы всегда можете посмотреть
+                    актуальную информацию о наличии
+                    товара, новое поступление обуви,
+                    акции, красивые фотосессии,
+                    полезные советы и многое другое в нашем инстаграмм аккаунте.
+                </p>
+                <a href="#" class="inst__btn-link">
+                    Наш Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Inst: End -->
+
+<!-- Contact: Start -->
+<section class="contact" id="contact">
+    <div class="contact__container">
+        <div class="contact__illstr">
+            <img [src]="imgsUrl + 'common/sneaker_4.jpg'" alt="" class="contact__illstr-img">
+        </div>
+        <div class="contact__text">
+            <h6 class="contact__title">
+                Связаться с нами
+            </h6>
+        </div>
+        <div class="contact__box contact__box_bg-gr-main">
+            <div class="contact__box-half">
+                <div class="contact__box-text">
+                    <p class="contact__box-parg">
+                        Вы в любой момент
+                    </p>
+                    <p class="contact__box-parg">
+                        можете с нами связаться
+                    </p>
+                </div>
+            </div>
+            <div class="contact__box-half">
+                <div class="contact__btn-req" (click)="modalService.openContactModal()">
+                    Заказать звонок
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact: End -->
+
+<!-- Footer: Start -->
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__wrapper">
+            <div class="footer__info-box">
+                <div class="footer__logo">
+                    <a href="#">
+                        <img [src]="imgsUrl + 'logo/logo-white.jpg'" alt="" class="footer__logo-img">
+                    </a>
+                </div>
+                <div class="footer__contact-box">
+                    <div class="footer__contact">
+                        <div class="footer__contact-ico">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <p class="footer__contact-inf">
+                            +375 (29) 886 36 61
+                        </p>
+                    </div>
+                    <div class="footer__contact">
+                        <div class="footer__contact-ico">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <p class="footer__contact-inf">
+                            +375 (44) 507 17 54
+                        </p>
+                    </div>
+                    <div class="footer__contact">
+                        <div class="footer__contact-ico">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <p class="footer__contact-inf">
+                            yourbootsshop@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__nav">
+                <div class="footer__nav-list">
+                    <a href="#" class="footer__link">
+                        <span class="footer__link-ico">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        главная
+                    </a>
+                    <a href="#catalog" class="footer__link">
+                        <span class="footer__link-ico">
+                            <i class="fas fa-shoe-prints"></i>
+                        </span>
+                        каталог
+                    </a>
+                    <a href="#contact" class="footer__link">
+                        <span class="footer__link-ico">
+                            <i class="fas fa-phone-square-alt"></i>
+                        </span>
+                        контакты
+                    </a>
+                    <a href="#about" class="footer__link">
+                        <span class="footer__link-ico">
+                            <i class="fas fa-question-circle"></i>
+                        </span>
+                        о нас
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer: End -->
+
+<!-- Contact-Modal: Start -->
+<app-contact-modal></app-contact-modal>
+<!-- Contact-Modal: End -->

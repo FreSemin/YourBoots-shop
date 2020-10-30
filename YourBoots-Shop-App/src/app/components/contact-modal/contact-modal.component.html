@@ -1,0 +1,49 @@
+<div class="contact" *ngIf="(modalService.contactModal$ | async).isActive">
+    <div class="contact__wrapper">
+        <div class="contact-bg" (click)="modalService.closeContacatModal()"></div>
+        <form class="contact__form" [formGroup]="contactForm" (ngSubmit)="modalService.sendContactRequest()">
+            <div class="contact__close-box">
+                <div class="contact__close-btn" (click)="modalService.closeContacatModal()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <h3 class="contact__title">
+                Заявка на звонок
+            </h3>
+            <div class="contact__form-box">
+                <label for="contactName" class="contact__lbl">
+                    Ваше имя:
+                </label>
+                <input type="text" placeholder="Укажите ваше имя" id="contactName" class="contact__input"
+                    formControlName="userName" [ngClass]="{
+                    'contact__input_valid': contactForm.controls['userName'] && contactForm.controls['userName'].touched,
+                    'contact__input_not-valid': contactForm.controls['userName'].invalid && contactForm.controls['userName'].touched
+                  }">
+                <label for="contactName" class="contact__hint contact__hint_invalid"
+                    *ngIf="contactForm.controls['userName'].touched && contactForm.controls['userName'].invalid">
+                    Укажите имя
+                </label>
+            </div>
+            <div class="contact__form-box">
+                <label for="contactTel" class="contact__lbl">
+                    Ваш телефон:
+                </label>
+                <input type="tel" placeholder="Укажите ваш телефон" id="contactTel" class="contact__input"
+                    maxlength="13" formControlName="userPhone" [ngClass]="{
+                    'contact__input_valid': contactForm.controls['userPhone'] && contactForm.controls['userPhone'].touched,
+                    'contact__input_not-valid': contactForm.controls['userPhone'].invalid && contactForm.controls['userPhone'].touched || ((contactForm.controls['userPhone'].value.length == 0) && contactForm.controls['userPhone'].touched) 
+                  }">
+                <label for="contactTel" class="contact__hint contact__hint_invalid"
+                    *ngIf="contactForm.controls['userPhone'].touched && contactForm.controls['userPhone'].invalid || ((contactForm.controls['userPhone'].value.length == 0) && contactForm.controls['userPhone'].touched)">
+                    Укажите телефон
+                </label>
+            </div>
+            <div class="contact__form-box contact__form-box_center">
+                <button type="submit" class="contact__send-btn"
+                    [disabled]="contactForm.invalid || (contactForm.invalid && contactForm.touched) || ((modalService.contactModal$ | async).isLoading === true)">
+                    {{ ((modalService.contactModal$ | async).isLoading) ? 'Отправка...' : 'Отправить' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
