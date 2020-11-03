@@ -29,18 +29,18 @@
                     Ваш телефон:
                 </label>
                 <input type="tel" placeholder="Укажите ваш телефон" id="contactTel" class="contact__input"
-                    maxlength="13" formControlName="userPhone" [ngClass]="{
+                    maxlength="20" formControlName="userPhone" [ngClass]="{
                     'contact__input_valid': contactForm.controls['userPhone'] && contactForm.controls['userPhone'].touched,
-                    'contact__input_not-valid': contactForm.controls['userPhone'].invalid && contactForm.controls['userPhone'].touched || ((contactForm.controls['userPhone'].value.length == 0) && contactForm.controls['userPhone'].touched) 
+                    'contact__input_not-valid': contactForm.controls['userPhone'].invalid && contactForm.controls['userPhone'].touched || ((contactForm.controls['userPhone'].value.length < 1) && contactForm.controls['userPhone'].touched) 
                   }">
                 <label for="contactTel" class="contact__hint contact__hint_invalid"
-                    *ngIf="contactForm.controls['userPhone'].touched && contactForm.controls['userPhone'].invalid || ((contactForm.controls['userPhone'].value.length == 0) && contactForm.controls['userPhone'].touched)">
+                    *ngIf="contactForm.controls['userPhone'].touched && contactForm.controls['userPhone'].invalid || ((contactForm.controls['userPhone'].value.length < 1) && contactForm.controls['userPhone'].touched)">
                     Укажите телефон
                 </label>
             </div>
             <div class="contact__form-box contact__form-box_center">
                 <button type="submit" class="contact__send-btn"
-                    [disabled]="contactForm.invalid || (contactForm.invalid && contactForm.touched) || ((modalService.contactModal$ | async).isLoading === true)">
+                    [disabled]="contactForm.invalid || (contactForm.invalid && contactForm.touched) || ((modalService.contactModal$ | async).isLoading === true) || ((contactForm.controls['userPhone'].value.length < 1) && contactForm.controls['userPhone'].touched)">
                     {{ ((modalService.contactModal$ | async).isLoading) ? 'Отправка...' : 'Отправить' }}
                 </button>
             </div>

@@ -24,7 +24,7 @@ export class ModalService implements OnInit {
 
 	public contactModalForm: FormGroup = new FormGroup({
 		userName: new FormControl('', Validators.required),
-		userPhone: new FormControl('', Validators.pattern('[0-9(/\+/)]{13}')),
+		userPhone: new FormControl('', Validators.pattern('[0-9(/\+ -/)]{1,}')),
 	});
 
 	// tslint:disable-next-line: no-empty
