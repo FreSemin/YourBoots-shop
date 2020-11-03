@@ -19,6 +19,7 @@
   transition: all 0.3s;
 
   &:hover {
+    cursor: pointer;
     box-shadow: $sh-card-deep;
 
     .catalog__card-sizes {
@@ -36,6 +37,7 @@
     height: 150px;
   }
   &-img {
+    pointer-events: none;
     width: 100%;
     height: 100%;
     object-fit: fill;
