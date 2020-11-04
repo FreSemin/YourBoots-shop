@@ -93,9 +93,13 @@
       flex-direction: column;
       overflow: hidden;
 
-      &:hover .choice__brand-img-box {
-        transform: scale(1.2);
-        filter: blur(1px);
+      &:hover {
+        cursor: pointer;
+
+        .choice__brand-img-box {
+          transform: scale(1.2);
+          filter: blur(1px);
+        }
       }
     }
     &-img-box {
@@ -341,6 +345,10 @@
     margin-left: 30px;
     display: flex;
     align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     &-ico {
       margin-right: 10px;
