@@ -342,6 +342,10 @@
     display: flex;
     align-items: center;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &-ico {
       margin-right: 10px;
       color: $text-white;
