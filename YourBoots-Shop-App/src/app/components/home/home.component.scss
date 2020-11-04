@@ -93,9 +93,13 @@
       flex-direction: column;
       overflow: hidden;
 
-      &:hover .choice__brand-img-box {
-        transform: scale(1.2);
-        filter: blur(1px);
+      &:hover {
+        cursor: pointer;
+
+        .choice__brand-img-box {
+          transform: scale(1.2);
+          filter: blur(1px);
+        }
       }
     }
     &-img-box {
