@@ -117,7 +117,8 @@
   background: $gr-main;
 }
 
-/*#region Media */
+/*------------------------------ Media ------------------------------*/
+
 @media (max-width: 576px) {
   .slider__content {
     max-width: 320px;
@@ -126,4 +127,3 @@
     width: 60px;
   }
 }
-/*#endregion Media */
