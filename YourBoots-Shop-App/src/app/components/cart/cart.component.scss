@@ -78,14 +78,6 @@
   }
   &__send-btn {
     @include mainBtn;
-
-    &:disabled {
-      background: $bg-grey;
-
-      &:hover {
-        box-shadow: none;
-      }
-    }
   }
   &__deliver {
     margin-top: 25px;
