@@ -4,8 +4,8 @@ import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
-import { catchError, concatMap, mergeMap, switchMap } from 'rxjs/operators';
-import { GetOrdersLS, EOrdersActions, GetOrdersLSSucces, ErrorGetOrders, AddElementToOrders, AddElementToOrdersSucces, ErrorAddOrder, UpdateOrdersLS, UpdateOrdersLSSucces, DeleteOrder, DeleteOrderSucces, ErrorDeleteOrder, ClearOrdersList, ErrorClearOrdersList, ClearOrdersListSucces } from '../actions/orders.actions';
+import { catchError, switchMap } from 'rxjs/operators';
+import { GetOrdersLS, EOrdersActions, GetOrdersLSSucces, ErrorGetOrders, AddElementToOrders, AddElementToOrdersSucces, ErrorAddOrder, DeleteOrder, DeleteOrderSucces, ErrorDeleteOrder, ClearOrdersList, ErrorClearOrdersList, ClearOrdersListSucces } from '../actions/orders.actions';
 
 @Injectable()
 export class OrdersEffects {

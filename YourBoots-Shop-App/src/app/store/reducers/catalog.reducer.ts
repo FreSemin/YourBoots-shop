@@ -20,12 +20,6 @@ export function catalogReducer(state: ICatalog = initialCatalogState, action: Cu
 				isLoading: false,
 			};
 
-		case ECatalogActions.GetElementsError:
-			return {
-				...state,
-				isLoading: false,
-			};
-
 		case ECatalogActions.Clear:
 			return {
 				...state,
@@ -33,7 +27,13 @@ export function catalogReducer(state: ICatalog = initialCatalogState, action: Cu
 				isLoading: false,
 			};
 
+		case ECatalogActions.GetElementsError:
+			return {
+				...state,
+				isLoading: false,
+			};
+
 		default:
 			return state;
 	}
-};
+}
