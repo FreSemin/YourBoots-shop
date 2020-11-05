@@ -27,6 +27,7 @@ import { ContactModalEffects } from './store/effects/contact-modal.effects';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material-modules/meterial.module';
 import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-snack-bar.component';
+import { MenuEffects } from './store/effects/menu.effects';
 
 @NgModule({
 	declarations: [
@@ -49,7 +50,7 @@ import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-sn
 		HttpClientModule,
 		MaterialModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects]),
+		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects, MenuEffects]),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 			logOnly: environment.production,

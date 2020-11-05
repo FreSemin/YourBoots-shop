@@ -1,7 +1,11 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { select, Store } from '@ngrx/store';
 import { CustomSnackBarComponent } from 'src/app/components/custom-snack-bar/custom-snack-bar.component';
+import { OpenMenuStart, CloseMenuStart } from 'src/app/store/actions/menu.actions';
+import { selectMenu } from 'src/app/store/selectors/menu.selector';
+import { IAppState } from 'src/app/store/states/app.state';
 import { tns } from 'tiny-slider/src/tiny-slider';
 import { ModalService } from '../modal/modal.service';
 
@@ -9,11 +13,15 @@ import { ModalService } from '../modal/modal.service';
 	providedIn: 'root'
 })
 export class MainAppService implements OnInit, OnDestroy {
+	// tslint:disable-next-line: typedef
+	public menu$ = this._store.pipe(select(selectMenu));
+
 	public mainSlider: any = null;
 
 	constructor(
 		private _snackBar: MatSnackBar,
 		private _modalService: ModalService,
+		private _store: Store<IAppState>,
 	) { }
 
 	public initMainSlider(): void {
@@ -72,6 +80,14 @@ export class MainAppService implements OnInit, OnDestroy {
 			horizontalPosition: 'center',
 			verticalPosition: 'top',
 		});
+	}
+
+	public showMenu(): void {
+		this._store.dispatch(new OpenMenuStart());
+	}
+
+	public hideMenu(): void {
+		this._store.dispatch(new CloseMenuStart());
 	}
 
 	// tslint:disable-next-line: no-empty
