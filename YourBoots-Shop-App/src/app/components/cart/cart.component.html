@@ -1,10 +1,6 @@
 <!-- Cart: Start -->
 <div class="cart">
 
-    <!-- Loader: Start -->
-    <app-loader *ngIf="(catalogService.orders$ | async).isLoading"></app-loader>
-    <!-- Loader: End -->
-
     <!-- Content: Start -->
     <div class="cart__wrapper"
         *ngIf="!(catalogService.orders$ | async).isLoading && (catalogService.orders$ | async).ordersElements.length > 0">
