@@ -230,22 +230,3 @@
     }
   }
 }
-
-/*#region Animations */
-@keyframes menuShow {
-  0% {
-    top: -100%;
-  }
-  100% {
-    top: 0;
-  }
-}
-@keyframes menuHide {
-  0% {
-    top: 0;
-  }
-  100% {
-    top: -100%;
-  }
-}
-/*#endregion Animations */
