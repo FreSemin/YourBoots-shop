@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { ECatalogActions, CatalogGetElementsSucces, CatalogGetElementsError, CatalogGetElements } from '../actions/catalog.actions';
 import { catchError, switchMap } from 'rxjs/operators';

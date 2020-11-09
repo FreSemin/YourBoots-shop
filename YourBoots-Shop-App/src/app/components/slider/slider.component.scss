@@ -47,13 +47,14 @@
       object-fit: cover;
     }
   }
-  &__content {
+  &__inf {
     position: relative;
     z-index: 4;
     text-align: center;
     pointer-events: none;
   }
   &__text {
+    display: block;
     font-size: 44px;
     font-weight: 300;
     color: $text-white;
@@ -117,13 +118,13 @@
   background: $gr-main;
 }
 
-/*#region Media */
+/*------------------------------ Media ------------------------------*/
+
 @media (max-width: 576px) {
-  .slider__content {
+  .slider__inf {
     max-width: 320px;
   }
   .slider__nav-btn {
     width: 60px;
   }
 }
-/*#endregion Media */

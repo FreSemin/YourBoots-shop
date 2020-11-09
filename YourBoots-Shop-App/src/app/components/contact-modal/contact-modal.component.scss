@@ -107,13 +107,5 @@
   &__send-btn {
     margin-top: 5px;
     @include mainBtn;
-
-    &:disabled {
-      background: $bg-grey;
-
-      &:hover {
-        box-shadow: none;
-      }
-    }
   }
 }

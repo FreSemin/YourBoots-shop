@@ -2,7 +2,7 @@
 $text-white: #ffffff;
 $text-white-transp: rgb(255, 255, 255, 0.6);
 $text-grey: #d9d9d9;
-$text-grey-deliver: #b7b5b5;
+$text-grey-dark: #b7b5b5;
 $text-form-grey: #495057;
 $text-green: #45bf55;
 $text-red: #ff4e50;
@@ -13,8 +13,6 @@ $text-black: #000000;
 
 /*#region backgrounds*/
 $bg-white: #ffffff;
-$bg-white-transp: rgb(255, 255, 255, 0.06);
-$bg-red-del: #ff5252;
 $bg-red: #ff4e50;
 $bg-yel: #f9d423;
 $bg-grey: #d9d9d9;
@@ -27,10 +25,6 @@ $bg-black: #000000;
 /*#region gradients*/
 $gr-main: linear-gradient(to right, #ff4e50, #f9d423);
 /*#endregion gradients*/
-
-/*#region buttons*/
-
-/*#endregion buttons*/
 
 /*#region shadows*/
 $sh-card: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

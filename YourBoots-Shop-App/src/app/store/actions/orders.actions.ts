@@ -2,20 +2,20 @@ import { ICatalogElement } from 'src/app/components/models/catalogElement/catalo
 import { CustomAction } from './custom.action';
 
 export enum EOrdersActions {
+	GetOrdersLS = '[Orders] Get Orders from LS',
+	GetOrdersLSSucces = '[Orders] Get Orders from LS Succes',
 	AddElementToOrders = '[Orders] Add Element to Orders',
 	AddElementToOrdersSucces = '[Orders] Add Element to Orders Succes',
 	DeleteOrder = '[Orders] Delete Order',
 	DeleteOrderSucces = '[Orders] Delete Order Succes',
-	GetOrdersLS = '[Orders] Get Orders from LS',
-	GetOrdersLSSucces = '[Orders] Get Orders from LS Succes',
 	UpdateOrdersLS = '[Orders] Update Orders LS',
 	UpdateOrdersLSSucces = '[Orders] Update Orders LS Succes',
 	ClearOrdersList = '[Orders] Clear Orders List',
 	ClearOrdersListSucces = '[Orders] Clear Orders List Succes',
-	ErrorClearOrdersList = '[Orders] Clear Orders List Error',
 	ErrorGetOrders = '[Orders] Get Orders Error',
 	ErrorAddOrder = '[Orders] Add Order Error',
 	ErrorDeleteOrder = '[Orders] Delete Order Error',
+	ErrorClearOrdersList = '[Orders] Clear Orders List Error',
 }
 
 // tslint:disable-next-line: max-classes-per-file

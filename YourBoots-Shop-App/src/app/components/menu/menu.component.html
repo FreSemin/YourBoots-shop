@@ -7,7 +7,7 @@
                     <img [src]="imgsUrl + 'logo/logo-black.jpg'" alt="" class="menu__logo-img">
                 </a>
             </div>
-            <div class="menu__nav-btn" (click)="showMenu()">
+            <div class="menu__nav-btn" (click)="mainAppService.showMenu()">
                 <i class="fas fa-bars"></i>
             </div>
             <div class="menu__nav">
@@ -35,13 +35,13 @@
 <!-- Menu: End -->
 
 <!-- Mobile Menu: Start -->
-<div class="mb-menu" *ngIf="isMMenuActive">
+<div class="mb-menu" *ngIf="(mainAppService.menu$ | async).isMMenuActive">
     <div class="mb-menu__container menu__container_bg-white" [ngClass]="{
-        'mb-menu__container_active': menuAnimation,
-        'mb-menu__container_not-active': !menuAnimation
+        'mb-menu__container_active': (mainAppService.menu$ | async).isAnimation,
+        'mb-menu__container_not-active': !(mainAppService.menu$ | async).isAnimation
     }">
         <div class="mb-menu__content">
-            <div class="mb-menu__nav-btn" (click)="hideMenu()">
+            <div class="mb-menu__nav-btn" (click)="mainAppService.hideMenu()">
                 <i class="fas fa-times"></i>
             </div>
             <div class="mb-menu__logo">
@@ -51,11 +51,11 @@
             </div>
             <div class="mb-menu__nav">
                 <nav class="mb-menu__nav-list">
-                    <a href="#" class="mb-menu__link" (click)="hideMenu()">Главная</a>
-                    <a href="#catalog" class="mb-menu__link" (click)="hideMenu()">Каталог</a>
-                    <a href="#contact" class="mb-menu__link" (click)="hideMenu()">Контакты</a>
-                    <a href="#about" class="mb-menu__link" (click)="hideMenu()">О нас</a>
-                    <a routerLink="cart" class="menu__cart mb-menu__cart" (click)="hideMenu()">
+                    <a href="#" class="mb-menu__link" (click)="mainAppService.hideMenu()">Главная</a>
+                    <a href="#catalog" class="mb-menu__link" (click)="mainAppService.hideMenu()">Каталог</a>
+                    <a href="#contact" class="mb-menu__link" (click)="mainAppService.hideMenu()">Контакты</a>
+                    <a href="#about" class="mb-menu__link" (click)="mainAppService.hideMenu()">О нас</a>
+                    <a routerLink="cart" class="menu__cart mb-menu__cart" (click)="mainAppService.hideMenu()">
                         <div class="menu__cart-counter"
                             *ngIf="(catalogService.orders$ | async).ordersElements.length > 0">
                             <span class="menu__cart-number">

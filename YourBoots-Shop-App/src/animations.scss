@@ -1,0 +1,50 @@
+/*#region Loader Spin */
+@keyframes viewScrollLinkAnm {
+  0% {
+    transform: translateY(-20px);
+  }
+  20% {
+    transform: translateY(0px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+  80% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+/*#endregion Loader Spin */
+
+/*#region Loader Spin */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*#endregion Loader Spin */
+
+/*#region Menu */
+@keyframes menuShow {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes menuHide {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -100%;
+  }
+}
+/*#endregion Menu */

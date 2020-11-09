@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+	styleUrls: ['./home.component.scss', './home_media.component.scss']
 })
 export class HomeComponent implements OnInit {
 	public imgsUrl: string = environment.imgsUrl;

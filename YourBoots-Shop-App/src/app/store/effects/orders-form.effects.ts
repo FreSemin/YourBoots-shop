@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { switchMap, catchError, concatMap, mergeMap, tap } from 'rxjs/operators';
+import { switchMap, catchError, concatMap } from 'rxjs/operators';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { SendData, EOrdersFormActions, SendDataSucces, SendDataError } from '../actions/orders-form.actions';
 import emailjs from 'emailjs-com';
 import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-form.model';
 import { environment } from 'src/environments/environment';
-import { ClearOrdersList } from '../actions/orders.actions';
 import { MainAppService } from 'src/app/services/main-app/main-app.service';
 
 @Injectable()

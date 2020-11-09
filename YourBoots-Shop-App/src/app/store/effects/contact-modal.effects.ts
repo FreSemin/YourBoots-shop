@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { switchMap, catchError, concatMap, mergeMap, tap } from 'rxjs/operators';
+import { switchMap, catchError, concatMap } from 'rxjs/operators';
 import emailjs from 'emailjs-com';
 import { environment } from 'src/environments/environment';
 import { ModalService } from 'src/app/services/modal/modal.service';

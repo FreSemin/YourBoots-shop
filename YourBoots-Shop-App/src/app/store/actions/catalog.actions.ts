@@ -1,4 +1,3 @@
-import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { CustomAction } from './custom.action';
 
