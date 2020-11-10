@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { CartComponent } from './components/cart/cart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store';
@@ -16,7 +15,6 @@ import { CatalogService } from './services/catalog/catalog.service';
 import { MainAppService } from './services/main-app/main-app.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OrdersEffects } from './store/effects/orders.effects';
-import { OrderCardComponent } from './components/order-card/order-card.component';
 import { OrdersFormEffects } from './store/effects/orders-form.effects';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ContactModalEffects } from './store/effects/contact-modal.effects';
@@ -30,8 +28,6 @@ import { HomeModule } from './components/home/home.module';
 	declarations: [
 		AppComponent,
 		MenuComponent,
-		CartComponent,
-		OrderCardComponent,
 		LoaderComponent,
 		CustomSnackBarComponent
 	],
