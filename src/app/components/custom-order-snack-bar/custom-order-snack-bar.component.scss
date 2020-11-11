@@ -10,32 +10,24 @@
     align-items: center;
   }
   &__img-box {
+    min-width: 38px;
   }
   &__img {
     height: 30px;
     object-fit: contain;
   }
-  &__title {
-    margin-left: 5px;
-    color: $text-dark;
-    font-size: 16px;
-  }
-  &__price {
-    margin-left: 5px;
-  }
-  &__price-number {
-    font-size: 14px;
-    color: $text-dark;
-    font-weight: bold;
-  }
   &__body {
-    margin-left: 25px;
+    width: 100%;
     display: flex;
+    align-items: center;
   }
   &__inf {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   &__text {
-    font-size: 16px;
+    font-size: 14px;
     &_green {
       color: $text-green;
     }
@@ -49,6 +41,6 @@
     position: relative;
     display: block;
     color: $text-grey-dark;
-    font-size: 16px;
+    font-size: 14px;
   }
 }
