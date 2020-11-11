@@ -1,0 +1,27 @@
+<!-- Order Snack Bar: Start -->
+<div class="order-snack-bar">
+    <div class="order-snack-bar__head">
+        <div class="order-snack-bar__img-box">
+            <img [src]="imgsUrl + '/cards/' + data.img" alt="" class="order-snack-bar__img">
+        </div>
+        <h6 class="order-snack-bar__title">
+            {{ data.title }}
+        </h6>
+        <div class="order-snack-bar__price">
+            <p class="order-snack-bar__price-number">
+                {{ data.currentPriceNumber + ' ' + data.priceCurrency }}
+            </p>
+        </div>
+    </div>
+    <div class="order-snack-bar__body">
+        <div class="order-snack-bar__inf">
+            <p class="order-snack-bar__text order-snack-bar__text_green">
+                Добавлено успешно!
+            </p>
+        </div>
+        <div class="order-snack-bar__btn">
+            <a href="cart" class="order-snack-bar__link">Перейти</a>
+        </div>
+    </div>
+</div>
+<!-- Order Snack Bar: End -->

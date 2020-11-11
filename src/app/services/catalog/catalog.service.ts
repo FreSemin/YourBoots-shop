@@ -16,6 +16,8 @@ import { SendData } from 'src/app/store/actions/orders-form.actions';
 import { selectOrdersForm } from 'src/app/store/selectors/orders-form.selectors';
 import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-form.model';
 import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
 
 @Injectable({
 	providedIn: 'root'
@@ -60,7 +62,8 @@ export class CatalogService implements OnInit, OnDestroy {
 
 	constructor(
 		private _http: HttpClient,
-		private _store: Store<IAppState>
+		private _store: Store<IAppState>,
+		private _snackBar: MatSnackBar,
 	) { }
 
 	public loadCatalog(): void {
@@ -94,6 +97,15 @@ export class CatalogService implements OnInit, OnDestroy {
 	public addCartToOrder(elementOrder: ICatalogElement): void {
 		this.orderToAdd = elementOrder;
 		this._store.dispatch(new AddElementToOrders());
+	}
+
+	public showAddElement(orderToAdd: ICatalogElement): void {
+		this._snackBar.openFromComponent(CustomOrderSnackBarComponent, {
+			data: orderToAdd,
+			horizontalPosition: 'right',
+			verticalPosition: 'top',
+			duration: 2500,
+		});
 	}
 
 	public deleteOrder(orderIndexToDelete: number): void {
