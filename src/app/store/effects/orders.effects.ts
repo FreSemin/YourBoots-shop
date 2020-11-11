@@ -27,6 +27,7 @@ export class OrdersEffects {
 		switchMap((orderLSElements: ICatalogElement[]) => {
 			orderLSElements.push(this._catalogService.orderToAdd);
 			this._catalogService.setOrdersLS(orderLSElements);
+			this._catalogService.showAddElement(this._catalogService.orderToAdd);
 			return of(new AddElementToOrdersSucces(orderLSElements));
 		}),
 		catchError(() => of(new ErrorAddOrder()))

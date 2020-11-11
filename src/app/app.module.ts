@@ -23,13 +23,15 @@ import { MaterialModule } from './modules/material-modules/meterial.module';
 import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-snack-bar.component';
 import { MenuEffects } from './store/effects/menu.effects';
 import { HomeModule } from './components/home/home.module';
+import { CustomOrderSnackBarComponent } from './components/custom-order-snack-bar/custom-order-snack-bar.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		MenuComponent,
 		LoaderComponent,
-		CustomSnackBarComponent
+		CustomSnackBarComponent,
+		CustomOrderSnackBarComponent
 	],
 	imports: [
 		BrowserModule,
