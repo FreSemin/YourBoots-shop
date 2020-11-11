@@ -24,6 +24,7 @@ import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-sn
 import { MenuEffects } from './store/effects/menu.effects';
 import { HomeModule } from './components/home/home.module';
 import { CustomOrderSnackBarComponent } from './components/custom-order-snack-bar/custom-order-snack-bar.component';
+import { ModalService } from './services/modal/modal.service';
 
 @NgModule({
 	declarations: [
@@ -49,7 +50,7 @@ import { CustomOrderSnackBarComponent } from './components/custom-order-snack-ba
 		}),
 		NoopAnimationsModule,
 	],
-	providers: [MainAppService, CatalogService],
+	providers: [MainAppService, CatalogService, ModalService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
