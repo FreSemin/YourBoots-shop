@@ -9,6 +9,9 @@
             </div>
             <div class="menu__nav-btn" (click)="mainAppService.showMenu()">
                 <i class="fas fa-bars"></i>
+                <div class="menu__cart-counter menu__cart-counter_mobile"
+                    *ngIf="(catalogService.orders$ | async).ordersElements.length > 0">
+                </div>
             </div>
             <div class="menu__nav">
                 <nav class="menu__nav-list">
