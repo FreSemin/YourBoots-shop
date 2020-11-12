@@ -18,7 +18,7 @@ import { OrdersEffects } from './store/effects/orders.effects';
 import { OrdersFormEffects } from './store/effects/orders-form.effects';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ContactModalEffects } from './store/effects/contact-modal.effects';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material-modules/meterial.module';
 import { CustomSnackBarComponent } from './components/custom-snack-bar/custom-snack-bar.component';
 import { MenuEffects } from './store/effects/menu.effects';
@@ -36,6 +36,7 @@ import { ModalService } from './services/modal/modal.service';
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		AppRoutingModule,
 		HomeModule,
 		FormsModule,
@@ -48,7 +49,6 @@ import { ModalService } from './services/modal/modal.service';
 			maxAge: 25,
 			logOnly: environment.production,
 		}),
-		NoopAnimationsModule,
 	],
 	providers: [MainAppService, CatalogService, ModalService],
 	bootstrap: [AppComponent]
