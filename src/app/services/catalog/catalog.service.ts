@@ -76,7 +76,7 @@ export class CatalogService implements OnInit, OnDestroy {
 
 	public getCatalogElements(): Observable<ICatalog> {
 		return this._http.get<ICatalog>(
-			`${this.assetsUrl}json/catalog.json`
+			`http://localhost:3000/api/catalog`
 		);
 	}
 
