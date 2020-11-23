@@ -5,11 +5,31 @@ export enum ECatalogActions {
 	GetElements = '[Catalog] Get Elements',
 	GetElementsSucces = '[Catalog] Get Elements Succes',
 	GetElementsError = '[Catalog] Get Elements Error',
+	AddElement = '[Catalog] Add Element',
+	AddElementSucces = '[Catalog] Add Element Succes',
+	AddElementError = '[Catalog] Add Element Error',
 	Clear = '[Catalog] Clear',
 }
 
 export class CatalogGetElements implements CustomAction {
 	public readonly type: string = ECatalogActions.GetElements;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class CatalogAddElement implements CustomAction {
+	public readonly type: string = ECatalogActions.AddElement;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class CatalogAddElementSucces implements CustomAction {
+	public readonly type: string = ECatalogActions.AddElementSucces;
+
+	constructor(public payload: ICatalogElement[]) { }
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class CatalogAddElementError implements CustomAction {
+	public readonly type: string = ECatalogActions.AddElementError;
 }
 
 // tslint:disable-next-line: max-classes-per-file

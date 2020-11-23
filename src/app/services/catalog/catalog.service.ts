@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { IAppState } from 'src/app/store/states/app.state';
 import { select, Store } from '@ngrx/store';
-import { CatalogGetElements } from 'src/app/store/actions/catalog.actions';
+import { CatalogAddElement, CatalogGetElements } from 'src/app/store/actions/catalog.actions';
 import { selectCatalog } from 'src/app/store/selectors/catalog.selectors';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
@@ -92,6 +92,10 @@ export class CatalogService implements OnInit, OnDestroy {
 	public setOrdersLS(ordersElements: ICatalogElement[]): void {
 		localStorage.setItem(CatalogService._catalogOrderListKey, JSON.stringify(ordersElements));
 		this._store.dispatch(new UpdateOrdersLSSucces(ordersElements));
+	}
+
+	public addToCataloge(): void {
+		this._store.dispatch(new CatalogAddElement());
 	}
 
 	public addCartToOrder(elementOrder: ICatalogElement): void {

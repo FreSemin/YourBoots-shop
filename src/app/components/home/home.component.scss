@@ -163,6 +163,26 @@
     justify-content: space-around;
     flex-wrap: wrap;
   }
+  &__add {
+    padding: 10px 30px;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $bg-black;
+
+    &-btn {
+      margin-top: 15px;
+      @include mainBtn;
+    }
+  }
+  // &__input {
+  //   margin-bottom: 10px;
+  //   border: 1px solid $bg-grey;
+
+  //   &:last-of-type {
+  //     margin-bottom: 0;
+  //   }
+  // }
   &__back-illstr {
   }
   &__img-illstr {

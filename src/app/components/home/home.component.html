@@ -91,6 +91,11 @@
             </app-catalog-card>
 
         </div>
+        <div class="catalog__add">
+            <!-- <input type="text" placeholder="Название" class="catalog__input"> -->
+            <!-- <input type="text" placeholder="Price" class="catalog__input"> -->
+            <div class="catalog__add-btn" (click)="_catalogService.addToCataloge()" >Add new</div>
+        </div>
         <div class="catalog__back-illstr">
             <img [src]="imgsUrl + 'common/sneaker_3.jpg'" alt=""
                 class="catalog__img-illstr catalog__img-illstr_right-center">

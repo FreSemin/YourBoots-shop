@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
-import { ECatalogActions, CatalogGetElementsSucces, CatalogGetElementsError, CatalogGetElements } from '../actions/catalog.actions';
+import { ECatalogActions, CatalogGetElementsSucces, CatalogGetElementsError, CatalogGetElements, CatalogAddElement, CatalogAddElementSucces, CatalogAddElementError } from '../actions/catalog.actions';
 import { catchError, switchMap } from 'rxjs/operators';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 
@@ -20,6 +20,29 @@ export class CatalogEffects {
 		catchError((err: any) => {
 			console.log(err);
 			return of(new CatalogGetElementsError());
+		})
+	);
+
+	@Effect()
+	public addCatalogElement$: Observable<any> = this._actions$.pipe(
+		ofType<CatalogAddElement>(ECatalogActions.AddElement),
+		switchMap(() => this._catalogService.getCatalogElements()),
+		switchMap((catalog: ICatalog) => {
+			catalog.catalogElements.push({
+				title: 'new some cart sneakers',
+				img: 'card_1.jpg',
+				beforePriceNumber: 111,
+				currentPriceNumber: 60,
+				priceCurrency: 'BR',
+				// tslint:disable-next-line: no-magic-numbers
+				sizes: [41, 42, 43, 44],
+				count: 1,
+			});
+			return of(new CatalogAddElementSucces(catalog.catalogElements));
+		}),
+		catchError((err: any) => {
+			console.log(err);
+			return of(new CatalogAddElementError());
 		})
 	);
 
