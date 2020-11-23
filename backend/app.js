@@ -1,6 +1,15 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const allowCors = require("./cors");
 const app = express();
+
+app.use(bodyParser.json());
+
+app.post("/api/catalog", (req, res, next) => {
+  const catalogElement = req.body;
+  console.log(catalogElement);
+  res.status(201);
+});
 
 app.use(allowCors);
 
