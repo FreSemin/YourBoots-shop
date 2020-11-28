@@ -1,12 +1,21 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const allowCors = require("./cors");
+const catalogElement = require("./models/catalogElement");
 const app = express();
 
 app.use(bodyParser.json());
 
 app.post("/api/catalog", (req, res, next) => {
-  const catalogElement = req.body;
+  const ct = new catalogElement({
+    title: req.body.title,
+    img: req.body.img,
+    priceCurrency: req.body.priceCurrency,
+    beforePriceNumber: req.body.beforePriceNumber,
+    currentPriceNumber: req.body.currentPriceNumber,
+    sizes: req.body.sizes,
+    count: req.body.count,
+  });
   console.log(catalogElement);
   res.status(201);
 });
