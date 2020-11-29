@@ -1,13 +1,34 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const allowCors = require("./cors");
-const catalogElement = require("./models/catalogElement");
+const mongoose = require("mongoose");
+const CatalogElement = require("./models/catalogElement");
+const mongoDBConnect = require("../secrets/secrets");
 const app = express();
 
+mongoose
+  .connect(
+    `${mongoDBConnect}`, // place in "secrets" folder
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => {
+    console.log("Connect to database success!");
+  })
+  .catch((e) => {
+    console.log(e);
+    console.log("Connect to database faild!");
+  });
+
+app.use(allowCors);
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post("/api/catalog", (req, res, next) => {
-  const ct = new catalogElement({
+  const catalogElement = new CatalogElement({
     title: req.body.title,
     img: req.body.img,
     priceCurrency: req.body.priceCurrency,
@@ -16,11 +37,9 @@ app.post("/api/catalog", (req, res, next) => {
     sizes: req.body.sizes,
     count: req.body.count,
   });
-  console.log(catalogElement);
+  catalogElement.save();
   res.status(201);
 });
-
-app.use(allowCors);
 
 app.use("/api/catalog", (req, res, next) => {
   const catalog = {
@@ -53,7 +72,6 @@ app.use("/api/catalog", (req, res, next) => {
       },
     ],
   };
-
   res.status(200).send(catalog);
 });
 

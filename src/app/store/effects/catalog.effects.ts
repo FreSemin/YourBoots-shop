@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { ECatalogActions, CatalogGetElementsSucces, CatalogGetElementsError, CatalogGetElements, CatalogAddElement, CatalogAddElementSucces, CatalogAddElementError } from '../actions/catalog.actions';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { HttpClient } from '@angular/common/http';
 
@@ -27,8 +27,7 @@ export class CatalogEffects {
 	@Effect()
 	public addCatalogElement$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogAddElement>(ECatalogActions.AddElement),
-		switchMap(() => this._catalogService.getCatalogElements()),
-		switchMap((catalog: ICatalog) => {
+		tap(() => {
 			this._http.post(
 				'http://localhost:3000/api/catalog',
 				{
@@ -41,20 +40,15 @@ export class CatalogEffects {
 					sizes: [41, 42, 43, 44],
 					count: 1,
 				}
-			);
-			// .subscribe(() => {
-			// })
-
-			catalog.catalogElements.push({
-				title: 'new some cart sneakers',
-				img: 'card_1.jpg',
-				beforePriceNumber: 111,
-				currentPriceNumber: 60,
-				priceCurrency: 'BR',
-				// tslint:disable-next-line: no-magic-numbers
-				sizes: [41, 42, 43, 44],
-				count: 1,
-			});
+			)
+				.subscribe(() => {
+					// don't work without subscrube, maybe need wait for sending
+					// to see this subscription
+					// or can try convert to Promise
+				});
+		}),
+		switchMap(() => this._catalogService.getCatalogElements()),
+		switchMap((catalog: ICatalog) => {
 			return of(new CatalogAddElementSucces(catalog.catalogElements));
 		}),
 		catchError((err: any) => {
