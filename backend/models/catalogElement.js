@@ -6,7 +6,7 @@ const catalogElementSchema = mongoose.Schema({
   priceCurrency: { type: String, required: true },
   beforePriceNumber: { type: Number, required: true },
   currentPriceNumber: { type: Number, required: true },
-  sizes: { type: [Number] | Number }, // can't add "required" for array see documentation
+  sizes: { type: [Number] }, // can't add "required" for array, see documentation
   count: { type: Number, required: false, default: 1 },
 });
 
