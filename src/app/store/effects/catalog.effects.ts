@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { ECatalogActions, CatalogGetElementsSucces, CatalogGetElementsError, CatalogGetElements, CatalogAddElement, CatalogAddElementSucces, CatalogAddElementError } from '../actions/catalog.actions';
 import { catchError, switchMap, tap } from 'rxjs/operators';
-import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { HttpClient } from '@angular/common/http';
+import { ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 
 @Injectable()
 export class CatalogEffects {
@@ -15,8 +15,8 @@ export class CatalogEffects {
 	public getCatalogElements$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogGetElements>(ECatalogActions.GetElements),
 		switchMap(() => this._catalogService.getCatalogElements()),
-		switchMap((catalog: ICatalog) => {
-			return of(new CatalogGetElementsSucces(catalog.catalogElements));
+		switchMap((catalogElements: ICatalogElement[]) => {
+			return of(new CatalogGetElementsSucces(catalogElements));
 		}),
 		catchError((err: any) => {
 			console.log(err);
@@ -27,8 +27,8 @@ export class CatalogEffects {
 	@Effect()
 	public addCatalogElement$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogAddElement>(ECatalogActions.AddElement),
-		tap(() => {
-			this._http.post(
+		tap(async () => {
+			await this._http.post(
 				'http://localhost:3000/api/catalog',
 				{
 					title: 'new some cart sneakers',
@@ -41,15 +41,12 @@ export class CatalogEffects {
 					count: 1,
 				}
 			)
-				.subscribe(() => {
-					// don't work without subscrube, maybe need wait for sending
-					// to see this subscription
-					// or can try convert to Promise
-				});
+				.toPromise(); // don't work without Promise
 		}),
+		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => this._catalogService.getCatalogElements()),
-		switchMap((catalog: ICatalog) => {
-			return of(new CatalogAddElementSucces(catalog.catalogElements));
+		switchMap((catalogElements: ICatalogElement[]) => {
+			return of(new CatalogAddElementSucces(catalogElements));
 		}),
 		catchError((err: any) => {
 			console.log(err);

@@ -6,7 +6,6 @@ import { select, Store } from '@ngrx/store';
 import { CatalogAddElement, CatalogGetElements } from 'src/app/store/actions/catalog.actions';
 import { selectCatalog } from 'src/app/store/selectors/catalog.selectors';
 import { Observable } from 'rxjs/internal/Observable';
-import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { AddElementToOrders, ClearOrdersList, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
 import { of } from 'rxjs';
 import { selectOrders } from 'src/app/store/selectors/orders.selectors';
@@ -74,8 +73,8 @@ export class CatalogService implements OnInit, OnDestroy {
 		this._store.dispatch(new GetOrdersLS());
 	}
 
-	public getCatalogElements(): Observable<ICatalog> {
-		return this._http.get<ICatalog>(
+	public getCatalogElements(): Observable<ICatalogElement[]> {
+		return this._http.get<ICatalogElement[]>(
 			`http://localhost:3000/api/catalog`
 		);
 	}
