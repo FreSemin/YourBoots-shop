@@ -1,11 +1,23 @@
 {
     "catalogElements": [
         {
-            "title": "title 1",
-            "img": "card_1.jpg",
-            "beforePriceNumber": 120,
+            "title": "Merell Ice Cap",
+            "img": "MIC.jpg",
+            "currentPriceNumber": 95,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Nike Lunar Force 1 Duckboot",
+            "img": "NLF1D.jpg",
             "currentPriceNumber": 60,
-            "priceCurrency": "BR",
+            "priceCurrency": "BYN",
             "sizes": [
                 41,
                 42,
@@ -15,11 +27,10 @@
             "count": 1
         },
         {
-            "title": "title 2",
-            "img": "card_1.jpg",
-            "beforePriceNumber": 120,
-            "currentPriceNumber": 61,
-            "priceCurrency": "BR",
+            "title": "Nike Air Force Utility High Winter",
+            "img": "NAFUHW_white.jpg",
+            "currentPriceNumber": 60,
+            "priceCurrency": "BYN",
             "sizes": [
                 41,
                 42,
@@ -29,10 +40,10 @@
             "count": 1
         },
         {
-            "title": "title 3",
-            "img": "card_1.jpg",
-            "currentPriceNumber": 61,
-            "priceCurrency": "BR",
+            "title": "Nike Air Force Utility High Winter",
+            "img": "NAFUHW_black.jpg",
+            "currentPriceNumber": 60,
+            "priceCurrency": "BYN",
             "sizes": [
                 41,
                 42,
@@ -42,10 +53,10 @@
             "count": 1
         },
         {
-            "title": "title 4",
-            "img": "card_1.jpg",
-            "currentPriceNumber": 61,
-            "priceCurrency": "BR",
+            "title": "Nike Air Barrage Mid 'Hyper Grape'",
+            "img": "NABM_purple.jpg",
+            "currentPriceNumber": 60,
+            "priceCurrency": "BYN",
             "sizes": [
                 41,
                 42,
@@ -55,10 +66,10 @@
             "count": 1
         },
         {
-            "title": "title 5",
-            "img": "card_1.jpg",
-            "currentPriceNumber": 61,
-            "priceCurrency": "BR",
+            "title": "Nike Air Barrage Mid",
+            "img": "NABM_white.jpg",
+            "currentPriceNumber": 60,
+            "priceCurrency": "BYN",
             "sizes": [
                 41,
                 42,
@@ -68,10 +79,10 @@
             "count": 1
         },
         {
-            "title": "title 6",
-            "img": "card_1.jpg",
-            "currentPriceNumber": 61,
-            "priceCurrency": "BR",
+            "title": "New Balance 574 black reflective",
+            "img": "NB547-Ref_black.jpg",
+            "currentPriceNumber": 65,
+            "priceCurrency": "BYN",
             "sizes": [
                 41,
                 42,
@@ -81,10 +92,10 @@
             "count": 1
         },
         {
-            "title": "title 7",
-            "img": "card_1.jpg",
-            "currentPriceNumber": 61,
-            "priceCurrency": "BR",
+            "title": "Nike Air Force Just do it. Low",
+            "img": "NAFL_white-orange.jpg",
+            "currentPriceNumber": 50,
+            "priceCurrency": "BYN",
             "sizes": [
                 41,
                 42,
@@ -94,10 +105,153 @@
             "count": 1
         },
         {
-            "title": "title 8",
-            "img": "card_1.jpg",
-            "currentPriceNumber": 61,
-            "priceCurrency": "BR",
+            "title": "Nike Air Force 1 LV8 Black",
+            "img": "NAF1LV8_black.jpg",
+            "currentPriceNumber": 50,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Nike Air Force White Low",
+            "img": "NAFL_white.jpg",
+            "currentPriceNumber": 50,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Nike Air M2K Phantom",
+            "img": "NAM2KPH_white.jpg",
+            "currentPriceNumber": 45,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Nike Zoom 2K Black",
+            "img": "NKZ2K_black.jpg",
+            "currentPriceNumber": 50,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Nike Zoom 2K White and Black 45",
+            "img": "NZ2K_white.jpg",
+            "currentPriceNumber": 50,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Nike Air Max 97 Black",
+            "img": "NAFL_white-orange.jpg",
+            "currentPriceNumber": 50,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Air Monarch Black",
+            "img": "AM_black.jpg",
+            "currentPriceNumber": 60,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Adidas ZX500 RM",
+            "img": "AZX500RM.jpg",
+            "currentPriceNumber": 65,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Adidas Gazelle Black",
+            "img": "AG_black.jpg",
+            "currentPriceNumber": 65,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Adidas Gazelle Brown",
+            "img": "AG_brown.jpg",
+            "currentPriceNumber": 40,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Adidas Gazelle White and Black",
+            "img": "AG_white-black.jpg",
+            "currentPriceNumber": 55,
+            "priceCurrency": "BYN",
+            "sizes": [
+                41,
+                42,
+                43,
+                44
+            ],
+            "count": 1
+        },
+        {
+            "title": "Adidas Stan Smith White Green",
+            "img": "ASS_white-green.jpg",
+            "currentPriceNumber": 45,
+            "priceCurrency": "BYN",
             "sizes": [
                 41,
                 42,
