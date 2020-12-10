@@ -6,7 +6,7 @@ import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { ECatalogActions, CatalogGetElementsSucces, CatalogGetElementsError, CatalogGetElements, CatalogAddElement, CatalogAddElementSucces, CatalogAddElementError } from '../actions/catalog.actions';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
+import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 
 @Injectable()
 export class CatalogEffects {
@@ -16,6 +16,10 @@ export class CatalogEffects {
 		ofType<CatalogGetElements>(ECatalogActions.GetElements),
 		switchMap(() => this._catalogService.getCatalogElements()),
 		switchMap((catalogElements: ICatalogElement[]) => {
+			/* Will convert _id to id */
+			catalogElements = catalogElements.map((element: ICatalogElement) => {
+				return new CatalogElement(element);
+			});
 			return of(new CatalogGetElementsSucces(catalogElements));
 		}),
 		catchError((err: any) => {

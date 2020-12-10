@@ -1,4 +1,6 @@
 export interface ICatalogElement {
+	_id?: string;  // id from backend
+	id?: string;
 	title: string;
 	img: string;
 	priceCurrency: string;
@@ -9,6 +11,7 @@ export interface ICatalogElement {
 }
 
 export class CatalogElement implements ICatalogElement {
+	public id: string;
 	public title: string;
 	public img: string;
 	public beforePriceNumber: number;
@@ -18,6 +21,11 @@ export class CatalogElement implements ICatalogElement {
 	public count: number;
 
 	constructor(catalogElement: ICatalogElement, newCount?: number, newSize?: number) {
+
+		if (catalogElement._id !== '') {
+			this.id = catalogElement._id;
+		}
+
 		this.title = catalogElement.title;
 		this.img = catalogElement.img;
 		this.priceCurrency = catalogElement.priceCurrency;

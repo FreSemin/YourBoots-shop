@@ -17,6 +17,7 @@ import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
+import { tap } from 'rxjs/operators';
 
 function convertToNumArr(stringToConvert: string): number[] {
 	return stringToConvert.split(' ').map((elString: string) => {
