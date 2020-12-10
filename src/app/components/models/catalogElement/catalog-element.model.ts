@@ -2,7 +2,7 @@ export interface ICatalogElement {
 	title: string;
 	img: string;
 	priceCurrency: string;
-	beforePriceNumber: number;
+	beforePriceNumber?: number;
 	currentPriceNumber: number;
 	sizes: number[] | number;
 	count?: number;

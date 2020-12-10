@@ -18,6 +18,12 @@ import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
 
+function convertToNumArr(stringToConvert: string): number[] {
+	return stringToConvert.split(' ').map((elString: string) => {
+		return +elString;
+	});
+}
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -48,6 +54,16 @@ export class CatalogService implements OnInit, OnDestroy {
 		userName: new FormControl('', Validators.required),
 		userPhone: new FormControl('', Validators.pattern('[0-9(/\+ -/)]{1,}')),
 		userAdress: new FormControl('', Validators.required),
+	});
+
+	public catalogAddElementForm: FormGroup = new FormGroup({
+		catalogAddElementTitle: new FormControl('', Validators.required),
+		catalogAddElementImg: new FormControl('card_1.jpg', Validators.required),
+		catalogAddElementBeforePrice: new FormControl('', Validators.required),
+		catalogAddElementCurrentPrice: new FormControl('', Validators.required),
+		catalogAddElementPriceCurrency: new FormControl('BYN', Validators.required),
+		catalogAddElementSizes: new FormControl([], Validators.required),
+		catalogAddElementCount: new FormControl({ value: 1, disabled: true }, Validators.required),
 	});
 
 	public dataToSend: IOrdersDataToSend = {
@@ -93,8 +109,30 @@ export class CatalogService implements OnInit, OnDestroy {
 		this._store.dispatch(new UpdateOrdersLSSucces(ordersElements));
 	}
 
+	public setCatalogFormDefValue(): void {
+		this.catalogAddElementForm.controls['catalogAddElementImg'].setValue('card_1.jpg');
+		this.catalogAddElementForm.controls['catalogAddElementCount'].setValue(1);
+		this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].setValue('BN');
+	}
+
 	public addToCataloge(): void {
-		this._store.dispatch(new CatalogAddElement());
+		const sizesArr: number[] = convertToNumArr(this.catalogAddElementForm.controls['catalogAddElementSizes'].value);
+		const beforePrice: number = +this.catalogAddElementForm.controls['catalogAddElementBeforePrice'].value;
+
+		const catalogElement: ICatalogElement = new CatalogElement({
+			title: this.catalogAddElementForm.controls['catalogAddElementTitle'].value,
+			img: this.catalogAddElementForm.controls['catalogAddElementImg'].value,
+			beforePriceNumber: (beforePrice > 0) ? beforePrice : null,
+			currentPriceNumber: +this.catalogAddElementForm.controls['catalogAddElementCurrentPrice'].value,
+			priceCurrency: this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].value,
+			sizes: sizesArr,
+			count: +this.catalogAddElementForm.controls['catalogAddElementCount'].value,
+		});
+
+		this._store.dispatch(new CatalogAddElement(catalogElement));
+		this.catalogAddElementForm.reset();
+
+		this.setCatalogFormDefValue();
 	}
 
 	public addCartToOrder(elementOrder: ICatalogElement): void {

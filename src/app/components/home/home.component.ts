@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { MainAppService } from 'src/app/services/main-app/main-app.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -11,6 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit {
 	public imgsUrl: string = environment.imgsUrl;
+	public catalogAddElementForm: FormGroup = this._catalogService.catalogAddElementForm;
 
 	constructor(
 		public _catalogService: CatalogService,

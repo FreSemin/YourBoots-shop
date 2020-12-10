@@ -18,6 +18,8 @@ export class CatalogGetElements implements CustomAction {
 // tslint:disable-next-line: max-classes-per-file
 export class CatalogAddElement implements CustomAction {
 	public readonly type: string = ECatalogActions.AddElement;
+
+	constructor(public payload: ICatalogElement) { }
 }
 
 // tslint:disable-next-line: max-classes-per-file

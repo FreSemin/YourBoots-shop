@@ -27,19 +27,10 @@ export class CatalogEffects {
 	@Effect()
 	public addCatalogElement$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogAddElement>(ECatalogActions.AddElement),
-		tap(async () => {
+		tap(async (addAction: CatalogAddElement) => {
 			await this._http.post(
 				'http://localhost:3000/api/catalog',
-				{
-					title: 'new some cart sneakers',
-					img: 'card_1.jpg',
-					beforePriceNumber: 111,
-					currentPriceNumber: 60,
-					priceCurrency: 'BR',
-					// tslint:disable-next-line: no-magic-numbers
-					sizes: [41, 42, 43, 44],
-					count: 1,
-				}
+				addAction.payload
 			)
 				.toPromise(); // don't work without Promise
 		}),
