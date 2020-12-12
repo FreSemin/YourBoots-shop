@@ -40,6 +40,7 @@ export class CatalogEffects {
 			)
 				.toPromise(); // don't work without Promise
 		}),
+		delay(delayTimeOut), // wait for db update (fix problem with view update)
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => this._catalogService.getCatalogElements()),
 		switchMap((catalogElements: ICatalogElement[]) => {
