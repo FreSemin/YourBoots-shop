@@ -163,6 +163,13 @@
     justify-content: space-around;
     flex-wrap: wrap;
   }
+  &__loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 300px;
+  }
   &__add {
     width: 100%;
     display: flex;
