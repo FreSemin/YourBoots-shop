@@ -8,7 +8,7 @@ import { catchError, delay, switchMap, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 
-const delayTimeOut: number = 1000;
+const delayTimeOut: number = 2000;
 
 @Injectable()
 export class CatalogEffects {
