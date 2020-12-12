@@ -47,4 +47,10 @@ app.use("/api/catalog", (req, res, next) => {
   });
 });
 
+app.delete("/api/ctlg/:id", async (req, res, next) => {
+  await CatalogElement.deleteOne({ _id: req.params.id }).then((result) => {
+    res.status(200);
+  });
+});
+
 module.exports = app;

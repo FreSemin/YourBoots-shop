@@ -8,6 +8,9 @@ export enum ECatalogActions {
 	AddElement = '[Catalog] Add Element',
 	AddElementSucces = '[Catalog] Add Element Succes',
 	AddElementError = '[Catalog] Add Element Error',
+	DeleteElement = '[Catalog] Delete Element',
+	DeleteElementSucces = '[Catalog] Delete Element Succes',
+	DeleteElementError = '[Catalog] Delete Element Error',
 	Clear = '[Catalog] Clear',
 }
 
@@ -44,6 +47,23 @@ export class CatalogGetElementsSucces implements CustomAction {
 // tslint:disable-next-line: max-classes-per-file
 export class CatalogGetElementsError implements CustomAction {
 	public readonly type: string = ECatalogActions.GetElementsError;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class CatalogDeleteElement implements CustomAction {
+	public readonly type: string = ECatalogActions.DeleteElement;
+
+	constructor(public payload: string) { }
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class CatalogDeleteElementSucces implements CustomAction {
+	public readonly type: string = ECatalogActions.DeleteElementSucces;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class CatalogDeleteElementError implements CustomAction {
+	public readonly type: string = ECatalogActions.DeleteElementError;
 }
 
 // tslint:disable-next-line: max-classes-per-file

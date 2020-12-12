@@ -52,6 +52,24 @@ export function catalogReducer(state: ICatalog = initialCatalogState, action: Cu
 				isLoading: false,
 			};
 
+		case ECatalogActions.DeleteElement:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case ECatalogActions.DeleteElementSucces:
+			return {
+				...state,
+				isLoading: false,
+			};
+
+		case ECatalogActions.DeleteElementError:
+			return {
+				...state,
+				isLoading: false,
+			};
+
 		default:
 			return state;
 	}

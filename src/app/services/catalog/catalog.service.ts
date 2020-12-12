@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { IAppState } from 'src/app/store/states/app.state';
 import { select, Store } from '@ngrx/store';
-import { CatalogAddElement, CatalogGetElements } from 'src/app/store/actions/catalog.actions';
+import { CatalogAddElement, CatalogDeleteElement, CatalogGetElements } from 'src/app/store/actions/catalog.actions';
 import { selectCatalog } from 'src/app/store/selectors/catalog.selectors';
 import { Observable } from 'rxjs/internal/Observable';
 import { AddElementToOrders, ClearOrdersList, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
@@ -17,7 +17,6 @@ import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
-import { tap } from 'rxjs/operators';
 
 function convertToNumArr(stringToConvert: string): number[] {
 	return stringToConvert.split(' ').map((elString: string) => {
@@ -134,6 +133,10 @@ export class CatalogService implements OnInit, OnDestroy {
 		this.catalogAddElementForm.reset();
 
 		this.setCatalogFormDefValue();
+	}
+
+	public deleteFromCatalog(elementId: string): void {
+		this._store.dispatch(new CatalogDeleteElement(elementId));
 	}
 
 	public addCartToOrder(elementOrder: ICatalogElement): void {
