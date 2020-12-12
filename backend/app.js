@@ -47,6 +47,8 @@ app.use("/api/catalog", (req, res, next) => {
   });
 });
 
+// ctlg - catalog
+// short link because don't work with long url: name + id
 app.delete("/api/ctlg/:id", async (req, res, next) => {
   await CatalogElement.deleteOne({ _id: req.params.id }).then((result) => {
     res.status(200);
