@@ -42,9 +42,8 @@ export class CatalogEffects {
 		}),
 		delay(delayTimeOut), // wait for db update (fix problem with view update)
 		tap(() => this._catalogService.loadCatalog()),
-		switchMap(() => this._catalogService.getCatalogElements()),
-		switchMap((catalogElements: ICatalogElement[]) => {
-			return of(new CatalogAddElementSucces(catalogElements));
+		switchMap(() => {
+			return of(new CatalogAddElementSucces());
 		}),
 		catchError((err: any) => {
 			console.log(err);

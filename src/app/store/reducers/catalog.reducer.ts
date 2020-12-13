@@ -16,7 +16,6 @@ export function catalogReducer(state: ICatalog = initialCatalogState, action: Cu
 		case ECatalogActions.AddElementSucces:
 			return {
 				...state,
-				catalogElements: action.payload,
 				isLoading: false,
 			};
 
