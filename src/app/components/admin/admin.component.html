@@ -1,1 +1,28 @@
-<p>admin works!</p>
+<div class="admin">
+    <div class="admin__container">
+        <header class="admin__header">
+            <h2 class="admin__page-title">
+                Admin page
+            </h2>
+        </header>
+        <main class="admin__body">
+
+            <!-- Catalog: Start -->
+            <div class="admin__catalog">
+                <h3 class="admin__catalog-title">
+                    Каталог
+                </h3>
+                <div class="admin__catalog-loader" *ngIf="((catalogService.catalog$) | async).isLoading">
+                    Loading...
+                </div>
+                <div class="admin__catalog-cards">
+                    <app-catalog-card *ngFor="let catalogEl of (catalogService.catalog$ | async).catalogElements"
+                        [catalogElement]="catalogEl" (onDeleteFromCatalog)="catalogService.deleteFromCatalog($event)">
+                    </app-catalog-card>
+                </div>
+            </div>
+            <!-- Catalog: End -->
+
+        </main>
+    </div>
+</div>
