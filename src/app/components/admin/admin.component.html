@@ -15,10 +15,14 @@
                 <div class="admin__catalog-loader" *ngIf="((catalogService.catalog$) | async).isLoading">
                     Loading...
                 </div>
-                <div class="admin__catalog-cards">
+                <div class="admin__catalog-cards"
+                    *ngIf="((catalogService.catalog$) | async).catalogElements.length > 0 && !((catalogService.catalog$) | async).isLoading">
+
                     <app-catalog-card *ngFor="let catalogEl of (catalogService.catalog$ | async).catalogElements"
-                        [catalogElement]="catalogEl" (onDeleteFromCatalog)="catalogService.deleteFromCatalog($event)">
+                        [catalogElement]="catalogEl" [isProd]="false"
+                        (onDeleteFromCatalog)="catalogService.deleteFromCatalog($event)">
                     </app-catalog-card>
+
                 </div>
             </div>
             <!-- Catalog: End -->

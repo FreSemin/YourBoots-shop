@@ -31,16 +31,31 @@
                     {{ catalogElement.priceCurrency }}
                 </p>
             </div>
-            <div class="catalog__btn-box">
-                <div class="catalog__btn-cart" (click)="addToCart()">
-                    В корзину
-                </div>
-            </div>
-            <div class="catalog__btn-box">
-                <div class="catalog__btn-cart" (click)="onDelete()">
-                    Удалить
-                </div>
-            </div>
+
+            <ng-container *ngTemplateOutlet="(isProd) ? buyBtns : editBtns">
+            </ng-container>
+
         </div>
     </div>
 </div>
+
+<ng-template #buyBtns>
+    <div class="catalog__btn-box">
+        <div class="catalog__btn-cart" (click)="addToCart()">
+            В корзину
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #editBtns>
+    <div class="catalog__btn-box">
+        <div class="catalog__btn-cart">
+            Редактировать
+        </div>
+    </div>
+    <div class="catalog__btn-box">
+        <div class="catalog__btn-cart" (click)="onDelete()">
+            Удалить
+        </div>
+    </div>
+</ng-template>

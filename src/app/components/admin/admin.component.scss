@@ -22,8 +22,7 @@
   &__catalog {
     width: 100%;
     &-title {
-      position: relative;
-      z-index: 2;
+      margin-top: 20px;
       font-size: 24px;
       color: $text-black;
       font-weight: 900;
