@@ -21,6 +21,29 @@
   &__body {
     margin-bottom: 100px;
   }
+  &__nav {
+    &-list {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__el {
+    margin-right: 25px;
+    color: $text-dark;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: lowercase;
+    transition: all 0.6s;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+  &__link {
+    color: $text-dark;
+  }
   &__catalog {
     width: 100%;
     &-title {
