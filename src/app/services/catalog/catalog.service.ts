@@ -112,7 +112,7 @@ export class CatalogService implements OnInit, OnDestroy {
 	public setCatalogFormDefValue(): void {
 		this.catalogAddElementForm.controls['catalogAddElementImg'].setValue('card_1.jpg');
 		this.catalogAddElementForm.controls['catalogAddElementCount'].setValue(1);
-		this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].setValue('BN');
+		this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].setValue('BYN');
 	}
 
 	public addToCataloge(): void {
