@@ -161,7 +161,13 @@
     max-width: 1090px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+
+    &-cont {
+      max-width: 880px;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
   }
   &__back-illstr {
   }

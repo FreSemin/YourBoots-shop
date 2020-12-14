@@ -6,14 +6,12 @@
   z-index: 2;
   margin: 20px;
   width: 100%;
-  // min-width: 220px;
   max-width: 180px;
-  min-height: 340px;
+  height: 300px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-direction: column;
   box-sizing: border-box;
+  overflow: hidden;
   box-shadow: $sh-card;
   background: $bg-white;
   border-radius: 6px;
@@ -32,16 +30,16 @@
     position: relative;
     overflow: hidden;
     width: 100%;
+    height: 100%;
+    max-height: 125px;
   }
   &-img-box {
     width: 100%;
-    height: 150px;
+    max-height: 150px;
   }
   &-img {
     pointer-events: none;
     width: 100%;
-    height: 100%;
-    object-fit: fill;
   }
   &-sizes {
     position: absolute;
@@ -65,6 +63,10 @@
   &-body {
     padding: 20px 15px 15px 15px;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   &-text {
   }
@@ -121,4 +123,3 @@
 }
 
 /*------------------------------ Media ------------------------------*/
-
