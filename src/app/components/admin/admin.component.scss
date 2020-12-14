@@ -19,6 +19,7 @@
     justify-content: flex-start;
   }
   &__body {
+    margin-bottom: 100px;
   }
   &__catalog {
     width: 100%;
@@ -38,7 +39,7 @@
       min-height: 300px;
     }
     &-cards {
-      margin: 20px auto 150px auto;
+      margin: 20px auto 0 auto;
       max-width: 1090px;
       display: flex;
       justify-content: space-around;
@@ -46,6 +47,7 @@
     }
   }
   &__add {
+    margin-top: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
