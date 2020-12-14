@@ -5,9 +5,11 @@ import { ContactModalComponent } from 'src/app/components/contact-modal/contact-
 import { SliderComponent } from 'src/app/components/slider/slider.component';
 import { OrderCardComponent } from 'src/app/components/order-card/order-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MenuComponent } from 'src/app/components/menu/menu.component';
 
 @NgModule({
 	declarations: [
+		MenuComponent,
 		SliderComponent,
 		CatalogCardComponent,
 		ContactModalComponent,
@@ -19,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		ReactiveFormsModule,
 	],
 	exports: [
+		MenuComponent,
 		SliderComponent,
 		CatalogCardComponent,
 		ContactModalComponent,

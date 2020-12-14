@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store';
@@ -29,7 +28,6 @@ import { ModalService } from './services/modal/modal.service';
 @NgModule({
 	declarations: [
 		AppComponent,
-		MenuComponent,
 		LoaderComponent,
 		CustomSnackBarComponent,
 		CustomOrderSnackBarComponent
