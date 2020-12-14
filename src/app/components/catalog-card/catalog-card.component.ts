@@ -13,6 +13,9 @@ export class CatalogCardComponent implements OnInit {
 	@Input()
 	public catalogElement: ICatalogElement;
 
+	@Input()
+	public isProd: boolean;
+
 	@Output()
 	public onAddToCart: EventEmitter<ICatalogElement> = new EventEmitter<ICatalogElement>();
 

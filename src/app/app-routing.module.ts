@@ -13,6 +13,11 @@ const routes: Routes = [
 		loadChildren: () => import('./components/cart/cart.module').then(m => m.CartModule)
 	},
 	{
+		path: 'admin',
+		// tslint:disable-next-line: typedef
+		loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
+	},
+	{
 		path: '**',
 		redirectTo: '',
 		pathMatch: 'full'
