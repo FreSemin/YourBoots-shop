@@ -12,7 +12,6 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent implements OnInit {
 	public imgsUrl: string = environment.imgsUrl;
-	public catalogAddElementForm: FormGroup = this._catalogService.catalogAddElementForm;
 
 	constructor(
 		public _catalogService: CatalogService,

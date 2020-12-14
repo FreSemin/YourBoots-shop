@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -12,6 +13,8 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
 	imports: [
 		CommonModule,
 		AdminRoutingModule,
+		FormsModule,
+		ReactiveFormsModule,
 		SharedModule
 	]
 })

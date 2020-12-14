@@ -95,23 +95,6 @@
             </app-catalog-card>
 
         </div>
-        <div class="catalog__add">
-            <form class="catalog__add-form" [formGroup]="catalogAddElementForm"
-                (ngSubmit)="_catalogService.addToCataloge()">
-                <input type="text" placeholder="Title" class="catalog__input" formControlName="catalogAddElementTitle">
-                <input type="text" placeholder="Img" class="catalog__input" formControlName="catalogAddElementImg">
-                <input type="text" placeholder="Before Price" class="catalog__input"
-                    formControlName="catalogAddElementBeforePrice">
-                <input type="text" placeholder="Current Price" class="catalog__input"
-                    formControlName="catalogAddElementCurrentPrice">
-                <input type="text" placeholder="Price Currency" class="catalog__input"
-                    formControlName="catalogAddElementPriceCurrency">
-                <input type="text" placeholder="Sizes" class="catalog__input" formControlName="catalogAddElementSizes">
-                <input type="number" placeholder="Count 1" min="1" class="catalog__input"
-                    formControlName="catalogAddElementCount">
-                <button type="submit" class="catalog__add-btn">Add new</button>
-            </form>
-        </div>
         <div class="catalog__back-illstr">
             <img [src]="imgsUrl + 'common/sneaker_3.jpg'" alt=""
                 class="catalog__img-illstr catalog__img-illstr_right-center">
