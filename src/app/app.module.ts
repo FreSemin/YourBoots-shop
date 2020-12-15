@@ -24,6 +24,7 @@ import { MenuEffects } from './store/effects/menu.effects';
 import { HomeModule } from './components/home/home.module';
 import { CustomOrderSnackBarComponent } from './components/custom-order-snack-bar/custom-order-snack-bar.component';
 import { ModalService } from './services/modal/modal.service';
+import { CardFormService } from './services/card-form/card-form.service';
 
 @NgModule({
 	declarations: [
@@ -48,7 +49,7 @@ import { ModalService } from './services/modal/modal.service';
 			logOnly: environment.production,
 		}),
 	],
-	providers: [MainAppService, CatalogService, ModalService],
+	providers: [MainAppService, CatalogService, ModalService, CardFormService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
