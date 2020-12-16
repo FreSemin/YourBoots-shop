@@ -30,26 +30,17 @@
                     </app-catalog-card>
 
                 </div>
-                <div class="admin__add">
-                    <form class="admin__add-form" [formGroup]="catalogAddElementForm"
-                        (ngSubmit)="catalogService.addToCataloge()">
-                        <input type="text" placeholder="Title" class="admin__input"
-                            formControlName="catalogAddElementTitle">
-                        <input type="text" placeholder="Img" class="admin__input"
-                            formControlName="catalogAddElementImg">
-                        <input type="text" placeholder="Before Price" class="admin__input"
-                            formControlName="catalogAddElementBeforePrice">
-                        <input type="text" placeholder="Current Price" class="admin__input"
-                            formControlName="catalogAddElementCurrentPrice">
-                        <input type="text" placeholder="Price Currency" class="admin__input"
-                            formControlName="catalogAddElementPriceCurrency">
-                        <input type="text" placeholder="Sizes" class="admin__input"
-                            formControlName="catalogAddElementSizes">
-                        <input type="number" placeholder="Count 1" min="1" class="admin__input"
-                            formControlName="catalogAddElementCount">
-                        <button type="submit" class="admin__add-btn">Добавить</button>
-                    </form>
+
+                <div class="admin__add-box">
+                    <a routerLink="add" class="admin__add-btn">
+                        + Добавить
+                    </a>
                 </div>
+
+                <!-- CatalogForm -->
+                <router-outlet></router-outlet>
+                <!-- CatalogForm -->
+
             </div>
             <!-- Catalog: End -->
 

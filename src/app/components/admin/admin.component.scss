@@ -69,24 +69,17 @@
       flex-wrap: wrap;
     }
   }
-  &__add {
-    margin-top: 20px;
+  &__add-box {
     width: 100%;
     display: flex;
     justify-content: center;
-
-    &-form {
-      padding: 10px 30px;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid $bg-black;
-    }
-
-    &-btn {
-      margin-top: 15px;
-      @include mainBtn;
-    }
   }
+
+  &__add-btn {
+    margin-top: 20px;
+    @include mainBtn;
+  }
+
   &__input {
     margin-bottom: 10px;
     padding: 5px 10px;

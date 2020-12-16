@@ -1,0 +1,74 @@
+@import "../../../variables.scss";
+@import "../../../mixins.scss";
+
+.card-form {
+  &__wrapper {
+    position: fixed;
+    z-index: 104;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__bg {
+    position: absolute;
+    z-index: 105;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: $bg-black-transp;
+  }
+  &__close-box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  &__close-btn {
+    font-size: 18px;
+    color: $text-dark;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__add {
+    &-form {
+      position: relative;
+      z-index: 106;
+      padding: 20px;
+      margin: 0 30px;
+      width: 100%;
+      max-width: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 6px;
+      background: $bg-white;
+      box-shadow: $sh-cart-form;
+    }
+  }
+
+  &__title {
+    margin-bottom: 25px;
+    color: $text-dark;
+    font-size: 26px;
+  }
+  &__input {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border: 1px solid $bg-grey;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  &__add-btn {
+    margin-top: 15px;
+    @include mainBtn;
+  }
+}

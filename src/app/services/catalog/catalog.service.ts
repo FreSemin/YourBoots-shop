@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { IAppState } from 'src/app/store/states/app.state';
 import { select, Store } from '@ngrx/store';
-import { CatalogAddElement, CatalogDeleteElement, CatalogGetElements } from 'src/app/store/actions/catalog.actions';
+import { CatalogDeleteElement, CatalogGetElements } from 'src/app/store/actions/catalog.actions';
 import { selectCatalog } from 'src/app/store/selectors/catalog.selectors';
 import { Observable } from 'rxjs/internal/Observable';
 import { AddElementToOrders, ClearOrdersList, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
@@ -17,12 +17,7 @@ import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
-
-function convertToNumArr(stringToConvert: string): number[] {
-	return stringToConvert.split(' ').map((elString: string) => {
-		return +elString;
-	});
-}
+import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -56,16 +51,6 @@ export class CatalogService implements OnInit, OnDestroy {
 		userAdress: new FormControl('', Validators.required),
 	});
 
-	public catalogAddElementForm: FormGroup = new FormGroup({
-		catalogAddElementTitle: new FormControl('', Validators.required),
-		catalogAddElementImg: new FormControl('card_1.jpg', Validators.required),
-		catalogAddElementBeforePrice: new FormControl('', Validators.required),
-		catalogAddElementCurrentPrice: new FormControl('', Validators.required),
-		catalogAddElementPriceCurrency: new FormControl('BYN', Validators.required),
-		catalogAddElementSizes: new FormControl([], Validators.required),
-		catalogAddElementCount: new FormControl({ value: 1, disabled: true }, Validators.required),
-	});
-
 	public dataToSend: IOrdersDataToSend = {
 		userName: '',
 		userTel: '',
@@ -89,6 +74,19 @@ export class CatalogService implements OnInit, OnDestroy {
 		this._store.dispatch(new GetOrdersLS());
 	}
 
+	public getCatalogElement(id: string): ICatalogElement {
+		let findedElement: ICatalogElement = null;
+
+		this.catalog$.subscribe((catalog: ICatalog) => {
+			findedElement = catalog.catalogElements.find((element: ICatalogElement) => {
+				return element.id === id;
+			});
+		})
+			.unsubscribe();
+
+		return findedElement;
+	}
+
 	public getCatalogElements(): Observable<ICatalogElement[]> {
 		return this._http.get<ICatalogElement[]>(
 			`http://localhost:3000/api/catalog`
@@ -107,32 +105,6 @@ export class CatalogService implements OnInit, OnDestroy {
 	public setOrdersLS(ordersElements: ICatalogElement[]): void {
 		localStorage.setItem(CatalogService._catalogOrderListKey, JSON.stringify(ordersElements));
 		this._store.dispatch(new UpdateOrdersLSSucces(ordersElements));
-	}
-
-	public setCatalogFormDefValue(): void {
-		this.catalogAddElementForm.controls['catalogAddElementImg'].setValue('card_1.jpg');
-		this.catalogAddElementForm.controls['catalogAddElementCount'].setValue(1);
-		this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].setValue('BYN');
-	}
-
-	public addToCataloge(): void {
-		const sizesArr: number[] = convertToNumArr(this.catalogAddElementForm.controls['catalogAddElementSizes'].value);
-		const beforePrice: number = +this.catalogAddElementForm.controls['catalogAddElementBeforePrice'].value;
-
-		const catalogElement: ICatalogElement = new CatalogElement({
-			title: this.catalogAddElementForm.controls['catalogAddElementTitle'].value,
-			img: this.catalogAddElementForm.controls['catalogAddElementImg'].value,
-			beforePriceNumber: (beforePrice > 0) ? beforePrice : null,
-			currentPriceNumber: +this.catalogAddElementForm.controls['catalogAddElementCurrentPrice'].value,
-			priceCurrency: this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].value,
-			sizes: sizesArr,
-			count: +this.catalogAddElementForm.controls['catalogAddElementCount'].value,
-		});
-
-		this._store.dispatch(new CatalogAddElement(catalogElement));
-		this.catalogAddElementForm.reset();
-
-		this.setCatalogFormDefValue();
 	}
 
 	public deleteFromCatalog(elementId: string): void {

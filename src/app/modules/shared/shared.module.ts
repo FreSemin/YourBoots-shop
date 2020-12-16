@@ -6,6 +6,7 @@ import { SliderComponent } from 'src/app/components/slider/slider.component';
 import { OrderCardComponent } from 'src/app/components/order-card/order-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from 'src/app/components/menu/menu.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [
@@ -19,6 +20,7 @@ import { MenuComponent } from 'src/app/components/menu/menu.component';
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
+		RouterModule,
 	],
 	exports: [
 		MenuComponent,

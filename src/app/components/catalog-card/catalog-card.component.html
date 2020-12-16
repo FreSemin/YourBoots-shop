@@ -49,9 +49,9 @@
 
 <ng-template #editBtns>
     <div class="catalog__btn-box">
-        <div class="catalog__btn-cart">
+        <a [routerLink]="'edit/' + this.catalogElement.id" class="catalog__btn-cart">
             Редактировать
-        </div>
+        </a>
     </div>
     <div class="catalog__btn-box">
         <div class="catalog__btn-cart" (click)="onDelete()">
