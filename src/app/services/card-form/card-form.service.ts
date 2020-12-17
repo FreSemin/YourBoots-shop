@@ -95,7 +95,7 @@ export class CardFormService {
 						this.catalogAddElementForm.controls['catalogAddElementBeforePrice'].setValue(catalogElement.beforePriceNumber);
 						this.catalogAddElementForm.controls['catalogAddElementCurrentPrice'].setValue(catalogElement.currentPriceNumber);
 						this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].setValue(catalogElement.priceCurrency);
-						this.catalogAddElementForm.controls['catalogAddElementSizes'].setValue(catalogElement.sizes);
+						this.catalogAddElementForm.controls['catalogAddElementSizes'].setValue(catalogElement.sizes.join(' '));
 						this.catalogAddElementForm.controls['catalogAddElementCount'].setValue(catalogElement.count);
 					}
 				}

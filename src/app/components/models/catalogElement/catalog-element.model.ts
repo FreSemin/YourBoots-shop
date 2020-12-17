@@ -6,7 +6,7 @@ export interface ICatalogElement {
 	priceCurrency: string;
 	beforePriceNumber?: number;
 	currentPriceNumber: number;
-	sizes: number[] | number;
+	sizes: number[];
 	count?: number;
 }
 
@@ -17,7 +17,7 @@ export class CatalogElement implements ICatalogElement {
 	public beforePriceNumber: number;
 	public currentPriceNumber: number;
 	public priceCurrency: string;
-	public sizes: number[] | number;
+	public sizes: number[];
 	public count: number;
 
 	constructor(catalogElement: ICatalogElement, newCount?: number, newSize?: number) {
@@ -52,6 +52,7 @@ export class CatalogElement implements ICatalogElement {
 	}
 
 	public setSize(size: number): void {
-		this.sizes = size;
+		this.sizes = [];
+		this.sizes.push(size);
 	}
 }
