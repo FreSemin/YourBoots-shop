@@ -103,6 +103,7 @@ export class CardFormService {
 	}
 
 	public openForm(elementId?: string): void {
+		this.setCatalogFormDefValue();
 
 		if (elementId !== undefined && elementId !== '') {
 			this.setCardValues(elementId);
