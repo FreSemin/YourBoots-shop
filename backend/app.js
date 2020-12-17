@@ -47,6 +47,25 @@ app.use("/api/catalog", (req, res, next) => {
   });
 });
 
+app.put("/api/ctlg/:id", async (req, res, next) => {
+  await CatalogElement.updateOne(
+    { _id: req.params.id },
+    {
+      $set: {
+        title: req.body.title,
+        img: req.body.img,
+        priceCurrency: req.body.priceCurrency,
+        beforePriceNumber: req.body.beforePriceNumber,
+        currentPriceNumber: req.body.currentPriceNumber,
+        sizes: req.body.sizes,
+        count: req.body.count,
+      },
+    }
+  ).then(() => {
+    res.status(200);
+  });
+});
+
 // ctlg - catalog
 // short link because don't work with long url: name + id
 app.delete("/api/ctlg/:id", async (req, res, next) => {

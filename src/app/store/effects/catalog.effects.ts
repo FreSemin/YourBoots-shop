@@ -57,9 +57,13 @@ export class CatalogEffects {
 		tap(async (updateAction: CatalogUpdateElement) => {
 			const updatedElement: ICatalogElement = updateAction.payload;
 
-			console.log(updatedElement);
+			await this._http.put(
+				'http://localhost:3000/api/ctlg/' + updatedElement.id,
+				updatedElement
+			)
+				.toPromise();
 		}),
-		delay(delayTimeOut), // wait for db update (fix problem with view update)
+		delay(delayTimeOut),
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
 			return of(new CatalogUpdateElementSucces());
