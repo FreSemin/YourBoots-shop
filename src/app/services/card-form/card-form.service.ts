@@ -6,6 +6,7 @@ import { CatalogAddElement, CatalogUpdateElement } from 'src/app/store/actions/c
 import { IAppState } from 'src/app/store/states/app.state';
 import { Location } from '@angular/common';
 import { CatalogService } from '../catalog/catalog.service';
+import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 
 function convertToNumArr(stringToConvert: string): number[] {
 	return stringToConvert.split(' ').map((elString: string) => {
@@ -83,18 +84,22 @@ export class CardFormService {
 	}
 
 	public setCardValues(id: string): void {
-		const catalogElement: ICatalogElement = this._catalogService.getCatalogElement(id);
+		this._catalogService.catalog$
+			.subscribe((catalog: ICatalog) => {
+				if (!catalog.isLoading) {
+					const catalogElement: ICatalogElement = this._catalogService.getCatalogElement(id);
 
-		if (catalogElement) {
-			this.catalogAddElementForm.controls['catalogAddElementTitle'].setValue(catalogElement.title);
-			this.catalogAddElementForm.controls['catalogAddElementImg'].setValue(catalogElement.img);
-			this.catalogAddElementForm.controls['catalogAddElementBeforePrice'].setValue(catalogElement.beforePriceNumber);
-			this.catalogAddElementForm.controls['catalogAddElementCurrentPrice'].setValue(catalogElement.currentPriceNumber);
-			this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].setValue(catalogElement.priceCurrency);
-			this.catalogAddElementForm.controls['catalogAddElementSizes'].setValue(catalogElement.sizes);
-			this.catalogAddElementForm.controls['catalogAddElementCount'].setValue(catalogElement.count);
-		}
-
+					if (catalogElement) {
+						this.catalogAddElementForm.controls['catalogAddElementTitle'].setValue(catalogElement.title);
+						this.catalogAddElementForm.controls['catalogAddElementImg'].setValue(catalogElement.img);
+						this.catalogAddElementForm.controls['catalogAddElementBeforePrice'].setValue(catalogElement.beforePriceNumber);
+						this.catalogAddElementForm.controls['catalogAddElementCurrentPrice'].setValue(catalogElement.currentPriceNumber);
+						this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].setValue(catalogElement.priceCurrency);
+						this.catalogAddElementForm.controls['catalogAddElementSizes'].setValue(catalogElement.sizes);
+						this.catalogAddElementForm.controls['catalogAddElementCount'].setValue(catalogElement.count);
+					}
+				}
+			});
 	}
 
 	public openForm(elementId?: string): void {
