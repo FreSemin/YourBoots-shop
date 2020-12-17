@@ -31,6 +31,8 @@ app.use(allowCors);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(catalogRoutes);
+// ctlg - catalog
+// short link because don't work with long url: path + id
+app.use("/api/ctlg", catalogRoutes);
 
 module.exports = app;

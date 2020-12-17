@@ -35,7 +35,7 @@ export class CatalogEffects {
 		ofType<CatalogAddElement>(ECatalogActions.AddElement),
 		tap(async (addAction: CatalogAddElement) => {
 			await this._http.post(
-				'http://localhost:3000/api/catalog',
+				'http://localhost:3000/api/ctlg',
 				addAction.payload
 			)
 				.toPromise(); // don't work without Promise

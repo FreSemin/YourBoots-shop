@@ -4,13 +4,13 @@ const router = express.Router();
 
 const CatalogElement = require("../models/catalogElement");
 
-router.get("/api/catalog", (req, res, next) => {
+router.get("", (req, res, next) => {
   CatalogElement.find().then((documents) => {
     res.status(200).send(documents);
   });
 });
 
-router.post("/api/catalog", (req, res, next) => {
+router.post("", (req, res, next) => {
   const catalogElement = new CatalogElement({
     title: req.body.title,
     img: req.body.img,
@@ -24,7 +24,7 @@ router.post("/api/catalog", (req, res, next) => {
   res.status(201);
 });
 
-router.put("/api/ctlg/:id", async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   const updatedCatalogElement = new CatalogElement({
     _id: req.body.id, // fix problem with immutable field
     title: req.body.title,
@@ -44,9 +44,7 @@ router.put("/api/ctlg/:id", async (req, res, next) => {
   });
 });
 
-// ctlg - catalog
-// short link because don't work with long url: name + id
-router.delete("/api/ctlg/:id", async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   await CatalogElement.deleteOne({ _id: req.params.id }).then(() => {
     res.status(200);
   });

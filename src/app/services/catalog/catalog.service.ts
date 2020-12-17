@@ -89,7 +89,7 @@ export class CatalogService implements OnInit, OnDestroy {
 
 	public getCatalogElements(): Observable<ICatalogElement[]> {
 		return this._http.get<ICatalogElement[]>(
-			`http://localhost:3000/api/catalog`
+			`http://localhost:3000/api/ctlg`
 		);
 	}
 
