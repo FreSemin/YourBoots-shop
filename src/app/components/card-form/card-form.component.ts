@@ -9,6 +9,8 @@ import { CardFormService } from 'src/app/services/card-form/card-form.service';
 	styleUrls: ['./card-form.component.scss']
 })
 export class CardFormComponent implements OnInit {
+	public updateElementId: string = '';
+
 	public catalogAddElementForm: FormGroup = this.cardFormService.catalogAddElementForm;
 
 	constructor(
@@ -18,9 +20,9 @@ export class CardFormComponent implements OnInit {
 
 	public ngOnInit(): void {
 		// Haven't information about router in cardFormService
-		const elementId: string = this._activatedRoute.snapshot.params['cardId'];
+		this.updateElementId = this._activatedRoute.snapshot.params['cardId'];
 
-		this.cardFormService.openForm(elementId);
+		this.cardFormService.openForm(this.updateElementId);
 	}
 
 }

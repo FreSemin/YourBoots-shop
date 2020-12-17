@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ICatalogElement, CatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
-import { CatalogAddElement } from 'src/app/store/actions/catalog.actions';
+import { CatalogAddElement, CatalogUpdateElement } from 'src/app/store/actions/catalog.actions';
 import { IAppState } from 'src/app/store/states/app.state';
 import { Location } from '@angular/common';
 import { CatalogService } from '../catalog/catalog.service';
@@ -62,7 +62,22 @@ export class CardFormService {
 		this.closeForm();
 	}
 
-	public updateElement(): void {
+	public updateElement(elementId: string): void {
+		const sizesArr: number[] = convertToNumArr(this.catalogAddElementForm.controls['catalogAddElementSizes'].value);
+		const beforePrice: number = +this.catalogAddElementForm.controls['catalogAddElementBeforePrice'].value;
+
+		const updatedElement: ICatalogElement = new CatalogElement({
+			id: elementId,
+			title: this.catalogAddElementForm.controls['catalogAddElementTitle'].value,
+			img: this.catalogAddElementForm.controls['catalogAddElementImg'].value,
+			beforePriceNumber: (beforePrice > 0) ? beforePrice : null,
+			currentPriceNumber: +this.catalogAddElementForm.controls['catalogAddElementCurrentPrice'].value,
+			priceCurrency: this.catalogAddElementForm.controls['catalogAddElementPriceCurrency'].value,
+			sizes: sizesArr,
+			count: +this.catalogAddElementForm.controls['catalogAddElementCount'].value,
+		});
+
+		this._store.dispatch(new CatalogUpdateElement(updatedElement));
 
 		this.closeForm();
 	}

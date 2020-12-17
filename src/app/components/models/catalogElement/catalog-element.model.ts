@@ -22,8 +22,12 @@ export class CatalogElement implements ICatalogElement {
 
 	constructor(catalogElement: ICatalogElement, newCount?: number, newSize?: number) {
 
-		if (catalogElement._id !== '') {
+		// tslint:disable-next-line: strict-boolean-expressions
+		if (catalogElement._id) {
 			this.id = catalogElement._id;
+			// tslint:disable-next-line: strict-boolean-expressions
+		} else if (catalogElement.id) {
+			this.id = catalogElement.id;
 		}
 
 		this.title = catalogElement.title;

@@ -4,7 +4,7 @@
         </div>
         <div class="card-form__add">
             <form class="card-form__add-form" [formGroup]="catalogAddElementForm"
-                (ngSubmit)="!cardFormService.isEditForm ? cardFormService.addToCataloge() : cardFormService.updateElement()">
+                (ngSubmit)="!cardFormService.isEditForm ? cardFormService.addToCataloge() : cardFormService.updateElement(this.updateElementId)">
                 <div class="card-form__close-box">
                     <div class="card-form__close-btn" (click)="this.cardFormService.closeForm()">
                         <i class="fas fa-times"></i>
