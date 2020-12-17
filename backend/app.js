@@ -48,19 +48,20 @@ app.use("/api/catalog", (req, res, next) => {
 });
 
 app.put("/api/ctlg/:id", async (req, res, next) => {
+  const updatedCatalogElement = new CatalogElement({
+    _id: req.body.id, // fix problem with immutable field
+    title: req.body.title,
+    img: req.body.img,
+    priceCurrency: req.body.priceCurrency,
+    beforePriceNumber: req.body.beforePriceNumber,
+    currentPriceNumber: req.body.currentPriceNumber,
+    sizes: req.body.sizes,
+    count: req.body.count,
+  });
+
   await CatalogElement.updateOne(
     { _id: req.params.id },
-    {
-      $set: {
-        title: req.body.title,
-        img: req.body.img,
-        priceCurrency: req.body.priceCurrency,
-        beforePriceNumber: req.body.beforePriceNumber,
-        currentPriceNumber: req.body.currentPriceNumber,
-        sizes: req.body.sizes,
-        count: req.body.count,
-      },
-    }
+    updatedCatalogElement
   ).then(() => {
     res.status(200);
   });
