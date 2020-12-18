@@ -40,8 +40,8 @@
       position: relative;
       z-index: 106;
       padding: 20px;
-      margin: 0 30px;
       width: 100%;
+      min-width: 300px;
       max-width: 380px;
       display: flex;
       justify-content: center;
@@ -59,12 +59,27 @@
     font-size: 26px;
   }
   &__field {
+    margin-bottom: 10px;
+    max-width: 200px;
+    width: 100%;
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    // align-items: center;
     justify-content: flex-start;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &_pos-c {
+      align-items: center;
+    }
   }
   &__label {
     margin-bottom: 5px;
+    width: 100%;
     font-size: 14px;
     color: $text-dark;
 
@@ -73,23 +88,24 @@
     }
   }
   &__input {
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
     padding: 5px 10px;
+    width: 100%;
     border: 1px solid $bg-grey;
 
-    &:last-of-type {
-      margin-bottom: 0;
-    }
+    // &:last-of-type {
+    // margin-bottom: 0;
+    // }
   }
   &__input-file {
     display: none;
   }
   &__add-btn {
-    margin-top: 15px;
+    // margin-top: 15px;
     @include mainBtn;
   }
   &__file-btn {
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
     @include fileBtn;
   }
 }

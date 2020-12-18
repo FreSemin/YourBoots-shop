@@ -33,4 +33,5 @@
 
 @mixin fileBtn {
   @include mainBtn;
+  max-width: 110px;
 }

@@ -13,10 +13,12 @@
                 <h6 class="card-form__title">
                     {{ this.cardFormService.isEditForm ? 'Редактировать элемент' : 'Создать новый'}}
                 </h6>
-                <input type="text" placeholder="Title" class="card-form__input"
-                    formControlName="catalogAddElementTitle">
                 <div class="card-form__field">
-                    <label for="" class="card-form__label">
+                    <input type="text" placeholder="Title" class="card-form__input"
+                        formControlName="catalogAddElementTitle">
+                </div>
+                <div class="card-form__field">
+                    <label for="#filePicker" class="card-form__label">
                         Img
                     </label>
                     <button type="button" class="card-form__file-btn" (click)="filePicker.click()">
@@ -24,22 +26,35 @@
                     </button>
                     <input type="file" #filePicker class="card-form__input card-form__input-file">
                 </div>
-
-                <input type="text" placeholder="Img" class="card-form__input" formControlName="catalogAddElementImg">
-
-                <input type="text" placeholder="Before Price" class="card-form__input"
-                    formControlName="catalogAddElementBeforePrice">
-                <input type="text" placeholder="Current Price" class="card-form__input"
-                    formControlName="catalogAddElementCurrentPrice">
-                <input type="text" placeholder="Price Currency" class="card-form__input"
-                    formControlName="catalogAddElementPriceCurrency">
-                <input type="text" placeholder="Sizes" class="card-form__input"
-                    formControlName="catalogAddElementSizes">
-                <input type="number" placeholder="Count 1" min="1" class="card-form__input"
-                    formControlName="catalogAddElementCount">
-                <button type="submit" class="card-form__add-btn">
-                    {{ this.cardFormService.isEditForm ? 'Сохранить' : 'Создать'}}
-                </button>
+                <div class="card-form__field">
+                    <input type="text" placeholder="Img" class="card-form__input"
+                        formControlName="catalogAddElementImg">
+                </div>
+                <div class="card-form__field">
+                    <input type="text" placeholder="Before Price" class="card-form__input"
+                        formControlName="catalogAddElementBeforePrice">
+                </div>
+                <div class="card-form__field">
+                    <input type="text" placeholder="Current Price" class="card-form__input"
+                        formControlName="catalogAddElementCurrentPrice">
+                </div>
+                <div class="card-form__field">
+                    <input type="text" placeholder="Price Currency" class="card-form__input"
+                        formControlName="catalogAddElementPriceCurrency">
+                </div>
+                <div class="card-form__field">
+                    <input type="text" placeholder="Sizes" class="card-form__input"
+                        formControlName="catalogAddElementSizes">
+                </div>
+                <div class="card-form__field">
+                    <input type="number" placeholder="Count 1" min="1" class="card-form__input"
+                        formControlName="catalogAddElementCount">
+                </div>
+                <div class="card-form__field_pos-c">
+                    <button type="submit" class="card-form__add-btn">
+                        {{ this.cardFormService.isEditForm ? 'Сохранить' : 'Создать'}}
+                    </button>
+                </div>
             </form>
         </div>
     </div>
