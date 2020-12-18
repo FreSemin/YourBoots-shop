@@ -103,6 +103,8 @@ export class CardFormService {
 	}
 
 	public openForm(elementId?: string): void {
+		document.body.style.overflow = 'hidden';
+
 		this.setCatalogFormDefValue();
 
 		if (elementId !== undefined && elementId !== '') {
