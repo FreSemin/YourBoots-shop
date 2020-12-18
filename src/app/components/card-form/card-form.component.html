@@ -15,7 +15,18 @@
                 </h6>
                 <input type="text" placeholder="Title" class="card-form__input"
                     formControlName="catalogAddElementTitle">
+                <div class="card-form__field">
+                    <label for="" class="card-form__label">
+                        Img
+                    </label>
+                    <button type="button" class="card-form__file-btn" (click)="filePicker.click()">
+                        Загрузить
+                    </button>
+                    <input type="file" #filePicker class="card-form__input card-form__input-file">
+                </div>
+
                 <input type="text" placeholder="Img" class="card-form__input" formControlName="catalogAddElementImg">
+
                 <input type="text" placeholder="Before Price" class="card-form__input"
                     formControlName="catalogAddElementBeforePrice">
                 <input type="text" placeholder="Current Price" class="card-form__input"

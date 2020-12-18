@@ -30,3 +30,7 @@
     }
   }
 }
+
+@mixin fileBtn {
+  @include mainBtn;
+}
