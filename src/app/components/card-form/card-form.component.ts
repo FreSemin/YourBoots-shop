@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CardFormService } from 'src/app/services/card-form/card-form.service';
@@ -17,6 +17,10 @@ export class CardFormComponent implements OnInit {
 		public cardFormService: CardFormService,
 		private _activatedRoute: ActivatedRoute,
 	) { }
+
+	public pickImg(event: Event): void {
+		this.cardFormService.onPickImg(event);
+	}
 
 	public ngOnInit(): void {
 		// Haven't information about router in cardFormService

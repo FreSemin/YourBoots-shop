@@ -24,11 +24,8 @@
                     <button type="button" class="card-form__file-btn" (click)="filePicker.click()">
                         Загрузить
                     </button>
-                    <input type="file" #filePicker class="card-form__input card-form__input-file">
-                </div>
-                <div class="card-form__field">
-                    <input type="text" placeholder="Img" class="card-form__input"
-                        formControlName="catalogAddElementImg">
+                    <input type="file" #filePicker class="card-form__input card-form__input-file"
+                        (change)="pickImg($event)">
                 </div>
                 <div class="card-form__field">
                     <input type="text" placeholder="Before Price" class="card-form__input"

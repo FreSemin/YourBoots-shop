@@ -22,7 +22,7 @@ export class CardFormService {
 
 	public catalogAddElementForm: FormGroup = new FormGroup({
 		catalogAddElementTitle: new FormControl('', Validators.required),
-		catalogAddElementImg: new FormControl('card_1.jpg', Validators.required),
+		catalogAddElementImg: new FormControl(null, Validators.required),
 		catalogAddElementBeforePrice: new FormControl('', Validators.required),
 		catalogAddElementCurrentPrice: new FormControl('', Validators.required),
 		catalogAddElementPriceCurrency: new FormControl('BYN', Validators.required),
@@ -41,13 +41,23 @@ export class CardFormService {
 
 		this.catalogAddElementForm.setValue({
 			catalogAddElementTitle: '',
-			catalogAddElementImg: 'card_1.jpg',
+			catalogAddElementImg: null,
 			catalogAddElementBeforePrice: '',
 			catalogAddElementCurrentPrice: '',
 			catalogAddElementPriceCurrency: 'BYN',
 			catalogAddElementSizes: [],
 			catalogAddElementCount: 1,
 		});
+	}
+
+	public onPickImg(event: Event): void {
+		const file: File = (event.target as HTMLInputElement).files[0];
+
+		this.catalogAddElementForm.patchValue(
+			{ catalogAddElementImg: file }
+		);
+
+		this.catalogAddElementForm.get('catalogAddElementImg').updateValueAndValidity();
 	}
 
 	public addToCataloge(): void {
