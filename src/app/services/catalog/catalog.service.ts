@@ -195,9 +195,9 @@ export class CatalogService implements OnInit, OnDestroy {
 	public getDataToSend(): Observable<IOrdersDataToSend> {
 		this.dataToSend.userOrders = [];
 
-		this.dataToSend.userName = this.ordersForm.controls['userName'].value;
-		this.dataToSend.userTel = this.ordersForm.controls['userPhone'].value;
-		this.dataToSend.userAdress = this.ordersForm.controls['userAdress'].value;
+		this.dataToSend.userName = this.ordersForm.get('userName').value;
+		this.dataToSend.userTel = this.ordersForm.get('userPhone').value;
+		this.dataToSend.userAdress = this.ordersForm.get('userAdress').value;
 		this.dataToSend.beforePrice = this.ordersBeforeSum;
 		this.dataToSend.currentPrice = this.ordersCurrentSum;
 
