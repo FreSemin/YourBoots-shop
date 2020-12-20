@@ -19,6 +19,7 @@ function convertToNumArr(stringToConvert: string): number[] {
 })
 export class CardFormService {
 	public isEditForm: boolean = false;
+	public imgPreview: string = '';
 
 	public catalogAddElementForm: FormGroup = new FormGroup({
 		catalogAddElementTitle: new FormControl('', Validators.required),
@@ -52,12 +53,19 @@ export class CardFormService {
 
 	public onPickImg(event: Event): void {
 		const file: File = (event.target as HTMLInputElement).files[0];
+		const reader: FileReader = new FileReader();
 
 		this.catalogAddElementForm.patchValue(
 			{ catalogAddElementImg: file }
 		);
 
 		this.catalogAddElementForm.get('catalogAddElementImg').updateValueAndValidity();
+
+		reader.onload = () => {
+			this.imgPreview = reader.result as string;
+		};
+
+		reader.readAsDataURL(file);
 	}
 
 	public addToCataloge(): void {
@@ -135,6 +143,7 @@ export class CardFormService {
 
 	public closeForm(): void {
 		document.body.style.overflow = 'auto';
+		this.imgPreview = '';
 
 		this._location.back();
 

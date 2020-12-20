@@ -27,6 +27,13 @@
                     <input type="file" #filePicker class="card-form__input card-form__input-file"
                         (change)="pickImg($event)">
                 </div>
+                <div class="card-form__field" *ngIf="cardFormService.imgPreview">
+                    <img [src]="cardFormService.imgPreview" [alt]="catalogAddElementForm.value.catalogAddElementTitle"
+                        class="card-form__img-preview">
+                    <p class="card-form__img-name">
+                        {{ 'img name: ' + this.catalogAddElementForm.get('catalogAddElementImg').value.name }}
+                    </p>
+                </div>
                 <div class="card-form__field">
                     <input type="text" placeholder="Before Price" class="card-form__input"
                         formControlName="catalogAddElementBeforePrice">
