@@ -7,6 +7,7 @@ import { IAppState } from 'src/app/store/states/app.state';
 import { Location } from '@angular/common';
 import { CatalogService } from '../catalog/catalog.service';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
+import { mimeType } from '../../components/card-form/mime-type.validator';
 
 function convertToNumArr(stringToConvert: string): number[] {
 	return stringToConvert.split(' ').map((elString: string) => {
@@ -23,7 +24,9 @@ export class CardFormService {
 
 	public catalogAddElementForm: FormGroup = new FormGroup({
 		catalogAddElementTitle: new FormControl('', Validators.required),
-		catalogAddElementImg: new FormControl(null, Validators.required),
+		catalogAddElementImg: new FormControl(null, {
+			validators: [Validators.required], asyncValidators: [mimeType]
+		}),
 		catalogAddElementBeforePrice: new FormControl('', Validators.required),
 		catalogAddElementCurrentPrice: new FormControl('', Validators.required),
 		catalogAddElementPriceCurrency: new FormControl('BYN', Validators.required),

@@ -27,7 +27,8 @@
                     <input type="file" #filePicker class="card-form__input card-form__input-file"
                         (change)="pickImg($event)">
                 </div>
-                <div class="card-form__field" *ngIf="cardFormService.imgPreview">
+                <div class="card-form__field"
+                    *ngIf="cardFormService.imgPreview && catalogAddElementForm.get('catalogAddElementImg').valid">
                     <img [src]="cardFormService.imgPreview" [alt]="catalogAddElementForm.value.catalogAddElementTitle"
                         class="card-form__img-preview">
                     <p class="card-form__img-name">
