@@ -31,6 +31,7 @@
     "emailjs-com": "^2.6.3",
     "express": "^4.17.1",
     "mongoose": "^5.10.17",
+    "multer": "^1.4.2",
     "rxjs": "~6.5.4",
     "rxjs-compat": "^6.6.3",
     "tiny-slider": "^2.9.0",
