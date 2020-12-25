@@ -26,6 +26,10 @@
                     </button>
                     <input type="file" #filePicker class="card-form__input card-form__input-file"
                         (change)="pickImg($event)">
+                    <p class="card-form__img-name card-form__img-name_error"
+                        *ngIf="catalogAddElementForm.get('catalogAddElementImg').invalid && catalogAddElementForm.touched">
+                        Не верный формат картинки
+                    </p>
                 </div>
                 <div class="card-form__field"
                     *ngIf="cardFormService.imgPreview && catalogAddElementForm.get('catalogAddElementImg').valid">
