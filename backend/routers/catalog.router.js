@@ -1,8 +1,34 @@
 const express = require("express");
 
+const multer = require("multer");
+
 const router = express.Router();
 
 const CatalogElement = require("../models/catalogElement");
+
+const MIME_TYPE_MAP = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/jpg": "jpg",
+};
+
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValidType = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("Invalid mime type");
+
+    if (isValidType) {
+      error = null;
+    }
+
+    cb(error, "backend/imgs");
+  },
+  filename: (req, file) => {
+    const name = file.originalname.toLowerCase().split(" ").join("-");
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + "-" + Date.now() + "." + ext);
+  },
+});
 
 router.get("", (req, res, next) => {
   CatalogElement.find().then((documents) => {
@@ -10,7 +36,7 @@ router.get("", (req, res, next) => {
   });
 });
 
-router.post("", (req, res, next) => {
+router.post("", multer(fileStorage).single("img"), (req, res, next) => {
   const catalogElement = new CatalogElement({
     title: req.body.title,
     img: req.body.img,
