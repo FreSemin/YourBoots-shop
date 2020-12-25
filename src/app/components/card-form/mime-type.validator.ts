@@ -25,10 +25,10 @@ export const mimeType = (
 					isValid = true;
 					break;
 				case 'ffd8ffe0':
-				case 'ffd9ffe1':
-				case 'ffd9ffe2':
-				case 'ffd9ffe3':
-				case 'ffd9ffe8':
+				case 'ffd8ffe1':
+				case 'ffd8ffe2':
+				case 'ffd8ffe3':
+				case 'ffd8ffe8':
 					isValid = true;
 					break;
 				default:
