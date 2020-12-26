@@ -34,9 +34,20 @@ export class CatalogEffects {
 	public addCatalogElement$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogAddElement>(ECatalogActions.AddElement),
 		tap(async (addAction: CatalogAddElement) => {
+			const newCatalogEl: ICatalogElement = addAction.payload;
+			const catalogElData: FormData = new FormData();
+
+			catalogElData.append('title', newCatalogEl.title);
+			catalogElData.append('img', newCatalogEl.img, newCatalogEl.title);
+			catalogElData.append('beforePriceNumber', newCatalogEl.beforePriceNumber.toString());
+			catalogElData.append('currentPriceNumber', newCatalogEl.currentPriceNumber.toString());
+			catalogElData.append('priceCurrency', newCatalogEl.priceCurrency);
+			catalogElData.append('sizes', newCatalogEl.sizes.toString());
+			catalogElData.append('count', newCatalogEl.count.toString());
+
 			await this._http.post(
 				'http://localhost:3000/api/ctlg',
-				addAction.payload
+				catalogElData
 			)
 				.toPromise(); // don't work without Promise
 		}),

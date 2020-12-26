@@ -23,7 +23,7 @@ const fileStorage = multer.diskStorage({
 
     cb(error, "backend/imgs");
   },
-  filename: (req, file) => {
+  filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(" ").join("-");
     const ext = MIME_TYPE_MAP[file.mimetype];
     cb(null, name + "-" + Date.now() + "." + ext);
@@ -36,19 +36,23 @@ router.get("", (req, res, next) => {
   });
 });
 
-router.post("", multer(fileStorage).single("img"), (req, res, next) => {
-  const catalogElement = new CatalogElement({
-    title: req.body.title,
-    img: req.body.img,
-    priceCurrency: req.body.priceCurrency,
-    beforePriceNumber: req.body.beforePriceNumber,
-    currentPriceNumber: req.body.currentPriceNumber,
-    sizes: req.body.sizes,
-    count: req.body.count,
-  });
-  catalogElement.save();
-  res.status(201);
-});
+router.post(
+  "",
+  multer({ storage: fileStorage }).single("img"),
+  (req, res, next) => {
+    const catalogElement = new CatalogElement({
+      title: req.body.title,
+      img: req.body.img,
+      priceCurrency: req.body.priceCurrency,
+      beforePriceNumber: req.body.beforePriceNumber,
+      currentPriceNumber: req.body.currentPriceNumber,
+      sizes: req.body.sizes.split(","),
+      count: req.body.count,
+    });
+    catalogElement.save();
+    res.status(201);
+  }
+);
 
 router.put("/:id", async (req, res, next) => {
   const updatedCatalogElement = new CatalogElement({
