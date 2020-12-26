@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const catalogElementSchema = mongoose.Schema({
   title: { type: String, required: true },
-  img: { type: String, required: false },
+  img: { type: String, required: true },
   priceCurrency: { type: String, required: true },
   beforePriceNumber: { type: Number, required: false },
   currentPriceNumber: { type: Number, required: true },

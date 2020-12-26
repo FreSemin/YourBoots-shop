@@ -40,9 +40,10 @@ router.post(
   "",
   multer({ storage: fileStorage }).single("img"),
   (req, res, next) => {
+    const url = req.protocol + '://' + req.get("host");
     const catalogElement = new CatalogElement({
       title: req.body.title,
-      img: req.body.img,
+      img: url + '/imgs/' + req.file.filename,
       priceCurrency: req.body.priceCurrency,
       beforePriceNumber: req.body.beforePriceNumber,
       currentPriceNumber: req.body.currentPriceNumber,
