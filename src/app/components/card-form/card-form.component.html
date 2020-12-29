@@ -31,14 +31,28 @@
                         Не верный формат картинки
                     </p>
                 </div>
-                <div class="card-form__field"
-                    *ngIf="cardFormService.imgPreview && catalogAddElementForm.get('catalogAddElementImg').valid">
-                    <img [src]="cardFormService.imgPreview" [alt]="catalogAddElementForm.value.catalogAddElementTitle"
-                        class="card-form__img-preview">
-                    <p class="card-form__img-name">
-                        {{ 'img name: ' + this.catalogAddElementForm.get('catalogAddElementImg').value.name }}
-                    </p>
+                <div class="card-form__box-fields">
+                    <div class="card-form__field card-form__field-img"
+                        *ngIf="cardFormService.isEditForm && this.cardFormService.beforeImg">
+                        <p class="card-form__img-name">
+                            Current Img
+                        </p>
+                        <img [src]="this.cardFormService.beforeImg"
+                            [alt]="catalogAddElementForm.value.catalogAddElementTitle" class="card-form__img-preview">
+                    </div>
+                    <div class="card-form__field card-form__field-img"
+                        *ngIf="cardFormService.imgPreview && catalogAddElementForm.get('catalogAddElementImg').valid">
+                        <p class="card-form__img-name">
+                            New Img
+                        </p>
+                        <img [src]="cardFormService.imgPreview"
+                            [alt]="catalogAddElementForm.value.catalogAddElementTitle" class="card-form__img-preview">
+                        <p class="card-form__img-name">
+                            {{ 'img name: ' + this.catalogAddElementForm.get('catalogAddElementImg').value.name }}
+                        </p>
+                    </div>
                 </div>
+
                 <div class="card-form__field">
                     <input type="text" placeholder="Before Price" class="card-form__input"
                         formControlName="catalogAddElementBeforePrice">

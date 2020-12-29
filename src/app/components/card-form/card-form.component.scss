@@ -42,7 +42,6 @@
       padding: 20px;
       width: 100%;
       min-width: 300px;
-      max-width: 380px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -57,6 +56,10 @@
     margin-bottom: 25px;
     color: $text-dark;
     font-size: 26px;
+  }
+  &__box-fields {
+    display: flex;
+    justify-content: space-between;
   }
   &__field {
     margin-bottom: 10px;
@@ -75,6 +78,10 @@
     &_pos-c {
       align-items: center;
     }
+  }
+  &__field-img {
+    margin-left: 20px;
+    margin-right: 20px;
   }
   &__label {
     margin-bottom: 5px;
@@ -107,7 +114,7 @@
     object-fit: contain;
   }
   &__img-name {
-    margin-top: 5px;
+    margin: 5px 0;
     font-size: 12px;
     color: $text-dark;
 

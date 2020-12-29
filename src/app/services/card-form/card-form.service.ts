@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { CatalogService } from '../catalog/catalog.service';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { mimeType } from '../../components/card-form/mime-type.validator';
+import { TYPED_NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 
 function convertToNumArr(stringToConvert: string): number[] {
 	return stringToConvert.split(' ').map((elString: string) => {
@@ -21,6 +22,7 @@ function convertToNumArr(stringToConvert: string): number[] {
 export class CardFormService {
 	public isEditForm: boolean = false;
 	public imgPreview: string = '';
+	public beforeImg: string = null;
 
 	public catalogAddElementForm: FormGroup = new FormGroup({
 		catalogAddElementTitle: new FormControl('', Validators.required),
@@ -117,7 +119,6 @@ export class CardFormService {
 					const catalogElement: ICatalogElement = this._catalogService.getCatalogElement(id);
 
 					if (catalogElement) {
-
 						this.catalogAddElementForm.setValue({
 							catalogAddElementTitle: catalogElement.title,
 							catalogAddElementImg: catalogElement.img,
@@ -127,6 +128,7 @@ export class CardFormService {
 							catalogAddElementSizes: catalogElement.sizes.join(' '),
 							catalogAddElementCount: catalogElement.count,
 						});
+						this.beforeImg = this.catalogAddElementForm.get('catalogAddElementImg').value;
 					}
 				}
 			});
@@ -153,5 +155,6 @@ export class CardFormService {
 		this.setCatalogFormDefValue();
 
 		this.isEditForm = false;
+		this.beforeImg = null;
 	}
 }
