@@ -60,9 +60,11 @@ router.put(
   multer({ storage: fileStorage }).single("img"),
   async (req, res, next) => {
     let imgPath = req.body.img;
+    let elementSizes = req.body.sizes;
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
       imgPath = url + "/imgs/" + req.file.filename;
+      elementSizes = req.body.sizes.split(",");
     }
     const updatedCatalogElement = new CatalogElement({
       _id: req.body.id, // fix problem with immutable field
@@ -71,7 +73,7 @@ router.put(
       priceCurrency: req.body.priceCurrency,
       beforePriceNumber: req.body.beforePriceNumber,
       currentPriceNumber: req.body.currentPriceNumber,
-      sizes: req.body.sizes,
+      sizes: elementSizes,
       count: req.body.count,
     });
 
