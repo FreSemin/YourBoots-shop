@@ -23,7 +23,7 @@ const fileStorage = multer.diskStorage({
 
     cb(error, "backend/imgs");
   },
-  filename: (req, file) => {
+  filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(" ").join("-");
     const ext = MIME_TYPE_MAP[file.mimetype];
     cb(null, name + "-" + Date.now() + "." + ext);
@@ -36,39 +36,55 @@ router.get("", (req, res, next) => {
   });
 });
 
-router.post("", multer(fileStorage).single("img"), (req, res, next) => {
-  const catalogElement = new CatalogElement({
-    title: req.body.title,
-    img: req.body.img,
-    priceCurrency: req.body.priceCurrency,
-    beforePriceNumber: req.body.beforePriceNumber,
-    currentPriceNumber: req.body.currentPriceNumber,
-    sizes: req.body.sizes,
-    count: req.body.count,
-  });
-  catalogElement.save();
-  res.status(201);
-});
+router.post(
+  "",
+  multer({ storage: fileStorage }).single("img"),
+  (req, res, next) => {
+    const url = req.protocol + "://" + req.get("host");
+    const catalogElement = new CatalogElement({
+      title: req.body.title,
+      img: url + "/imgs/" + req.file.filename,
+      priceCurrency: req.body.priceCurrency,
+      beforePriceNumber: req.body.beforePriceNumber,
+      currentPriceNumber: req.body.currentPriceNumber,
+      sizes: req.body.sizes.split(","),
+      count: req.body.count,
+    });
+    catalogElement.save();
+    res.status(201);
+  }
+);
 
-router.put("/:id", async (req, res, next) => {
-  const updatedCatalogElement = new CatalogElement({
-    _id: req.body.id, // fix problem with immutable field
-    title: req.body.title,
-    img: req.body.img,
-    priceCurrency: req.body.priceCurrency,
-    beforePriceNumber: req.body.beforePriceNumber,
-    currentPriceNumber: req.body.currentPriceNumber,
-    sizes: req.body.sizes,
-    count: req.body.count,
-  });
+router.put(
+  "/:id",
+  multer({ storage: fileStorage }).single("img"),
+  async (req, res, next) => {
+    let imgPath = req.body.img;
+    let elementSizes = req.body.sizes;
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      imgPath = url + "/imgs/" + req.file.filename;
+      elementSizes = req.body.sizes.split(",");
+    }
+    const updatedCatalogElement = new CatalogElement({
+      _id: req.body.id, // fix problem with immutable field
+      title: req.body.title,
+      img: imgPath,
+      priceCurrency: req.body.priceCurrency,
+      beforePriceNumber: req.body.beforePriceNumber,
+      currentPriceNumber: req.body.currentPriceNumber,
+      sizes: elementSizes,
+      count: req.body.count,
+    });
 
-  await CatalogElement.updateOne(
-    { _id: req.params.id },
-    updatedCatalogElement
-  ).then(() => {
-    res.status(200);
-  });
-});
+    await CatalogElement.updateOne(
+      { _id: req.params.id },
+      updatedCatalogElement
+    ).then(() => {
+      res.status(200);
+    });
+  }
+);
 
 router.delete("/:id", async (req, res, next) => {
   await CatalogElement.deleteOne({ _id: req.params.id }).then(() => {

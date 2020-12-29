@@ -1,10 +1,14 @@
 import { AbstractControl } from '@angular/forms';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 
 // tslint:disable-next-line: typedef
 export const mimeType = (
 	control: AbstractControl
 ): Promise<{ [key: string]: any }> | Observable<{ [key: string]: any }> => {
+	if (typeof (control.value) === 'string') {
+		return of(null);
+	}
+
 	const file: File = control.value as File;
 	const reader: FileReader = new FileReader();
 	// tslint:disable-next-line: deprecation

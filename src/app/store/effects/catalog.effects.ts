@@ -34,9 +34,20 @@ export class CatalogEffects {
 	public addCatalogElement$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogAddElement>(ECatalogActions.AddElement),
 		tap(async (addAction: CatalogAddElement) => {
+			const newCatalogEl: ICatalogElement = addAction.payload;
+			const catalogElData: FormData = new FormData();
+
+			catalogElData.append('title', newCatalogEl.title);
+			catalogElData.append('img', newCatalogEl.img, newCatalogEl.title);
+			catalogElData.append('beforePriceNumber', newCatalogEl.beforePriceNumber.toString());
+			catalogElData.append('currentPriceNumber', newCatalogEl.currentPriceNumber.toString());
+			catalogElData.append('priceCurrency', newCatalogEl.priceCurrency);
+			catalogElData.append('sizes', newCatalogEl.sizes.toString());
+			catalogElData.append('count', newCatalogEl.count.toString());
+
 			await this._http.post(
 				'http://localhost:3000/api/ctlg',
-				addAction.payload
+				catalogElData
 			)
 				.toPromise(); // don't work without Promise
 		}),
@@ -56,10 +67,25 @@ export class CatalogEffects {
 		ofType<CatalogUpdateElement>(ECatalogActions.UpdateElement),
 		tap(async (updateAction: CatalogUpdateElement) => {
 			const updatedElement: ICatalogElement = updateAction.payload;
+			let updatedElData: ICatalogElement | FormData = null;
+
+			if (typeof (updatedElement.img) === 'object') {
+				updatedElData = new FormData();
+				updatedElData.append('id', updatedElement.id);
+				updatedElData.append('title', updatedElement.title);
+				updatedElData.append('img', updatedElement.img, updatedElement.title);
+				updatedElData.append('beforePriceNumber', updatedElement.beforePriceNumber.toString());
+				updatedElData.append('currentPriceNumber', updatedElement.currentPriceNumber.toString());
+				updatedElData.append('priceCurrency', updatedElement.priceCurrency);
+				updatedElData.append('sizes', updatedElement.sizes.toString());
+				updatedElData.append('count', updatedElement.count.toString());
+			} else {
+				updatedElData = updatedElement;
+			}
 
 			await this._http.put(
 				'http://localhost:3000/api/ctlg/' + updatedElement.id,
-				updatedElement
+				updatedElData
 			)
 				.toPromise();
 		}),
