@@ -40,10 +40,10 @@ router.post(
   "",
   multer({ storage: fileStorage }).single("img"),
   (req, res, next) => {
-    const url = req.protocol + '://' + req.get("host");
+    const url = req.protocol + "://" + req.get("host");
     const catalogElement = new CatalogElement({
       title: req.body.title,
-      img: url + '/imgs/' + req.file.filename,
+      img: url + "/imgs/" + req.file.filename,
       priceCurrency: req.body.priceCurrency,
       beforePriceNumber: req.body.beforePriceNumber,
       currentPriceNumber: req.body.currentPriceNumber,
@@ -55,25 +55,34 @@ router.post(
   }
 );
 
-router.put("/:id", async (req, res, next) => {
-  const updatedCatalogElement = new CatalogElement({
-    _id: req.body.id, // fix problem with immutable field
-    title: req.body.title,
-    img: req.body.img,
-    priceCurrency: req.body.priceCurrency,
-    beforePriceNumber: req.body.beforePriceNumber,
-    currentPriceNumber: req.body.currentPriceNumber,
-    sizes: req.body.sizes,
-    count: req.body.count,
-  });
+router.put(
+  "/:id",
+  multer({ storage: fileStorage }).single("img"),
+  async (req, res, next) => {
+    let imgPath = req.body.img;
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      imgPath = url + "/imgs/" + req.file.filename;
+    }
+    const updatedCatalogElement = new CatalogElement({
+      _id: req.body.id, // fix problem with immutable field
+      title: req.body.title,
+      img: imgPath,
+      priceCurrency: req.body.priceCurrency,
+      beforePriceNumber: req.body.beforePriceNumber,
+      currentPriceNumber: req.body.currentPriceNumber,
+      sizes: req.body.sizes,
+      count: req.body.count,
+    });
 
-  await CatalogElement.updateOne(
-    { _id: req.params.id },
-    updatedCatalogElement
-  ).then(() => {
-    res.status(200);
-  });
-});
+    await CatalogElement.updateOne(
+      { _id: req.params.id },
+      updatedCatalogElement
+    ).then(() => {
+      res.status(200);
+    });
+  }
+);
 
 router.delete("/:id", async (req, res, next) => {
   await CatalogElement.deleteOne({ _id: req.params.id }).then(() => {

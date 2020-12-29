@@ -2,7 +2,7 @@ export interface ICatalogElement {
 	_id?: string;  // id from backend
 	id?: string;
 	title: string;
-	img: string;
+	img: File | string; // File for put request
 	priceCurrency: string;
 	beforePriceNumber?: number;
 	currentPriceNumber: number;
@@ -13,7 +13,7 @@ export interface ICatalogElement {
 export class CatalogElement implements ICatalogElement {
 	public id: string;
 	public title: string;
-	public img: string;
+	public img: File | string;
 	public beforePriceNumber: number;
 	public currentPriceNumber: number;
 	public priceCurrency: string;
