@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
 	{
@@ -15,11 +16,13 @@ const routes: Routes = [
 	{
 		path: 'admin',
 		// tslint:disable-next-line: typedef
-		loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
+		loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule),
+		canActivate: [LoginGuard],
 	},
 	{
 		path: 'login',
-		loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)
+		// tslint:disable-next-line: typedef
+		loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule),
 	},
 	{
 		path: '**',

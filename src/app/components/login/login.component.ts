@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginGuard } from 'src/app/guards/login.guard';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  // tslint:disable-next-line: no-empty
-  constructor() { }
+	constructor(private _loginGuard: LoginGuard) {
+	}
 
-  // tslint:disable-next-line: no-empty
-  public ngOnInit(): void {
-  }
+	public ngOnInit(): void {
+		// if alredy have permission redirect back (hide login page)
+		this._loginGuard.redirectBack();
+	}
 
 }

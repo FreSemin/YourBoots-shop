@@ -26,6 +26,7 @@ import { CustomOrderSnackBarComponent } from './components/custom-order-snack-ba
 import { ModalService } from './services/modal/modal.service';
 import { CardFormService } from './services/card-form/card-form.service';
 import { LoginModule } from './components/login/login.module';
+import { LoginGuard } from './guards/login.guard';
 
 @NgModule({
 	declarations: [
@@ -51,7 +52,7 @@ import { LoginModule } from './components/login/login.module';
 			logOnly: environment.production,
 		}),
 	],
-	providers: [MainAppService, CatalogService, ModalService, CardFormService],
+	providers: [MainAppService, CatalogService, ModalService, CardFormService, LoginGuard],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
