@@ -21,7 +21,7 @@ const fileStorage = multer.diskStorage({
       error = null;
     }
 
-    cb(error, "backend/imgs");
+    cb(error, "backend/images");
   },
   filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(" ").join("-");
@@ -43,7 +43,7 @@ router.post(
     const url = req.protocol + "://" + req.get("host");
     const catalogElement = new CatalogElement({
       title: req.body.title,
-      img: url + "/imgs/" + req.file.filename,
+      img: url + "/images/" + req.file.filename,
       priceCurrency: req.body.priceCurrency,
       beforePriceNumber: req.body.beforePriceNumber,
       currentPriceNumber: req.body.currentPriceNumber,
@@ -63,7 +63,7 @@ router.put(
     let elementSizes = req.body.sizes;
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
-      imgPath = url + "/imgs/" + req.file.filename;
+      imgPath = url + "/images/" + req.file.filename;
       elementSizes = req.body.sizes.split(",");
     }
     const updatedCatalogElement = new CatalogElement({

@@ -31,7 +31,7 @@ app.use(allowCors);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/imgs", express.static(path.join("backend/imgs")));
+app.use("/images", express.static(path.join("backend/images")));
 
 // ctlg - catalog
 // short link because don't work with long url: path + id
