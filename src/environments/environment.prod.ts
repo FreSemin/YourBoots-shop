@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   assetsUrl: '/assets/',
-  imgsUrl: '/assets/imgs/',
+  imgsUrl: '/assets/images/',
   emailjsServiceID: 'service_yourBootsProd',
   emailjsTemplateID: 'template_YourBootsProd',
   emailjsRecallTemplateID: 'template_recallRequest',

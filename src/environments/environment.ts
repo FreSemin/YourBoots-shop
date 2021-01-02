@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   assetsUrl: '../../../assets/',
-  imgsUrl: '../../../assets/imgs/',
+  imgsUrl: '../../../assets/images/',
   emailjsServiceID: 'service_shop_dev',
   emailjsTemplateID: 'template_getMesTemp',
   emailjsRecallTemplateID: 'template_recallRequest',
