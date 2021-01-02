@@ -25,6 +25,7 @@ import { HomeModule } from './components/home/home.module';
 import { CustomOrderSnackBarComponent } from './components/custom-order-snack-bar/custom-order-snack-bar.component';
 import { ModalService } from './services/modal/modal.service';
 import { CardFormService } from './services/card-form/card-form.service';
+import { LoginModule } from './components/login/login.module';
 
 @NgModule({
 	declarations: [
@@ -37,11 +38,12 @@ import { CardFormService } from './services/card-form/card-form.service';
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
-		HomeModule,
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
 		MaterialModule,
+		HomeModule,
+		LoginModule,
 		StoreModule.forRoot(appReducers),
 		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects, MenuEffects]),
 		StoreDevtoolsModule.instrument({
