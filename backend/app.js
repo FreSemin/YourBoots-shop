@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const allowCors = require("./cors");
 
 const catalogRoutes = require("./routers/catalog.router");
+const authRoutes = require("./routers/auth");
 
 const mongoose = require("mongoose");
 const mongoDBConnect = require("../secrets/secrets");
@@ -36,5 +37,7 @@ app.use("/images", express.static(path.join("backend/images")));
 // ctlg - catalog
 // short link because don't work with long url: path + id
 app.use("/api/ctlg", catalogRoutes);
+
+app.use("/api/auth", authRoutes);
 
 module.exports = app;
