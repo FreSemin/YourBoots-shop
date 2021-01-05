@@ -27,6 +27,7 @@ import { ModalService } from './services/modal/modal.service';
 import { CardFormService } from './services/card-form/card-form.service';
 import { LoginModule } from './components/login/login.module';
 import { LoginGuard } from './guards/login.guard';
+import { AuthService } from './services/auth/auth.service';
 
 @NgModule({
 	declarations: [
@@ -52,7 +53,7 @@ import { LoginGuard } from './guards/login.guard';
 			logOnly: environment.production,
 		}),
 	],
-	providers: [MainAppService, CatalogService, ModalService, CardFormService, LoginGuard],
+	providers: [MainAppService, CatalogService, ModalService, CardFormService, AuthService, LoginGuard],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
