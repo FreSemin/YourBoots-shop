@@ -12,4 +12,13 @@ export class AuthService {
 	public onAdminLogin(form: NgForm): void {
 		console.log(form.value);
 	}
+
+	/*
+		* Uncommit for creating new admins
+		* Exist for create admins accounts
+		*	By create hash password
+	*/
+	public onAdminSingUp(form: NgForm): void {
+		console.log(form.value);
+	}
 }
