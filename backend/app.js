@@ -17,6 +17,7 @@ mongoose
     `${mongoDBConnect}`, // place in "secrets" folder
     {
       useNewUrlParser: true,
+      useCreateIndex: true,
       useUnifiedTopology: true,
     }
   )
