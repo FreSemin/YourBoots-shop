@@ -31,6 +31,8 @@ router.post("/admin/signup", (req, res, next) => {
 });
 
 router.post("/admin/login", (req, res, next) => {
+  let fetchedAdmin = null;
+
   // find Admin
   User.findOne({ email: req.body.email })
     .then((admin) => {
@@ -39,7 +41,8 @@ router.post("/admin/login", (req, res, next) => {
           message: "Auth faild",
         });
       }
-      return bcrypt.compare(req.body.password, user.password);
+      fetchedAdmin = admin;
+      return bcrypt.compare(req.body.password, admin.password);
     })
     .then((result) => {
       if (!result) {
@@ -48,7 +51,7 @@ router.post("/admin/login", (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        { email: admin.email, userId: admin._id },
+        { email: fetchedAdmin.email, userId: fetchedAdmin._id },
         secretsFile.jwtSecretStr,
         { expiresIn: "1h" }
       );

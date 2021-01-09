@@ -13,10 +13,6 @@ export class AuthService {
 		private _http: HttpClient,
 	) { }
 
-	public onAdminLogin(form: NgForm): void {
-		console.log(form.value);
-	}
-
 	/*
 		* Uncommit for creating new admins
 		* Exist for create admins accounts
@@ -40,5 +36,24 @@ export class AuthService {
 			.subscribe((response: any) => {
 				form.reset();
 			});
+	}
+
+	public onAdminLogin(form: NgForm): void {
+		if (form.invalid) {
+			return;
+		}
+
+		const adminAuthData: IAuthData = {
+			email: form.value.adminName,
+			password: form.value.adminPassword,
+			access: 'admin'
+		};
+
+		this._http.post(
+			'http://localhost:3000/api/auth/admin/login',
+			adminAuthData
+		).subscribe((response: any) => {
+			form.reset();
+		});
 	}
 }
