@@ -15,12 +15,12 @@ export class LoginGuard implements CanActivate {
 	public canActivate(
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-		if (this.checkPermission()) {
-			return true;
-		} else {
-			this.redirectToLogin();
-			return false;
-		}
+		// if (this.checkPermission()) {
+		return true;
+		// } else {
+		// this.redirectToLogin();
+		// return false;
+		// }
 	}
 
 	public checkPermission(): boolean {
@@ -34,9 +34,9 @@ export class LoginGuard implements CanActivate {
 	}
 
 	public redirectBack(): void {
-		if (this.checkPermission()) {
-			this._location.back();
-		}
+		// if (this.checkPermission()) {
+		// this._location.back();
+		// }
 	}
 
 }
