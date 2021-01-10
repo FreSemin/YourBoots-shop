@@ -7,11 +7,16 @@ import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 	providedIn: 'root'
 })
 export class AuthService {
+	private _token: string = '';
 
 	// tslint:disable-next-line: no-empty
 	constructor(
 		private _http: HttpClient,
 	) { }
+
+	public getToken(): string {
+		return this._token;
+	}
 
 	/*
 		* Uncommit for creating new admins
@@ -49,10 +54,12 @@ export class AuthService {
 			access: 'admin'
 		};
 
-		this._http.post(
+		this._http.post<{ token: string }>(
 			'http://localhost:3000/api/auth/admin/login',
 			adminAuthData
 		).subscribe((response: any) => {
+			const token: string = response.token;
+			this._token = token;
 			form.reset();
 		});
 	}

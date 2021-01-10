@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 import { CatalogEffects } from './store/effects/catalog.effects';
 import { CatalogService } from './services/catalog/catalog.service';
 import { MainAppService } from './services/main-app/main-app.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OrdersEffects } from './store/effects/orders.effects';
 import { OrdersFormEffects } from './store/effects/orders-form.effects';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -28,6 +28,7 @@ import { CardFormService } from './services/card-form/card-form.service';
 import { LoginModule } from './components/login/login.module';
 import { LoginGuard } from './guards/login.guard';
 import { AuthService } from './services/auth/auth.service';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
 
 @NgModule({
 	declarations: [
@@ -53,7 +54,19 @@ import { AuthService } from './services/auth/auth.service';
 			logOnly: environment.production,
 		}),
 	],
-	providers: [MainAppService, CatalogService, ModalService, CardFormService, AuthService, LoginGuard],
+	providers: [
+		MainAppService,
+		CatalogService,
+		ModalService,
+		CardFormService,
+		AuthService,
+		LoginGuard,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AuthInterceptor,
+			multi: true
+		}
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
