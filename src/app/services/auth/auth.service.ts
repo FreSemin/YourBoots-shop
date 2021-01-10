@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 
 @Injectable({
@@ -8,16 +9,26 @@ import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 })
 export class AuthService {
 	private _token: string = '';
+	private _isAuthenticated: boolean = false;
 
 	public adminEmail: string = '';
 
 	// tslint:disable-next-line: no-empty
 	constructor(
 		private _http: HttpClient,
+		private _router: Router,
 	) { }
+
+	private _setAuthStatus(status: boolean): void {
+		this._isAuthenticated = status;
+	}
 
 	public getToken(): string {
 		return this._token;
+	}
+
+	public getAuthStatus(): boolean {
+		return this._isAuthenticated;
 	}
 
 	/*
@@ -61,9 +72,30 @@ export class AuthService {
 			adminAuthData
 		).subscribe((response: any) => {
 			const token: string = response.token;
+
 			this.adminEmail = form.value.adminName;
+
 			this._token = token;
+
+			this._setAuthStatus(true);
+
 			form.reset();
+
+			this.redirectToAdmin();
 		});
+	}
+
+	public onAdminLogout(): void {
+		this._setAuthStatus(false);
+		this._token = '';
+		this.redirectToLogin();
+	}
+
+	public redirectToAdmin(): void {
+		this._router.navigate(['admin']);
+	}
+
+	public redirectToLogin(): void {
+		this._router.navigate(['login']);
 	}
 }

@@ -13,7 +13,7 @@
             <nav class="admin__nav">
                 <ul class="admin__nav-list">
                     <li class="admin__el"><a routerLink="/" class="admin__link">Главная</a></li>
-                    <li class="admin__el">Log out</li>
+                    <li class="admin__el" (click)="authService.onAdminLogout()">Log out</li>
                 </ul>
             </nav>
         </header>
