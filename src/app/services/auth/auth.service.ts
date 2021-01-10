@@ -9,6 +9,8 @@ import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 export class AuthService {
 	private _token: string = '';
 
+	public adminEmail: string = '';
+
 	// tslint:disable-next-line: no-empty
 	constructor(
 		private _http: HttpClient,
@@ -59,6 +61,7 @@ export class AuthService {
 			adminAuthData
 		).subscribe((response: any) => {
 			const token: string = response.token;
+			this.adminEmail = form.value.adminName;
 			this._token = token;
 			form.reset();
 		});

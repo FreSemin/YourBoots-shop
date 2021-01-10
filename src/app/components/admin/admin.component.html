@@ -1,13 +1,19 @@
 <div class="admin">
     <div class="admin__container">
         <header class="admin__header">
-            <h2 class="admin__page-title">
-                Admin page
-            </h2>
+            <div class="admin__page-title">
+                <h2 class="admin__title">
+                    Admin page
+                </h2>
+                <p class="admin__inf">
+                    {{ 'Admin email: ' + authService.adminEmail}}
+                </p>
+            </div>
+
             <nav class="admin__nav">
                 <ul class="admin__nav-list">
                     <li class="admin__el"><a routerLink="/" class="admin__link">Главная</a></li>
-                    <li class="admin__el">Выйти из учетной записи</li>
+                    <li class="admin__el">Log out</li>
                 </ul>
             </nav>
         </header>
