@@ -17,12 +17,11 @@ export class LoginGuard implements CanActivate {
 	public canActivate(
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-		if (this.checkPermission()) {
-			return true;
-		} else {
+		if (!this.checkPermission()) {
 			this.redirectToLogin();
 			return false;
 		}
+		return true;
 	}
 
 	public checkPermission(): boolean {
