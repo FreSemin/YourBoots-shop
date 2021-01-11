@@ -26,7 +26,7 @@ export class LoginGuard implements CanActivate {
 	}
 
 	public checkPermission(): boolean {
-		return this._authService.getAuthStatus();
+		return this._authService.getIsAuth();
 	}
 
 	public redirectToAdmin(): void {
