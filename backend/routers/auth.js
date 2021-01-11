@@ -12,7 +12,6 @@ router.post("/admin/signup", (req, res, next) => {
     const admin = new User({
       email: req.body.email,
       password: hashPassword,
-      access: "admin",
     });
     admin
       .save()

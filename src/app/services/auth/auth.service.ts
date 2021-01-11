@@ -44,7 +44,6 @@ export class AuthService {
 		const adminAuthData: IAuthData = {
 			email: form.value.adminName,
 			password: form.value.adminPassword,
-			access: 'admin'
 		};
 
 		this._http.post(
@@ -64,7 +63,6 @@ export class AuthService {
 		const adminAuthData: IAuthData = {
 			email: form.value.adminName,
 			password: form.value.adminPassword,
-			access: 'admin'
 		};
 
 		this._http.post<{ token: string }>(
