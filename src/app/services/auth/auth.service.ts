@@ -19,10 +19,6 @@ export class AuthService {
 		private _router: Router,
 	) { }
 
-	private _setIsAuth(status: boolean): void {
-		this._isAuthenticated = status;
-	}
-
 	public getToken(): string {
 		return this._token;
 	}
@@ -76,7 +72,7 @@ export class AuthService {
 			this._token = token;
 
 			if (token !== '') {
-				this._setIsAuth(true);
+				this._isAuthenticated = true;
 				form.reset();
 				this.redirectToAdmin();
 			}
@@ -84,7 +80,7 @@ export class AuthService {
 	}
 
 	public onAdminLogout(): void {
-		this._setIsAuth(false);
+		this._isAuthenticated = false;
 		this._token = '';
 		this.redirectToLogin();
 	}
