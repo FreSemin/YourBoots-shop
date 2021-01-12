@@ -10,6 +10,7 @@ import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 export class AuthService {
 	private _token: string = '';
 	private _isAuthenticated: boolean = false;
+	private _tokenTimer: any;
 
 	public adminEmail: string = '';
 
@@ -61,17 +62,23 @@ export class AuthService {
 			password: form.value.adminPassword,
 		};
 
-		this._http.post<{ token: string }>(
+		this._http.post<{ token: string, expiresIn: number }>(
 			'http://localhost:3000/api/auth/admin/login',
 			adminAuthData
-		).subscribe((response: any) => {
+		).subscribe((response: { token: string, expiresIn: number }) => {
 			const token: string = response.token;
+			const expiresInDuration: number = response.expiresIn;
+			const toMilSec: number = 1000;
 
 			this.adminEmail = form.value.adminName;
 
 			this._token = token;
 
 			if (token !== '') {
+				this._tokenTimer = setTimeout(() => {
+					this.onAdminLogout();
+				}, expiresInDuration * toMilSec);
+
 				this._isAuthenticated = true;
 				form.reset();
 				this.redirectToAdmin();
@@ -80,6 +87,7 @@ export class AuthService {
 	}
 
 	public onAdminLogout(): void {
+		clearTimeout(this._tokenTimer);
 		this._isAuthenticated = false;
 		this._token = '';
 		this.redirectToLogin();
