@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
+import { AuthTokenData, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
 	private _tokenTimer: any;
 	private _toMilSec: number = 1000;
 
-	public adminEmail: string = '';
+	public userEmail: string = '';
 
 	// tslint:disable-next-line: no-empty
 	constructor(
@@ -21,28 +22,32 @@ export class AuthService {
 		private _router: Router,
 	) { }
 
-	private saveAuthDataLS(token: string, expirationDate: Date): void {
-		localStorage.setItem('token', token);
-		localStorage.setItem('expiration', expirationDate.toISOString());
+	private saveAuthDataLS(data: IAuthTokenData): void {
+		localStorage.setItem('token', data.token);
+		localStorage.setItem('expiration', data.expirationDate.toISOString());
+		localStorage.setItem('userEmail', data.userEmail);
 	}
 
 	private clearAuthDataLS(): void {
 		localStorage.removeItem('token');
 		localStorage.removeItem('expiration');
+		localStorage.removeItem('userEmail');
 	}
 
 	private getAuthDataLS(): any {
 		const tokenLS: string = localStorage.getItem('token');
 		const expirationDateLS: string = localStorage.getItem('expiration');
+		const userEmailLS: string = localStorage.getItem('userEmail');
 
 		// tslint:disable-next-line: strict-boolean-expressions
 		if (!tokenLS || !expirationDateLS) {
 			return;
 		}
-		return {
+		return new AuthTokenData({
 			token: tokenLS,
 			expirationDate: new Date(expirationDateLS),
-		};
+			userEmail: userEmailLS,
+		});
 	}
 
 	private setAuthTimer(duration: number): void {
@@ -52,7 +57,7 @@ export class AuthService {
 	}
 
 	public autoAuthUser(): void {
-		const authData: { token: string, expirationDate: Date } = this.getAuthDataLS();
+		const authData: IAuthTokenData = this.getAuthDataLS();
 
 		if (!authData) {
 			return;
@@ -63,6 +68,7 @@ export class AuthService {
 
 		if (expiresIn > 0) {
 			this._token = authData.token;
+			this.userEmail = authData.userEmail;
 			this.setAuthTimer(expiresIn / this._toMilSec);
 			this._isAuthenticated = true;
 		}
@@ -110,14 +116,14 @@ export class AuthService {
 			password: form.value.adminPassword,
 		};
 
-		this._http.post<{ token: string, expiresIn: number }>(
+		this._http.post<IAuthTokenServerData>(
 			'http://localhost:3000/api/auth/admin/login',
 			adminAuthData
-		).subscribe((response: { token: string, expiresIn: number }) => {
+		).subscribe((response: IAuthTokenServerData) => {
 			const token: string = response.token;
 			const expiresInDuration: number = response.expiresIn;
 
-			this.adminEmail = form.value.adminName;
+			this.userEmail = form.value.adminName;
 
 			this._token = token;
 
@@ -128,7 +134,11 @@ export class AuthService {
 
 				const now: Date = new Date();
 				const expirationDate: Date = new Date(now.getTime() + expiresInDuration * this._toMilSec);
-				this.saveAuthDataLS(token, expirationDate);
+				this.saveAuthDataLS(new AuthTokenData({
+					token,
+					expirationDate,
+					userEmail: this.userEmail
+				}));
 
 				form.reset();
 				this.redirectToAdmin();
@@ -141,6 +151,7 @@ export class AuthService {
 		this.clearAuthDataLS();
 		this._isAuthenticated = false;
 		this._token = '';
+		this.userEmail = '';
 		this.redirectToLogin();
 	}
 
