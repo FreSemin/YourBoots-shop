@@ -7,6 +7,7 @@ const router = express.Router();
 const CatalogElement = require("../models/catalogElement");
 
 const checkAuth = require("../middleware/check-auth");
+const checkPermission = require("../middleware/check-permission");
 
 const MIME_TYPE_MAP = {
   "image/png": "png",
@@ -41,6 +42,7 @@ router.get("", (req, res, next) => {
 router.post(
   "",
   checkAuth,
+  checkPermission,
   multer({ storage: fileStorage }).single("img"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
@@ -61,6 +63,7 @@ router.post(
 router.put(
   "/:id",
   checkAuth,
+  checkPermission,
   multer({ storage: fileStorage }).single("img"),
   async (req, res, next) => {
     let imgPath = req.body.img;
@@ -90,7 +93,7 @@ router.put(
   }
 );
 
-router.delete("/:id", checkAuth, async (req, res, next) => {
+router.delete("/:id", checkAuth, checkPermission, async (req, res, next) => {
   await CatalogElement.deleteOne({ _id: req.params.id }).then(() => {
     res.status(200);
   });

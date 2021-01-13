@@ -50,7 +50,7 @@ router.post("/admin/login", (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        { email: fetchedAdmin.email, userId: fetchedAdmin._id },
+        { email: fetchedAdmin.email, userPermission: fetchedAdmin.permission },
         secretsFile.jwtSecretStr,
         { expiresIn: "1h" }
       );
