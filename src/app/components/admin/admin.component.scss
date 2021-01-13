@@ -13,10 +13,17 @@
     width: 100%;
   }
   &__page-title {
-    font-size: 28px;
-    color: $text-dark;
     display: flex;
-    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    color: $text-dark;
+  }
+  &__title {
+    font-size: 28px;
+  }
+  &__inf {
+    margin-top: 10px;
+    font-size: 16px;
   }
   &__body {
     margin-bottom: 100px;
