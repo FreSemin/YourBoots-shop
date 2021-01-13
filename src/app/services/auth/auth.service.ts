@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
-import { AuthTokenData, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
+import { AuthTokenData, EUserPermission, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,6 +13,7 @@ export class AuthService {
 	private _isAuthenticated: boolean = false;
 	private _tokenTimer: any;
 	private _toMilSec: number = 1000;
+	private _userPermission: string = '';
 
 	public userEmail: string = '';
 
@@ -70,6 +71,7 @@ export class AuthService {
 			this._token = authData.token;
 			this.userEmail = authData.userEmail;
 			this.setAuthTimer(expiresIn / this._toMilSec);
+			this.getUserPermissionSR();
 			this._isAuthenticated = true;
 		}
 	}
@@ -80,6 +82,19 @@ export class AuthService {
 
 	public getIsAuth(): boolean {
 		return this._isAuthenticated;
+	}
+
+	public getUserPermission(): string {
+		return this._userPermission;
+	}
+
+	public getUserPermissionSR(): void {
+		this._http.get<{ permission: string }>(
+			'http://localhost:3000/api/auth/permission/' + this.userEmail,
+		)
+			.subscribe((response: { permission: string }) => {
+				this._userPermission = response.permission;
+			});
 	}
 
 	/*
@@ -122,6 +137,8 @@ export class AuthService {
 		).subscribe((response: IAuthTokenServerData) => {
 			const token: string = response.token;
 			const expiresInDuration: number = response.expiresIn;
+
+			this._userPermission = response.userPermission;
 
 			this.userEmail = form.value.adminName;
 

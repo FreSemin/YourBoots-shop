@@ -7,6 +7,25 @@ const User = require("../models/user");
 
 const router = express.Router();
 
+router.get("/permission/:email", (req, res, next) => {
+  User.findOne({ email: req.params.email })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({
+          message: "Email not found",
+        });
+      }
+      return res.status(200).json({
+        permission: user.permission,
+      });
+    })
+    .catch((err) => {
+      return res.status(404).json({
+        message: "Email not found",
+      });
+    });
+});
+
 router.post("/admin/signup", (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then((hashPassword) => {
     const admin = new User({
@@ -57,6 +76,7 @@ router.post("/admin/login", (req, res, next) => {
       res.status(200).json({
         token: token,
         expiresIn: 3600,
+        userPermission: fetchedAdmin.permission,
       });
     })
     .catch((err) => {
