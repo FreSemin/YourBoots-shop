@@ -66,6 +66,10 @@
     &_active {
       text-decoration: underline;
     }
+    &_disabled {
+      color: $text-grey;
+      pointer-events: none;
+    }
 
     &:hover {
       cursor: pointer;

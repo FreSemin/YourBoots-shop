@@ -9,16 +9,16 @@
             </h2>
           </div>
 
-          <div class="auth__info">
+          <div class="auth__info" *ngIf=" this.authService.userEmail !== '' && this.isAuthenticated">
             <div class="auth__user">
               <p class="auth__text">
-                user email
+                {{ this.authService.userEmail }}
               </p>
               <div class="auth__ico auth__ico_user">
                 <i class="fas fa-user-check"></i>
               </div>
             </div>
-            <div class="auth__btn">
+            <div class="auth__btn" (click)="this.authService.onAdminLogout()">
               Log out
               <div class="auth__ico auth__ico_logout">
                 <i class="fas fa-sign-in-alt"></i>
@@ -30,12 +30,14 @@
         <nav class="auth__nav">
           <ul class="auth__nav-list">
             <li class="auth__el">
-              <a routerLink="signup" routerLinkActive="auth__link_active" class="auth__link">
+              <a routerLink="signup" routerLinkActive="auth__link_active" class="auth__link"
+                [ngClass]="{'auth__link_disabled': this.isAuthenticated}">
                 Sign Up
               </a>
             </li>
             <li class="auth__el">
-              <a routerLink="login" routerLinkActive="auth__link_active" class="auth__link">
+              <a routerLink="login" routerLinkActive="auth__link_active" class="auth__link"
+                [ngClass]="{'auth__link_disabled': this.isAuthenticated}">
                 Log In
               </a>
             </li>
@@ -44,6 +46,12 @@
       </header>
 
       <main class="auth__body">
+
+        <div class="auth__content" *ngIf="this.isAuthenticated">
+          <p class="auth__msg-text">
+            You are already authorized!
+          </p>
+        </div>
 
         <!-- Signup or Login -->
         <router-outlet></router-outlet>
