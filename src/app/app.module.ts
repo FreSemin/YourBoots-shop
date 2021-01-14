@@ -25,7 +25,6 @@ import { HomeModule } from './components/home/home.module';
 import { CustomOrderSnackBarComponent } from './components/custom-order-snack-bar/custom-order-snack-bar.component';
 import { ModalService } from './services/modal/modal.service';
 import { CardFormService } from './services/card-form/card-form.service';
-import { LoginModule } from './components/login/login.module';
 import { LoginGuard } from './guards/login.guard';
 import { AuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
@@ -48,7 +47,6 @@ import { AuthModule } from './components/auth/auth.module';
 		MaterialModule,
 		HomeModule,
 		AuthModule,
-		LoginModule,
 		StoreModule.forRoot(appReducers),
 		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects, MenuEffects]),
 		StoreDevtoolsModule.instrument({

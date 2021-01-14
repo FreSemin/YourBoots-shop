@@ -30,11 +30,6 @@ const routes: Routes = [
 		canActivate: [LoginGuard],
 	},
 	{
-		path: 'login',
-		// tslint:disable-next-line: typedef
-		loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule),
-	},
-	{
 		path: '**',
 		redirectTo: '',
 		pathMatch: 'full'

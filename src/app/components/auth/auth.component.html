@@ -1,1 +1,55 @@
-<p>auth works!</p>
+<div class="auth">
+  <div class="auth__container auth__container_bg_grey">
+    <div class="auth__box">
+      <header class="auth__header">
+        <div class="auth__page-title">
+          <h2 class="auth__title">
+            Authorization
+          </h2>
+        </div>
+        <div class="auth__header-box">
+
+          <nav class="auth__nav">
+            <ul class="auth__nav-list">
+              <li class="auth__el">
+                <a routerLink="signup" class="auth__link">
+                  Sign Up
+                </a>
+              </li>
+              <li class="auth__el">
+                <a routerLink="login" class="auth__link">
+                  Log In
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="auth__info">
+            <div class="auth__user">
+              <p class="auth__text">
+                user email
+              </p>
+              <div class="auth__ico auth__ico_user">
+                <i class="fas fa-user-check"></i>
+              </div>
+            </div>
+            <div class="auth__btn">
+              Log out
+              <div class="auth__ico auth__ico_logout">
+                <i class="fas fa-sign-in-alt"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="auth__body">
+
+        <!-- Signup or Login -->
+        <router-outlet></router-outlet>
+        <!-- Signup or Login -->
+
+      </main>
+    </div>
+  </div>
+</div>
