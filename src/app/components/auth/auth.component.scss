@@ -33,7 +33,6 @@
     flex-direction: column;
   }
   &__page-title {
-    margin-bottom: 20px;
   }
   &__title {
     font-size: 28px;
@@ -47,6 +46,7 @@
     align-items: baseline;
   }
   &__nav {
+    margin-bottom: 20px;
   }
   &__nav-list {
     display: flex;
