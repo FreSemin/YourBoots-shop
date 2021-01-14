@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivateChild } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
@@ -8,7 +8,7 @@ import { EUserPermission } from '../components/models/authTokenData/authTokenDat
 @Injectable({
 	providedIn: 'root'
 })
-export class LoginGuard implements CanActivate {
+export class LoginGuard implements CanActivate, CanActivateChild {
 	constructor(
 		private _router: Router,
 		private _location: Location,
@@ -24,6 +24,15 @@ export class LoginGuard implements CanActivate {
 		}
 		if (!this.checkPermission()) {
 			this.redirectToHome();
+			return false;
+		}
+		return true;
+	}
+
+	public canActivateChild(
+		childRoute: ActivatedRouteSnapshot,
+		state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+		if (this._authService.getIsAuth()) {
 			return false;
 		}
 		return true;
