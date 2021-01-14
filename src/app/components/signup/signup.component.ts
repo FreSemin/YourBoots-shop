@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
+
 
 @Component({
 	selector: 'app-signup',
@@ -7,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-	// tslint:disable-next-line: no-empty
-	constructor() { }
+	constructor(
+		public authService: AuthService
+	) { }
 
 	// tslint:disable-next-line: no-empty
 	public ngOnInit(): void {
