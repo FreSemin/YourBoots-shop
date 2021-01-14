@@ -14,6 +14,10 @@ const routes: Routes = [
 		loadChildren: () => import('./components/cart/cart.module').then(m => m.CartModule)
 	},
 	{
+		path: 'auth',
+		loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
+	},
+	{
 		path: 'admin',
 		// tslint:disable-next-line: typedef
 		loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule),

@@ -29,13 +29,14 @@ import { LoginModule } from './components/login/login.module';
 import { LoginGuard } from './guards/login.guard';
 import { AuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { AuthModule } from './components/auth/auth.module';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		LoaderComponent,
 		CustomSnackBarComponent,
-		CustomOrderSnackBarComponent
+		CustomOrderSnackBarComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -46,6 +47,7 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
 		HttpClientModule,
 		MaterialModule,
 		HomeModule,
+		AuthModule,
 		LoginModule,
 		StoreModule.forRoot(appReducers),
 		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects, MenuEffects]),
