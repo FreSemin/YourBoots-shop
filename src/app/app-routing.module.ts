@@ -14,7 +14,13 @@ const routes: Routes = [
 		loadChildren: () => import('./components/cart/cart.module').then(m => m.CartModule)
 	},
 	{
+		path: 'authorization',
+		redirectTo: 'auth',
+		pathMatch: 'full'
+	},
+	{
 		path: 'auth',
+		// tslint:disable-next-line: typedef
 		loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
 	},
 	{
