@@ -62,6 +62,10 @@
     font-size: 16px;
     transition: 0.6s all;
 
+    &_active {
+      text-decoration: underline;
+    }
+
     &:hover {
       cursor: pointer;
       text-decoration: underline;
