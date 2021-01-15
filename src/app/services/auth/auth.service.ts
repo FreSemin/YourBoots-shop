@@ -53,7 +53,7 @@ export class AuthService {
 
 	private setAuthTimer(duration: number): void {
 		this._tokenTimer = setTimeout(() => {
-			this.onAdminLogout();
+			this.onUserLogout();
 		}, duration * this._toMilSec);
 	}
 
@@ -97,43 +97,38 @@ export class AuthService {
 			});
 	}
 
-	/*
-		* Uncommit for creating new admins
-		* Exist for create admins accounts
-		*	By create hash password
-	*/
-	public onAdminSingUp(form: NgForm): void {
+	public onUserSingup(form: NgForm): void {
 		if (form.invalid) {
 			return;
 		}
 
-		const adminAuthData: IAuthData = {
+		const userAuthData: IAuthData = {
 			email: form.value.userEmail,
 			password: form.value.userPassword,
 		};
 
 		this._http.post(
 			'http://localhost:3000/api/auth/admin/signup',
-			adminAuthData
+			userAuthData
 		)
 			.subscribe((response: any) => {
 				form.reset();
 			});
 	}
 
-	public onAdminLogin(form: NgForm): void {
+	public onUserLogin(form: NgForm): void {
 		if (form.invalid) {
 			return;
 		}
 
-		const adminAuthData: IAuthData = {
+		const userAuthData: IAuthData = {
 			email: form.value.loginEmail,
 			password: form.value.loginPassword,
 		};
 
 		this._http.post<IAuthTokenServerData>(
 			'http://localhost:3000/api/auth/admin/login',
-			adminAuthData
+			userAuthData
 		).subscribe((response: IAuthTokenServerData) => {
 			const token: string = response.token;
 			const expiresInDuration: number = response.expiresIn;
@@ -163,7 +158,7 @@ export class AuthService {
 		});
 	}
 
-	public onAdminLogout(): void {
+	public onUserLogout(): void {
 		clearTimeout(this._tokenTimer);
 		this.clearAuthDataLS();
 		this._isAuthenticated = false;
