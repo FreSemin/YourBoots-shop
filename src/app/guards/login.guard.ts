@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivateChild } from '@angular/router';
-import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { EUserPermission } from '../components/models/authTokenData/authTokenData.model';
@@ -11,7 +10,6 @@ import { EUserPermission } from '../components/models/authTokenData/authTokenDat
 export class LoginGuard implements CanActivate, CanActivateChild {
 	constructor(
 		private _router: Router,
-		private _location: Location,
 		private _authService: AuthService,
 	) { }
 
@@ -53,13 +51,7 @@ export class LoginGuard implements CanActivate, CanActivateChild {
 	}
 
 	public redirectToLogin(): void {
-		this._router.navigate(['login']);
-	}
-
-	public redirectBack(): void {
-		if (this._authService.getIsAuth()) {
-			this._location.back();
-		}
+		this._router.navigate(['auth', 'login']);
 	}
 
 }

@@ -177,6 +177,6 @@ export class AuthService {
 	}
 
 	public redirectToLogin(): void {
-		this._router.navigate(['login']);
+		this._router.navigate(['auth', 'login']);
 	}
 }
