@@ -7,7 +7,7 @@ import { EUserPermission } from '../components/models/authTokenData/authTokenDat
 @Injectable({
 	providedIn: 'root'
 })
-export class LoginGuard implements CanActivate, CanActivateChild {
+export class AuthGuard implements CanActivate, CanActivateChild {
 	constructor(
 		private _router: Router,
 		private _authService: AuthService,
