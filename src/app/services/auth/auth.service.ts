@@ -127,8 +127,8 @@ export class AuthService {
 		}
 
 		const adminAuthData: IAuthData = {
-			email: form.value.adminName,
-			password: form.value.adminPassword,
+			email: form.value.loginName,
+			password: form.value.loginPassword,
 		};
 
 		this._http.post<IAuthTokenServerData>(
@@ -140,7 +140,7 @@ export class AuthService {
 
 			this._userPermission = response.userPermission;
 
-			this.userEmail = form.value.adminName;
+			this.userEmail = form.value.loginName;
 
 			this._token = token;
 

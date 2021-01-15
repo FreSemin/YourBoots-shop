@@ -1,22 +1,22 @@
-<div class="admin">
-    <div class="admin__container">
-        <form class="admin__form" #adminForm="ngForm" (submit)="this.authService.onAdminLogin(adminForm)">
-            <div class="admin__field">
-                <label for="adminName" class="admin__label">
+<div class="login">
+    <div class="login__container">
+        <form class="login__form" #loginForm="ngForm" (submit)="this.authService.onAdminLogin(loginForm)">
+            <div class="login__field">
+                <label for="loginName" class="login__label">
                     Name
                 </label>
-                <input type="text" name="adminName" ngModel id="adminName" class="admin__input" required
-                    #adminNameInput="ngModel">
+                <input type="text" name="loginName" ngModel id="loginName" class="login__input" required
+                    #loginNameInput="ngModel">
             </div>
-            <div class="admin__field">
-                <label for="adminPassword" class="admin__label">
+            <div class="login__field">
+                <label for="loginPassword" class="login__label">
                     Password
                 </label>
-                <input type="password" name="adminPassword" ngModel id="adminPassword" class="admin__input" required
-                    #adminPasswordInput="ngModel">
+                <input type="password" name="loginPassword" ngModel id="loginPassword" class="login__input" required
+                    #loginPasswordInput="ngModel">
             </div>
-            <div class="admin__field">
-                <button type="submit" class="admin__btn">
+            <div class="login__field">
+                <button type="submit" class="login__btn">
                     Log in
                 </button>
             </div>
