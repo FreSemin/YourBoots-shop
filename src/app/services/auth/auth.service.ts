@@ -108,8 +108,8 @@ export class AuthService {
 		}
 
 		const adminAuthData: IAuthData = {
-			email: form.value.adminName,
-			password: form.value.adminPassword,
+			email: form.value.userEmail,
+			password: form.value.userPassword,
 		};
 
 		this._http.post(

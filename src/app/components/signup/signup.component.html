@@ -2,11 +2,11 @@
   <div class="signup__container">
     <form class="signup__form" #newUserForm="ngForm" (submit)="this.authService.onAdminSingUp(newUserForm)">
       <div class="signup__field">
-        <label for="userName" class="signup__label">
+        <label for="userEmail" class="signup__label">
           Name
         </label>
-        <input type="text" name="userName" ngModel id="userName" class="signup__input" required email
-          #userNameInput="ngModel">
+        <input type="text" name="userEmail" ngModel id="userEmail" class="signup__input" required email
+          #userEmailInput="ngModel">
       </div>
       <div class="signup__field">
         <label for="userPassword" class="signup__label">
