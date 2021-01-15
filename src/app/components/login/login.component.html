@@ -2,11 +2,11 @@
     <div class="login__container">
         <form class="login__form" #loginForm="ngForm" (submit)="this.authService.onAdminLogin(loginForm)">
             <div class="login__field">
-                <label for="loginName" class="login__label">
+                <label for="loginEmail" class="login__label">
                     Name
                 </label>
-                <input type="text" name="loginName" ngModel id="loginName" class="login__input" required
-                    #loginNameInput="ngModel">
+                <input type="text" name="loginEmail" ngModel id="loginEmail" class="login__input" required
+                    #loginEmailInput="ngModel">
             </div>
             <div class="login__field">
                 <label for="loginPassword" class="login__label">
