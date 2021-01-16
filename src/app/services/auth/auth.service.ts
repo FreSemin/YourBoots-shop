@@ -108,7 +108,7 @@ export class AuthService {
 		};
 
 		this._http.post(
-			'http://localhost:3000/api/auth/admin/signup',
+			'http://localhost:3000/api/auth/user/signup',
 			userAuthData
 		)
 			.subscribe((response: any) => {
@@ -127,7 +127,7 @@ export class AuthService {
 		};
 
 		this._http.post<IAuthTokenServerData>(
-			'http://localhost:3000/api/auth/admin/login',
+			'http://localhost:3000/api/auth/user/login',
 			userAuthData
 		).subscribe((response: IAuthTokenServerData) => {
 			const token: string = response.token;
