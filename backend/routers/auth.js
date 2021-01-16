@@ -7,17 +7,36 @@ const User = require("../models/user");
 
 const router = express.Router();
 
-router.post("/admin/signup", (req, res, next) => {
+router.get("/permission/:email", (req, res, next) => {
+  User.findOne({ email: req.params.email })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({
+          message: "Email not found",
+        });
+      }
+      return res.status(200).json({
+        permission: user.permission,
+      });
+    })
+    .catch((err) => {
+      return res.status(404).json({
+        message: "Email not found",
+      });
+    });
+});
+
+router.post("/user/signup", (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then((hashPassword) => {
-    const admin = new User({
+    const newUser = new User({
       email: req.body.email,
       password: hashPassword,
     });
-    admin
+    newUser
       .save()
       .then((result) => {
         res.status(201).json({
-          message: "Admin created",
+          message: "User created",
           result: result,
         });
       })
@@ -29,19 +48,18 @@ router.post("/admin/signup", (req, res, next) => {
   });
 });
 
-router.post("/admin/login", (req, res, next) => {
-  let fetchedAdmin = null;
+router.post("/user/login", (req, res, next) => {
+  let fetchedUser = null;
 
-  // find Admin
   User.findOne({ email: req.body.email })
-    .then((admin) => {
-      if (!admin) {
+    .then((user) => {
+      if (!user) {
         return res.status(401).json({
           message: "Auth faild",
         });
       }
-      fetchedAdmin = admin;
-      return bcrypt.compare(req.body.password, admin.password);
+      fetchedUser = user;
+      return bcrypt.compare(req.body.password, user.password);
     })
     .then((result) => {
       if (!result) {
@@ -50,13 +68,14 @@ router.post("/admin/login", (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        { email: fetchedAdmin.email, userId: fetchedAdmin._id },
+        { email: fetchedUser.email, userPermission: fetchedUser.permission },
         secretsFile.jwtSecretStr,
         { expiresIn: "1h" }
       );
       res.status(200).json({
         token: token,
         expiresIn: 3600,
+        userPermission: fetchedUser.permission,
       });
     })
     .catch((err) => {

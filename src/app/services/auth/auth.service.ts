@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
-import { AuthTokenData, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
+import { AuthTokenData, EUserPermission, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,6 +13,7 @@ export class AuthService {
 	private _isAuthenticated: boolean = false;
 	private _tokenTimer: any;
 	private _toMilSec: number = 1000;
+	private _userPermission: string = '';
 
 	public userEmail: string = '';
 
@@ -52,7 +53,7 @@ export class AuthService {
 
 	private setAuthTimer(duration: number): void {
 		this._tokenTimer = setTimeout(() => {
-			this.onAdminLogout();
+			this.onUserLogout();
 		}, duration * this._toMilSec);
 	}
 
@@ -70,6 +71,7 @@ export class AuthService {
 			this._token = authData.token;
 			this.userEmail = authData.userEmail;
 			this.setAuthTimer(expiresIn / this._toMilSec);
+			this.getUserPermissionSR();
 			this._isAuthenticated = true;
 		}
 	}
@@ -82,48 +84,58 @@ export class AuthService {
 		return this._isAuthenticated;
 	}
 
-	/*
-		* Uncommit for creating new admins
-		* Exist for create admins accounts
-		*	By create hash password
-	*/
-	public onAdminSingUp(form: NgForm): void {
+	public getUserPermission(): string {
+		return this._userPermission;
+	}
+
+	public getUserPermissionSR(): void {
+		this._http.get<{ permission: string }>(
+			'http://localhost:3000/api/auth/permission/' + this.userEmail,
+		)
+			.subscribe((response: { permission: string }) => {
+				this._userPermission = response.permission;
+			});
+	}
+
+	public onUserSingup(form: NgForm): void {
 		if (form.invalid) {
 			return;
 		}
 
-		const adminAuthData: IAuthData = {
-			email: form.value.adminName,
-			password: form.value.adminPassword,
+		const userAuthData: IAuthData = {
+			email: form.value.userEmail,
+			password: form.value.userPassword,
 		};
 
 		this._http.post(
-			'http://localhost:3000/api/auth/admin/signup',
-			adminAuthData
+			'http://localhost:3000/api/auth/user/signup',
+			userAuthData
 		)
 			.subscribe((response: any) => {
 				form.reset();
 			});
 	}
 
-	public onAdminLogin(form: NgForm): void {
+	public onUserLogin(form: NgForm): void {
 		if (form.invalid) {
 			return;
 		}
 
-		const adminAuthData: IAuthData = {
-			email: form.value.adminName,
-			password: form.value.adminPassword,
+		const userAuthData: IAuthData = {
+			email: form.value.loginEmail,
+			password: form.value.loginPassword,
 		};
 
 		this._http.post<IAuthTokenServerData>(
-			'http://localhost:3000/api/auth/admin/login',
-			adminAuthData
+			'http://localhost:3000/api/auth/user/login',
+			userAuthData
 		).subscribe((response: IAuthTokenServerData) => {
 			const token: string = response.token;
 			const expiresInDuration: number = response.expiresIn;
 
-			this.userEmail = form.value.adminName;
+			this._userPermission = response.userPermission;
+
+			this.userEmail = form.value.loginEmail;
 
 			this._token = token;
 
@@ -146,7 +158,7 @@ export class AuthService {
 		});
 	}
 
-	public onAdminLogout(): void {
+	public onUserLogout(): void {
 		clearTimeout(this._tokenTimer);
 		this.clearAuthDataLS();
 		this._isAuthenticated = false;
@@ -160,6 +172,6 @@ export class AuthService {
 	}
 
 	public redirectToLogin(): void {
-		this._router.navigate(['login']);
+		this._router.navigate(['auth', 'login']);
 	}
 }

@@ -1,12 +1,18 @@
+export enum EUserPermission {
+	admin = 'admin',
+	moderator = 'moderator',
+	user = 'user'
+}
+export interface IAuthTokenServerData {
+	token: string;
+	expiresIn: number;
+	userPermission: string;
+}
+
 export interface IAuthTokenData {
 	token: string;
 	expirationDate: Date;
 	userEmail?: string;
-}
-
-export interface IAuthTokenServerData {
-	token: string;
-	expiresIn: number;
 }
 
 export class AuthTokenData implements IAuthTokenData {

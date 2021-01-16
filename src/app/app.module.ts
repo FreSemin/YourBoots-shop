@@ -25,17 +25,17 @@ import { HomeModule } from './components/home/home.module';
 import { CustomOrderSnackBarComponent } from './components/custom-order-snack-bar/custom-order-snack-bar.component';
 import { ModalService } from './services/modal/modal.service';
 import { CardFormService } from './services/card-form/card-form.service';
-import { LoginModule } from './components/login/login.module';
-import { LoginGuard } from './guards/login.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { AuthModule } from './components/auth/auth.module';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		LoaderComponent,
 		CustomSnackBarComponent,
-		CustomOrderSnackBarComponent
+		CustomOrderSnackBarComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -46,7 +46,7 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
 		HttpClientModule,
 		MaterialModule,
 		HomeModule,
-		LoginModule,
+		AuthModule,
 		StoreModule.forRoot(appReducers),
 		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects, MenuEffects]),
 		StoreDevtoolsModule.instrument({
@@ -60,7 +60,7 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
 		ModalService,
 		CardFormService,
 		AuthService,
-		LoginGuard,
+		AuthGuard,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptor,
