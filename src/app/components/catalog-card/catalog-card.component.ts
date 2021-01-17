@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ICatalogElement } from '../models/catalogElement/catalog-element.model';
+import { EUserPermission } from 'src/app/components/models/authTokenData/authTokenData.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
 	selector: 'app-catalog-card',
@@ -9,6 +11,8 @@ import { ICatalogElement } from '../models/catalogElement/catalog-element.model'
 })
 export class CatalogCardComponent implements OnInit {
 	public imgsUrl: string = environment.imgsUrl;
+	public userPermission: string = this.authService.getUserPermission();
+	public adminPermission: string = EUserPermission.admin;
 
 	@Input()
 	public catalogElement: ICatalogElement;
@@ -22,8 +26,9 @@ export class CatalogCardComponent implements OnInit {
 	@Output()
 	public onDeleteFromCatalog: EventEmitter<string> = new EventEmitter<string>();
 
-	// tslint:disable-next-line: no-empty
-	constructor() { }
+	constructor(
+		public authService: AuthService,
+	) { }
 
 	public addToCart(): void {
 		this.onAddToCart.emit(this.catalogElement);

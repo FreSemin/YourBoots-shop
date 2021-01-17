@@ -54,8 +54,9 @@
         </a>
     </div>
     <div class="catalog__btn-box">
-        <div class="catalog__btn-cart" (click)="onDelete()">
+        <button type="button" class="catalog__btn-cart" [disabled]="this.userPermission !== this.adminPermission"
+            (click)="onDelete()">
             Удалить
-        </div>
+        </button>
     </div>
 </ng-template>

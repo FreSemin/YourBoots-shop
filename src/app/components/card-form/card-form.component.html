@@ -21,7 +21,7 @@
                     <label for="#filePicker" class="card-form__label">
                         Img
                     </label>
-                    <button type="button" class="card-form__file-btn" (click)="filePicker.click()">
+                    <button type="button" class="card-form__file-btn" [disabled]="this.userPermission !== this.adminPermission" (click)="filePicker.click()">
                         Загрузить
                     </button>
                     <input type="file" #filePicker class="card-form__input card-form__input-file"
@@ -74,7 +74,7 @@
                         formControlName="catalogAddElementCount">
                 </div>
                 <div class="card-form__field_pos-c">
-                    <button type="submit" class="card-form__add-btn">
+                    <button type="submit" class="card-form__add-btn" [disabled]="this.userPermission !== this.adminPermission">
                         {{ this.cardFormService.isEditForm ? 'Сохранить' : 'Создать'}}
                     </button>
                 </div>

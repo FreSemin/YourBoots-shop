@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CardFormService } from 'src/app/services/card-form/card-form.service';
+import { EUserPermission } from 'src/app/components/models/authTokenData/authTokenData.model';
 
 @Component({
 	selector: 'app-card-form',
@@ -13,9 +15,13 @@ export class CardFormComponent implements OnInit {
 
 	public catalogAddElementForm: FormGroup = this.cardFormService.catalogAddElementForm;
 
+	public userPermission: string = this.authService.getUserPermission();
+	public adminPermission: string = EUserPermission.admin;
+
 	constructor(
-		public cardFormService: CardFormService,
 		private _activatedRoute: ActivatedRoute,
+		public cardFormService: CardFormService,
+		public authService: AuthService,
 	) { }
 
 	public pickImg(event: Event): void {
