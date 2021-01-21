@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { IAuthState } from 'src/app/components/models/auth/auth-state.model';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 import { AuthTokenData, EUserPermission, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
-import { UserLogin, UserLogout } from 'src/app/store/actions/auth.actions';
+import { AutoAuth, UserLogin, UserLogout } from 'src/app/store/actions/auth.actions';
 import { selectAuth } from 'src/app/store/selectors/auth.selector';
 import { IAppState } from 'src/app/store/states/app.state';
 
@@ -72,22 +72,7 @@ export class AuthService {
 	}
 
 	public autoAuthUser(): void {
-		const authData: IAuthTokenData = this.getAuthDataLS();
-
-		if (!authData) {
-			return;
-		}
-
-		const now: Date = new Date();
-		const expiresIn: number = authData.expirationDate.getTime() - now.getTime();
-
-		if (expiresIn > 0) {
-			this._token = authData.token;
-			this.userEmail = authData.userEmail;
-			this.setAuthTimer(expiresIn / this._toMilSec);
-			this.getUserPermissionSR();
-			this._isAuthenticated = true;
-		}
+		this._store.dispatch(new AutoAuth());
 	}
 
 	public getToken(): string {

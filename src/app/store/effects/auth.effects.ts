@@ -3,9 +3,9 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { EAuthActions, UserLogin, UserLoginError, UserLoginSuccess, UserLogout, UserLogoutError, UserLogoutSuccess, UserSignup, UserSignupError, UserSignupSuccess } from '../actions/auth.actions';
+import { AutoAuth, AutoAuthError, AutoAuthFaile, AutoAuthSuccess, EAuthActions, UserLogin, UserLoginError, UserLoginSuccess, UserLogout, UserLogoutError, UserLogoutSuccess, UserSignup, UserSignupError, UserSignupSuccess } from '../actions/auth.actions';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
-import { IAuthTokenServerData, AuthTokenData } from 'src/app/components/models/authTokenData/authTokenData.model';
+import { IAuthTokenServerData, AuthTokenData, IAuthTokenData } from 'src/app/components/models/authTokenData/authTokenData.model';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IAuthUpState } from 'src/app/components/models/auth/auth-state.model';
@@ -167,6 +167,51 @@ export class AuthEffects {
 		}),
 		catchError(() => {
 			return of(new UserLogoutError());
+		})
+	);
+
+	@Effect()
+	public autoAuth$: Observable<any> = this._actions$.pipe(
+		ofType<AutoAuth>(EAuthActions.autoAuth),
+		switchMap(() => {
+			const authData: IAuthTokenData = this._authService.getAuthDataLS();
+			const authState: IAuthUpState = {
+				userPermission: '',
+				userEmail: '',
+				isAuthenticated: false,
+			};
+
+			if (!authData) {
+				return of(null);
+			}
+
+			const now: Date = new Date();
+			const expiresIn: number = authData.expirationDate.getTime() - now.getTime();
+
+			if (expiresIn > 0) {
+				// this._token = authData.token;
+				this._authService.userEmail = authData.userEmail;
+				this._authService.setAuthTimer(expiresIn / _toMilSec);
+
+				this._authService.getUserPermissionSR();
+
+				this._authService._isAuthenticated = true;
+
+				authState.isAuthenticated = true;
+				authState.userEmail = authData.userEmail;
+				authState.userPermission = this._authService._userPermission;
+
+				return of(authState);
+			}
+		}),
+		switchMap((data: IAuthUpState) => {
+			if (!data) {
+				return of(new AutoAuthFaile());
+			}
+			return of(new AutoAuthSuccess(data));
+		}),
+		catchError(() => {
+			return of(new AutoAuthError());
 		})
 	);
 
