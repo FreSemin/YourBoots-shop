@@ -9,6 +9,9 @@ export enum EAuthActions {
 	userLogin = '[Auth] User Log In',
 	userLoginSuccess = '[Auth] User Log In Success',
 	userLoginError = '[Auth] User Log In Error',
+	userLogout = '[Auth] User Log out',
+	userLogoutSuccess = '[Auth] User Log out Success',
+	userLogoutError = '[Auth] User Log out Error',
 }
 
 // tslint:disable-next-line: max-classes-per-file
@@ -51,4 +54,21 @@ export class UserLoginSuccess implements CustomAction {
 // tslint:disable-next-line: max-classes-per-file
 export class UserLoginError implements CustomAction {
 	public readonly type: string = EAuthActions.userLoginError;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class UserLogout implements CustomAction {
+	public readonly type: string = EAuthActions.userLogout;
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class UserLogoutSuccess implements CustomAction {
+	public readonly type: string = EAuthActions.userLogoutSuccess;
+
+	constructor(public payload: IAuthUpState) { }
+}
+
+// tslint:disable-next-line: max-classes-per-file
+export class UserLogoutError implements CustomAction {
+	public readonly type: string = EAuthActions.userLogoutError;
 }

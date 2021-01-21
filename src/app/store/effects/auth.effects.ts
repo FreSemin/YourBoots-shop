@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { EAuthActions, UserLogin, UserLoginError, UserLoginSuccess, UserSignup, UserSignupError, UserSignupSuccess } from '../actions/auth.actions';
+import { EAuthActions, UserLogin, UserLoginError, UserLoginSuccess, UserLogout, UserLogoutError, UserLogoutSuccess, UserSignup, UserSignupError, UserSignupSuccess } from '../actions/auth.actions';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 import { IAuthTokenServerData, AuthTokenData } from 'src/app/components/models/authTokenData/authTokenData.model';
 import { AuthGuard } from 'src/app/guards/auth.guard';
@@ -140,6 +140,33 @@ export class AuthEffects {
 		}),
 		catchError(() => {
 			return of(new UserLoginError());
+		})
+	);
+
+	@Effect()
+	public userLogout$: Observable<any> = this._actions$.pipe(
+		ofType<UserLogout>(EAuthActions.userLogout),
+		switchMap(() => {
+			const authState: IAuthUpState = {
+				userPermission: '',
+				userEmail: '',
+				isAuthenticated: false,
+			};
+
+			this._authService.clearTimer();
+			this._authService.clearAuthDataLS();
+			this._authService._isAuthenticated = false;
+			// this._authService._token = '';
+			this._authService.userEmail = '';
+			this._authService.redirectToLogin();
+
+			return of(authState);
+		}),
+		switchMap((data: IAuthUpState) => {
+			return of(new UserLogoutSuccess(data));
+		}),
+		catchError(() => {
+			return of(new UserLogoutError());
 		})
 	);
 

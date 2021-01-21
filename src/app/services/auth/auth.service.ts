@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { IAuthState } from 'src/app/components/models/auth/auth-state.model';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 import { AuthTokenData, EUserPermission, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
-import { UserLogin } from 'src/app/store/actions/auth.actions';
+import { UserLogin, UserLogout } from 'src/app/store/actions/auth.actions';
 import { selectAuth } from 'src/app/store/selectors/auth.selector';
 import { IAppState } from 'src/app/store/states/app.state';
 
@@ -65,6 +65,10 @@ export class AuthService {
 		this._tokenTimer = setTimeout(() => {
 			this.onUserLogout();
 		}, duration * this._toMilSec);
+	}
+
+	public clearTimer(): void {
+		clearTimeout(this._tokenTimer);
 	}
 
 	public autoAuthUser(): void {
@@ -148,12 +152,7 @@ export class AuthService {
 	}
 
 	public onUserLogout(): void {
-		clearTimeout(this._tokenTimer);
-		this.clearAuthDataLS();
-		this._isAuthenticated = false;
-		this._token = '';
-		this.userEmail = '';
-		this.redirectToLogin();
+		this._store.dispatch(new UserLogout());
 	}
 
 	public userLogin(loginData: {

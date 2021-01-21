@@ -46,6 +46,27 @@ export function authReducer(state: IAuthState = initialAuthState, action: Custom
 				isLoading: false,
 			};
 
+		case EAuthActions.userLogout:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case EAuthActions.userLogoutSuccess:
+			return {
+				...state,
+				isAuthenticated: action.payload.isAuthenticated,
+				userPermission: action.payload.userPermission,
+				userEmail: action.payload.userEmail,
+				isLoading: false,
+			};
+
+		case EAuthActions.userLogoutError:
+			return {
+				...state,
+				isLoading: false,
+			};
+
 		default:
 			return state;
 	}
