@@ -203,6 +203,11 @@ export class AuthEffects {
 
 				return of(authState);
 			}
+
+			if (expiresIn < 0) {
+				this._authService.onUserLogout();
+				return of(null);
+			}
 		}),
 		switchMap((data: IAuthUpState) => {
 			if (!data) {
