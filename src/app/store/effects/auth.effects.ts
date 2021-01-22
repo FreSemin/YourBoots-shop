@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { AutoAuth, AutoAuthError, AutoAuthFaile, AutoAuthSuccess, EAuthActions, GetUserPermissionSR, GetUserPermissionSRError, GetUserPermissionSRSuccess, UserLogin, UserLoginError, UserLoginSuccess, UserLogout, UserLogoutError, UserLogoutSuccess, UserSignup, UserSignupError, UserSignupSuccess } from '../actions/auth.actions';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 import { IAuthTokenServerData, AuthTokenData, IAuthTokenData } from 'src/app/components/models/authTokenData/authTokenData.model';
@@ -16,37 +16,25 @@ const _toMilSec: number = 1000;
 @Injectable()
 export class AuthEffects {
 
-	// @Effect()
-	// public userSignup$: Observable<any> = this._actions$.pipe(
-	// 	ofType<UserSignup>(EAuthActions.userSignup),
-	// 	map(async (action: UserSignup) => {
-	// 		const form: NgForm = action.payload;
+	@Effect()
+	public userSignup$: Observable<any> = this._actions$.pipe(
+		ofType<UserSignup>(EAuthActions.userSignup),
+		switchMap((action: UserSignup) => {
+			const data: { email: string, password: string } = action.payload;
+			const userAuthData: IAuthData = {
+				email: data.email,
+				password: data.password,
+			};
 
-	// 		if (form.invalid) {
-	// 			return;
-	// 		}
-
-	// 		const userAuthData: IAuthData = {
-	// 			email: form.value.userEmail,
-	// 			password: form.value.userPassword,
-	// 		};
-
-	// 		await this._http.post(
-	// 			'http://localhost:3000/api/auth/user/signup',
-	// 			userAuthData
-	// 		)
-	// 			.subscribe(() => {
-	// 				form.reset();
-	// 			});
-
-	// 	}),
-	// 	switchMap(() => {
-	// 		return of(new UserSignupSuccess());
-	// 	}),
-	// 	catchError(() => {
-	// 		return of(new UserSignupError());
-	// 	})
-	// );
+			return this._authService.userSignup(userAuthData);
+		}),
+		switchMap(() => {
+			return of(new UserSignupSuccess());
+		}),
+		catchError(() => {
+			return of(new UserSignupError());
+		})
+	);
 
 	@Effect()
 	public userLogin$: Observable<any> = this._actions$.pipe(
