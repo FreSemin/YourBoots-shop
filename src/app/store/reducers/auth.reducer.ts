@@ -77,7 +77,7 @@ export function authReducer(state: IAuthState = initialAuthState, action: Custom
 			return {
 				...state,
 				isAuthenticated: action.payload.isAuthenticated,
-				userPermission: action.payload.userPermission,
+				// userPermission: action.payload.userPermission,
 				userEmail: action.payload.userEmail,
 				isLoading: false,
 			};
@@ -90,6 +90,25 @@ export function authReducer(state: IAuthState = initialAuthState, action: Custom
 			};
 
 		case EAuthActions.autoAuthError:
+			return {
+				...state,
+				isLoading: false,
+			};
+
+		case EAuthActions.getUserPermissionSR:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case EAuthActions.getUserPermissionSRSuccess:
+			return {
+				...state,
+				userPermission: action.payload.userPermission,
+				isLoading: false,
+			};
+
+		case EAuthActions.getUserPermissionSRError:
 			return {
 				...state,
 				isLoading: false,

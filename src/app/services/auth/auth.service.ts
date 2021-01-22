@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { IAuthState } from 'src/app/components/models/auth/auth-state.model';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 import { AuthTokenData, EUserPermission, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
-import { AutoAuth, UserLogin, UserLogout } from 'src/app/store/actions/auth.actions';
+import { AutoAuth, GetUserPermissionSR, UserLogin, UserLogout } from 'src/app/store/actions/auth.actions';
 import { selectAuth } from 'src/app/store/selectors/auth.selector';
 import { IAppState } from 'src/app/store/states/app.state';
 
@@ -97,13 +97,17 @@ export class AuthService {
 		return this._userPermission;
 	}
 
-	public getUserPermissionSR(): void {
-		this._http.get<{ permission: string }>(
+	public getPermission(): Observable<{ permission: string }> {
+		return this._http.get<{ permission: string }>(
 			'http://localhost:3000/api/auth/permission/' + this.userEmail,
-		)
-			.subscribe((response: { permission: string }) => {
-				this._userPermission = response.permission;
-			});
+		);
+		// .subscribe((response: { permission: string }) => {
+		// this._userPermission = response.permission;
+		// });
+	}
+
+	public getUserPermissionSR(): void {
+		this._store.dispatch(new GetUserPermissionSR());
 	}
 
 	public onUserSingup(form: NgForm): void {
