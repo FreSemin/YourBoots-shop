@@ -80,7 +80,6 @@ export function authReducer(state: IAuthState = initialAuthState, action: Custom
 				...state,
 				token: action.payload.token,
 				isAuthenticated: action.payload.isAuthenticated,
-				// userPermission: action.payload.userPermission,
 				userEmail: action.payload.userEmail,
 				isLoading: false,
 			};

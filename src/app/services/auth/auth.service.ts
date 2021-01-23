@@ -22,7 +22,6 @@ export class AuthService {
 	public auth$: Observable<IAuthState> = this._store.pipe(select(selectAuth));
 	public tempUserEmail: string = '';  // need for send get user permission request
 
-	// tslint:disable-next-line: no-empty
 	constructor(
 		private _http: HttpClient,
 		private _router: Router,

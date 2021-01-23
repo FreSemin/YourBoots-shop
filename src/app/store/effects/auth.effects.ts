@@ -47,42 +47,6 @@ export class AuthEffects {
 			};
 
 			return this._authService.userLogin(userAuthData);
-
-			// this._http.post<IAuthTokenServerData>(
-			// 	'http://localhost:3000/api/auth/user/login',
-			// 	userAuthData
-			// ).subscribe((response: IAuthTokenServerData) => {
-			// 	const token: string = response.token;
-			// 	const expiresInDuration: number = response.expiresIn;
-
-			// 	myCustData.userPermission = response.userPermission;
-
-			// 	myCustData.userEmail = form.email;
-
-			// 	// !!! this._token = token;
-
-			// 	if (token !== '') {
-			// 		this._authService.setAuthTimer(expiresInDuration);
-
-			// 		myCustData.isAuthenticated = true;
-
-			// 		const now: Date = new Date();
-			// 		const expirationDate: Date = new Date(now.getTime() + expiresInDuration * _toMilSec);
-
-			// 		// IAuthTokenData
-			// 		this._authService.saveAuthDataLS(new AuthTokenData({
-			// 			token,
-			// 			expirationDate,
-			// 			userEmail: myCustData.userEmail
-			// 		}));
-
-			// 		// form.reset();
-
-			// 		this._authGuard.redirectToAdmin();
-			// 	}
-			// });
-
-			// return myCustData;
 		}),
 		switchMap((response: IAuthTokenServerData) => {
 			const token: string = response.token;
