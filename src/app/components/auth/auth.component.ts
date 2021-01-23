@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class AuthComponent implements OnInit {
 	public isAuthenticated: boolean = false;
+	public userEmail: string = '';
 
 	constructor(
 		public authService: AuthService
@@ -15,6 +16,7 @@ export class AuthComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.isAuthenticated = this.authService.getIsAuth();
+		this.userEmail = this.authService.getUserEmail();
 	}
 
 }

@@ -46,8 +46,6 @@ export class AuthEffects {
 				password: data.password,
 			};
 
-			this._authService.userEmail = data.email;
-
 			return this._authService.userLogin(userAuthData);
 
 			// this._http.post<IAuthTokenServerData>(
@@ -97,16 +95,13 @@ export class AuthEffects {
 
 			authState.userPermission = response.userPermission;
 
-			this._authService._userPermission = response.userPermission;
-
-			authState.userEmail = this._authService.userEmail;
+			authState.userEmail = response.userEmail;
+			this._authService.tempUserEmail = response.userEmail;
 
 			if (token !== '') {
 				this._authService.setAuthTimer(expiresInDuration);
 
 				authState.isAuthenticated = true;
-
-				this._authService._isAuthenticated = true;
 
 				const now: Date = new Date();
 				const expirationDate: Date = new Date(now.getTime() + expiresInDuration * _toMilSec);
@@ -143,9 +138,10 @@ export class AuthEffects {
 
 			this._authService.clearTimer();
 			this._authService.clearAuthDataLS();
-			this._authService._isAuthenticated = false;
 			// this._authService._token = '';
-			this._authService.userEmail = '';
+
+			this._authService.tempUserEmail = '';
+
 			this._authService.redirectToLogin();
 
 			return of(authState);
@@ -164,7 +160,6 @@ export class AuthEffects {
 		switchMap(() => {
 			const authData: IAuthTokenData = this._authService.getAuthDataLS();
 			const authState: IAuthUpState = {
-				// userPermission: '',
 				userEmail: '',
 				isAuthenticated: false,
 			};
@@ -178,15 +173,12 @@ export class AuthEffects {
 
 			if (expiresIn > 0) {
 				// this._token = authData.token;
-				this._authService.userEmail = authData.userEmail;
 				this._authService.setAuthTimer(expiresIn / _toMilSec);
-				// this._authService.getUserPermissionSR();
-
-				this._authService._isAuthenticated = true;
 
 				authState.isAuthenticated = true;
+
+				this._authService.tempUserEmail = authData.userEmail;
 				authState.userEmail = authData.userEmail;
-				// authState.userPermission = this._authService._userPermission;
 
 				return of(authState);
 			}
@@ -224,8 +216,6 @@ export class AuthEffects {
 			const authState: IAuthUpState = {
 				userPermission: '',
 			};
-
-			this._authService._userPermission = data.permission;
 
 			authState.userPermission = data.permission;
 

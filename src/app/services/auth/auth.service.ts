@@ -18,20 +18,21 @@ export class AuthService {
 	private _token: string = '';
 	private _tokenTimer: any;
 	private _toMilSec: number = 1000;
-
-	public _isAuthenticated: boolean = false;
-	public _userPermission: string = '';
-
-	public userEmail: string = '';
+	private _authState: IAuthState;
 
 	public auth$: Observable<IAuthState> = this._store.pipe(select(selectAuth));
+	public tempUserEmail: string = '';  // need for send get user permission request
 
 	// tslint:disable-next-line: no-empty
 	constructor(
 		private _http: HttpClient,
 		private _router: Router,
 		private _store: Store<IAppState>,
-	) { }
+	) {
+		this.auth$.subscribe((state: IAuthState) => {
+			this._authState = state;
+		});
+	}
 
 	public saveAuthDataLS(data: IAuthTokenData): void {
 		localStorage.setItem('token', data.token);
@@ -80,30 +81,21 @@ export class AuthService {
 	}
 
 	public getIsAuth(): boolean {
-		// let res:  boolean;
-		// this.auth$.subscribe((data: any) => {
-		// 	res = data.isAuthenticated;
-		// });
-		// return res;
-		return this._isAuthenticated;
+		return this._authState.isAuthenticated;
+	}
+
+	public getUserEmail(): string {
+		return this._authState.userEmail;
 	}
 
 	public getUserPermission(): string {
-		// let res: string;
-		// this.auth$.subscribe((data: any) => {
-		// 	res = data.userPermission;
-		// });
-		// return res;
-		return this._userPermission;
+		return this._authState.userPermission;
 	}
 
 	public getPermission(): Observable<{ permission: string }> {
 		return this._http.get<{ permission: string }>(
-			'http://localhost:3000/api/auth/permission/' + this.userEmail,
+			'http://localhost:3000/api/auth/permission/' + this.tempUserEmail,
 		);
-		// .subscribe((response: { permission: string }) => {
-		// this._userPermission = response.permission;
-		// });
 	}
 
 	public getUserPermissionSR(): void {

@@ -9,10 +9,10 @@
             </h2>
           </div>
 
-          <div class="auth__info" *ngIf=" this.authService.userEmail !== '' && this.isAuthenticated">
+          <div class="auth__info" *ngIf=" this.userEmail !== '' && this.isAuthenticated">
             <div class="auth__user">
               <p class="auth__text">
-                {{ this.authService.userEmail }}
+                {{ this.userEmail }}
               </p>
               <div class="auth__ico auth__ico_user">
                 <i class="fas fa-user-check"></i>
