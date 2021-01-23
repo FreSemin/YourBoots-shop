@@ -7,6 +7,7 @@ export interface IAuthTokenServerData {
 	token: string;
 	expiresIn: number;
 	userPermission: string;
+	userEmail?: string;
 }
 
 export interface IAuthTokenData {
