@@ -34,6 +34,7 @@ export function authReducer(state: IAuthState = initialAuthState, action: Custom
 		case EAuthActions.userLoginSuccess:
 			return {
 				...state,
+				token: action.payload.token,
 				isAuthenticated: action.payload.isAuthenticated,
 				userPermission: action.payload.userPermission,
 				userEmail: action.payload.userEmail,
@@ -55,6 +56,7 @@ export function authReducer(state: IAuthState = initialAuthState, action: Custom
 		case EAuthActions.userLogoutSuccess:
 			return {
 				...state,
+				token: action.payload.token,
 				isAuthenticated: action.payload.isAuthenticated,
 				userPermission: action.payload.userPermission,
 				userEmail: action.payload.userEmail,
@@ -76,6 +78,7 @@ export function authReducer(state: IAuthState = initialAuthState, action: Custom
 		case EAuthActions.autoAuthSuccess:
 			return {
 				...state,
+				token: action.payload.token,
 				isAuthenticated: action.payload.isAuthenticated,
 				// userPermission: action.payload.userPermission,
 				userEmail: action.payload.userEmail,

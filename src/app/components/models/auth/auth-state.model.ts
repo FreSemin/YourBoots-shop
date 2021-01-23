@@ -1,4 +1,5 @@
 export interface IAuthUpState {
+	token?: string;
 	isAuthenticated?: boolean;
 	userPermission?: string;
 	userEmail?: string;
@@ -6,6 +7,7 @@ export interface IAuthUpState {
 }
 
 export interface IAuthState {
+	token: string;
 	isAuthenticated: boolean;
 	userPermission: string;
 	userEmail: string;

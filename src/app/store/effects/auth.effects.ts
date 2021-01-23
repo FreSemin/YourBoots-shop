@@ -103,6 +103,8 @@ export class AuthEffects {
 
 				authState.isAuthenticated = true;
 
+				authState.token = token;
+
 				const now: Date = new Date();
 				const expirationDate: Date = new Date(now.getTime() + expiresInDuration * _toMilSec);
 
@@ -131,6 +133,7 @@ export class AuthEffects {
 		ofType<UserLogout>(EAuthActions.userLogout),
 		switchMap(() => {
 			const authState: IAuthUpState = {
+				token: '',
 				userPermission: '',
 				userEmail: '',
 				isAuthenticated: false,
@@ -138,7 +141,8 @@ export class AuthEffects {
 
 			this._authService.clearTimer();
 			this._authService.clearAuthDataLS();
-			// this._authService._token = '';
+
+			authState.token = '';
 
 			this._authService.tempUserEmail = '';
 
@@ -160,6 +164,7 @@ export class AuthEffects {
 		switchMap(() => {
 			const authData: IAuthTokenData = this._authService.getAuthDataLS();
 			const authState: IAuthUpState = {
+				token: '',
 				userEmail: '',
 				isAuthenticated: false,
 			};
@@ -172,9 +177,9 @@ export class AuthEffects {
 			const expiresIn: number = authData.expirationDate.getTime() - now.getTime();
 
 			if (expiresIn > 0) {
-				// this._token = authData.token;
 				this._authService.setAuthTimer(expiresIn / _toMilSec);
 
+				authState.token = authData.token;
 				authState.isAuthenticated = true;
 
 				this._authService.tempUserEmail = authData.userEmail;

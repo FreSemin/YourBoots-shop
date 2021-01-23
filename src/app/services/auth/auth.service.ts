@@ -15,7 +15,6 @@ import { IAppState } from 'src/app/store/states/app.state';
 	providedIn: 'root'
 })
 export class AuthService {
-	private _token: string = '';
 	private _tokenTimer: any;
 	private _toMilSec: number = 1000;
 	private _authState: IAuthState;
@@ -77,7 +76,7 @@ export class AuthService {
 	}
 
 	public getToken(): string {
-		return this._token;
+		return this._authState.token;
 	}
 
 	public getIsAuth(): boolean {
