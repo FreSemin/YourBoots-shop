@@ -54,7 +54,7 @@
         </div>
 
         <!-- Signup or Login -->
-        <router-outlet></router-outlet>
+        <router-outlet *ngIf="!this.isAuthenticated"></router-outlet>
         <!-- Signup or Login -->
 
       </main>
