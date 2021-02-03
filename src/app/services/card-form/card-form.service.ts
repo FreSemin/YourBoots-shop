@@ -4,11 +4,11 @@ import { Store } from '@ngrx/store';
 import { ICatalogElement, CatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { CatalogAddElement, CatalogUpdateElement } from 'src/app/store/actions/catalog.actions';
 import { IAppState } from 'src/app/store/states/app.state';
-import { Location } from '@angular/common';
 import { CatalogService } from '../catalog/catalog.service';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { mimeType } from '../../components/card-form/mime-type.validator';
 import { TYPED_NULL_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Router } from '@angular/router';
 
 function convertToNumArr(stringToConvert: string): number[] {
 	return stringToConvert.split(' ').map((elString: string) => {
@@ -38,7 +38,7 @@ export class CardFormService {
 
 	constructor(
 		private _store: Store<IAppState>,
-		private _location: Location,
+		private _router: Router,
 		private _catalogService: CatalogService,
 	) { }
 
@@ -150,11 +150,11 @@ export class CardFormService {
 		document.body.style.overflow = 'auto';
 		this.imgPreview = '';
 
-		this._location.back();
-
 		this.setCatalogFormDefValue();
 
 		this.isEditForm = false;
 		this.beforeImg = null;
+
+		this._router.navigate(['admin']);
 	}
 }
