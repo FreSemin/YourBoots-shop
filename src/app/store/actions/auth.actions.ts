@@ -16,9 +16,6 @@ export enum EAuthActions {
 	autoAuthSuccess = '[Auth] Auto Auth Succes',
 	autoAuthFaile = '[Auth] Auto Auth Faile',
 	autoAuthError = '[Auth] Auto Auth Error',
-	getUserPermissionSR = '[Auth] Get User PermissionSR', // SR - server
-	getUserPermissionSRSuccess = '[Auth] Get User PermissionSR Success',
-	getUserPermissionSRError = '[Auth] Get User PermissionSR Error',
 }
 
 // tslint:disable-next-line: max-classes-per-file
@@ -100,21 +97,4 @@ export class AutoAuthFaile implements CustomAction {
 // tslint:disable-next-line: max-classes-per-file
 export class AutoAuthError implements CustomAction {
 	public readonly type: string = EAuthActions.autoAuthError;
-}
-
-// tslint:disable-next-line: max-classes-per-file
-export class GetUserPermissionSR implements CustomAction {
-	public readonly type: string = EAuthActions.getUserPermissionSR;
-}
-
-// tslint:disable-next-line: max-classes-per-file
-export class GetUserPermissionSRSuccess implements CustomAction {
-	public readonly type: string = EAuthActions.getUserPermissionSRSuccess;
-
-	constructor(public payload: IAuthUpState) { }
-}
-
-// tslint:disable-next-line: max-classes-per-file
-export class GetUserPermissionSRError implements CustomAction {
-	public readonly type: string = EAuthActions.getUserPermissionSRError;
 }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { IAuthState } from 'src/app/components/models/auth/auth-state.model';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 import { AuthTokenData, EUserPermission, IAuthTokenData, IAuthTokenServerData } from 'src/app/components/models/authTokenData/authTokenData.model';
-import { AutoAuth, GetUserPermissionSR, UserLogin, UserLogout, UserSignup } from 'src/app/store/actions/auth.actions';
+import { AutoAuth, UserLogin, UserLogout, UserSignup } from 'src/app/store/actions/auth.actions';
 import { selectAuth } from 'src/app/store/selectors/auth.selector';
 import { IAppState } from 'src/app/store/states/app.state';
 
@@ -94,10 +94,6 @@ export class AuthService {
 		return this._http.get<{ permission: string }>(
 			'http://localhost:3000/api/auth/permission/' + this.tempUserEmail,
 		);
-	}
-
-	public getUserPermissionSR(): void {
-		this._store.dispatch(new GetUserPermissionSR());
 	}
 
 	public onUserSingup(form: NgForm): void {

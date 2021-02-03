@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
-import { AutoAuth, AutoAuthError, AutoAuthFaile, AutoAuthSuccess, EAuthActions, GetUserPermissionSR, GetUserPermissionSRError, GetUserPermissionSRSuccess, UserLogin, UserLoginError, UserLoginSuccess, UserLogout, UserLogoutError, UserLogoutSuccess, UserSignup, UserSignupError, UserSignupSuccess } from '../actions/auth.actions';
+import { AutoAuth, AutoAuthError, AutoAuthFaile, AutoAuthSuccess, EAuthActions, UserLogin, UserLoginError, UserLoginSuccess, UserLogout, UserLogoutError, UserLogoutSuccess, UserSignup, UserSignupError, UserSignupSuccess } from '../actions/auth.actions';
 import { IAuthData } from 'src/app/components/models/authData/auth-data.model';
 import { IAuthTokenServerData, AuthTokenData, IAuthTokenData } from 'src/app/components/models/authTokenData/authTokenData.model';
 import { AuthGuard } from 'src/app/guards/auth.guard';
@@ -157,41 +157,24 @@ export class AuthEffects {
 				return of(null);
 			}
 		}),
-		// TODO: don't work as expected, need another solution
-		// Is it bad way to wait for get permission with "switchMap"?
 		switchMap((authState: IAuthUpState) => {
 			if (!authState) {
-				return of(null);
-			}
-			this._authService.getUserPermissionSR();
-			return of(authState);
-		}),
-		switchMap((data: IAuthUpState) => {
-			if (!data) {
 				return of(new AutoAuthFaile());
 			}
-			return of(new AutoAuthSuccess(data));
+
+			return this._authService.getPermission().pipe(
+				switchMap((data: { permission: string }) => {
+					authState.userPermission = data.permission;
+
+					return of(new AutoAuthSuccess(authState));
+				}),
+				catchError(() => {
+					return of(new AutoAuthError());
+				})
+			);
 		}),
 		catchError(() => {
 			return of(new AutoAuthError());
-		})
-	);
-
-	@Effect()
-	public getUserPermissionSR$: Observable<any> = this._actions$.pipe(
-		ofType<GetUserPermissionSR>(EAuthActions.getUserPermissionSR),
-		switchMap(() => this._authService.getPermission()),
-		switchMap((data: { permission: string }) => {
-			const authState: IAuthUpState = {
-				userPermission: '',
-			};
-
-			authState.userPermission = data.permission;
-
-			return of(new GetUserPermissionSRSuccess(authState));
-		}),
-		catchError(() => {
-			return of(new GetUserPermissionSRError());
 		})
 	);
 
