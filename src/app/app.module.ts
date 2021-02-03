@@ -29,6 +29,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { AuthModule } from './components/auth/auth.module';
+import { AuthEffects } from './store/effects/auth.effects';
 
 @NgModule({
 	declarations: [
@@ -48,7 +49,14 @@ import { AuthModule } from './components/auth/auth.module';
 		HomeModule,
 		AuthModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([CatalogEffects, OrdersEffects, OrdersFormEffects, ContactModalEffects, MenuEffects]),
+		EffectsModule.forRoot([
+			CatalogEffects,
+			OrdersEffects,
+			OrdersFormEffects,
+			ContactModalEffects,
+			MenuEffects,
+			AuthEffects,
+		]),
 		StoreDevtoolsModule.instrument({
 			maxAge: 25,
 			logOnly: environment.production,

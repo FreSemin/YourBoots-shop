@@ -76,6 +76,7 @@ router.post("/user/login", (req, res, next) => {
         token: token,
         expiresIn: 3600,
         userPermission: fetchedUser.permission,
+        userEmail: fetchedUser.email,
       });
     })
     .catch((err) => {
