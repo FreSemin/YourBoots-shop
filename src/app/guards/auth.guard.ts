@@ -50,6 +50,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 		this._router.navigate(['admin']);
 	}
 
+	public redirectToAuth(): void {
+		this._router.navigate(['auth']);
+	}
+
 	public redirectToLogin(): void {
 		this._router.navigate(['auth', 'login']);
 	}
