@@ -6,17 +6,29 @@
           Name
         </label>
         <input type="text" name="userEmail" ngModel id="userEmail" class="signup__input" required email
-          #userEmailInput="ngModel">
+          #userEmailInput="ngModel" [ngClass]="{
+            'signup__input_valid': userEmailInput.valid && userEmailInput.touched,
+            'signup__input_invalid': userEmailInput.invalid && userEmailInput.touched
+        }">
+        <p class="signup__text signup__text_c_red" *ngIf="userEmailInput.invalid && userEmailInput.touched">
+          Please enter valid email
+        </p>
       </div>
       <div class="signup__field">
         <label for="userPassword" class="signup__label">
           Password
         </label>
         <input type="password" name="userPassword" ngModel id="userPassword" class="signup__input" required
-          #userPasswordInput="ngModel">
+          #userPasswordInput="ngModel" [ngClass]="{
+            'signup__input_valid': userPasswordInput.valid && userPasswordInput.touched,
+            'signup__input_invalid': userPasswordInput.invalid && userPasswordInput.touched
+        }">
+        <p class="signup__text signup__text_c_red" *ngIf="userPasswordInput.invalid && userPasswordInput.touched">
+          Please enter valid password
+        </p>
       </div>
       <div class="signup__field">
-        <button type="submit" class="signup__btn">
+        <button type="submit" class="signup__btn" [disabled]="newUserForm.touched && newUserForm.invalid">
           Sign Up
         </button>
       </div>
