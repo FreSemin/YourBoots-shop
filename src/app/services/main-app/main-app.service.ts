@@ -64,23 +64,45 @@ export class MainAppService implements OnInit, OnDestroy {
 		}
 	}
 
-	public showSuccesMessage(): void {
+	public showSuccesMessage(text: string = ''): void {
 		this._modalService.isShowSucces = true; // use side service to avoid "Circular dependency"
 		this._snackBar.openFromComponent(CustomSnackBarComponent, {
+			data: text,
 			duration: 5000,
 			horizontalPosition: 'center',
 			verticalPosition: 'top',
 		});
 	}
 
-	public showErrorMessage(): void {
+	public showErrorMessage(text: string = ''): void {
 		this._modalService.isShowSucces = false; // use side service to avoid "Circular dependency"
 		this._snackBar.openFromComponent(CustomSnackBarComponent, {
+			data: text,
 			duration: 5000,
 			horizontalPosition: 'center',
 			verticalPosition: 'top',
 		});
 	}
+
+	// public showAuthSuccessMessage(text: string): void {
+	// 	this._modalService.isShowSucces = true; // use side service to avoid "Circular dependency"
+	// 	this._snackBar.openFromComponent(CustomSnackBarComponent, {
+	// 		data: text,
+	// 		duration: 5000,
+	// 		horizontalPosition: 'center',
+	// 		verticalPosition: 'top',
+	// 	});
+	// }
+
+	// public showAuthErrorMessage(text: string): void {
+	// 	this._modalService.isShowSucces = false; // use side service to avoid "Circular dependency"
+	// 	this._snackBar.openFromComponent(CustomSnackBarComponent, {
+	// 		data: text,
+	// 		duration: 5000,
+	// 		horizontalPosition: 'center',
+	// 		verticalPosition: 'top',
+	// 	});
+	// }
 
 	public showMenu(): void {
 		this._store.dispatch(new OpenMenuStart());

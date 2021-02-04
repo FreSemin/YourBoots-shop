@@ -10,4 +10,19 @@
   &_error {
     color: $text-red;
   }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__text {
+  }
+  &__logout {
+    color: $text-grey-dark;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
