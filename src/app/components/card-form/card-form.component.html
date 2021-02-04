@@ -14,22 +14,22 @@
                     {{ this.cardFormService.isEditForm ? 'Редактировать элемент' : 'Создать новый'}}
                 </h6>
                 <div class="card-form__field">
-                    <input type="text" placeholder="Title" class="card-form__input"
+                    <input type="text" placeholder="Title" id="catalogAddElementTitle" class="card-form__input"
                         formControlName="catalogAddElementTitle">
+                    <label for="catalogAddElementTitle" class="card-form__hint card-form__hint_invalid"
+                        *ngIf="catalogAddElementForm.controls['catalogAddElementTitle'].touched && catalogAddElementForm.controls['catalogAddElementTitle'].invalid">
+                        Please enter valid element title</label>
                 </div>
                 <div class="card-form__field">
-                    <label for="#filePicker" class="card-form__label">
+                    <label for="filePickerBtn" class="card-form__label">
                         Img
                     </label>
-                    <button type="button" class="card-form__file-btn" [disabled]="this.userPermission !== this.adminPermission" (click)="filePicker.click()">
+                    <button type="button" id="filePickerBtn" class="card-form__file-btn"
+                        [disabled]="this.userPermission !== this.adminPermission" (click)="filePicker.click()">
                         Загрузить
                     </button>
                     <input type="file" #filePicker class="card-form__input card-form__input-file"
                         (change)="pickImg($event)">
-                    <p class="card-form__img-name card-form__img-name_error"
-                        *ngIf="catalogAddElementForm.get('catalogAddElementImg').invalid && catalogAddElementForm.touched">
-                        Не верный формат картинки
-                    </p>
                 </div>
                 <div class="card-form__box-fields">
                     <div class="card-form__field card-form__field-img"
@@ -54,27 +54,49 @@
                 </div>
 
                 <div class="card-form__field">
-                    <input type="text" placeholder="Before Price" class="card-form__input"
-                        formControlName="catalogAddElementBeforePrice">
+                    <input type="text" placeholder="Before Price" id="catalogAddElementBeforePrice"
+                        class="card-form__input" formControlName="catalogAddElementBeforePrice">
+                    <label for="catalogAddElementBeforePrice" class="card-form__hint card-form__hint_invalid"
+                        *ngIf="catalogAddElementForm.controls['catalogAddElementBeforePrice'].touched && catalogAddElementForm.controls['catalogAddElementBeforePrice'].invalid">
+                        Please enter valid before sale price</label>
                 </div>
                 <div class="card-form__field">
-                    <input type="text" placeholder="Current Price" class="card-form__input"
-                        formControlName="catalogAddElementCurrentPrice">
+                    <input type="text" placeholder="Current Price" id="catalogAddElementCurrentPrice"
+                        class="card-form__input" formControlName="catalogAddElementCurrentPrice">
+                    <label for="catalogAddElementCurrentPrice" class="card-form__hint card-form__hint_invalid"
+                        *ngIf="catalogAddElementForm.controls['catalogAddElementCurrentPrice'].touched && catalogAddElementForm.controls['catalogAddElementCurrentPrice'].invalid">
+                        Please enter valid current price</label>
                 </div>
                 <div class="card-form__field">
-                    <input type="text" placeholder="Price Currency" class="card-form__input"
-                        formControlName="catalogAddElementPriceCurrency">
+                    <input type="text" placeholder="Price Currency" id="catalogAddElementPriceCurrency"
+                        class="card-form__input" formControlName="catalogAddElementPriceCurrency">
+                    <label for="catalogAddElementPriceCurrency" class="card-form__hint"
+                        *ngIf="!catalogAddElementForm.controls['catalogAddElementPriceCurrency'].touched || !catalogAddElementForm.controls['catalogAddElementPriceCurrency'].invalid">
+                        Example: BYN, USD...</label>
+                    <label for="catalogAddElementPriceCurrency" class="card-form__hint card-form__hint_invalid"
+                        *ngIf="catalogAddElementForm.controls['catalogAddElementPriceCurrency'].touched && catalogAddElementForm.controls['catalogAddElementPriceCurrency'].invalid">
+                        Please enter valid price currency</label>
                 </div>
                 <div class="card-form__field">
-                    <input type="text" placeholder="Sizes" class="card-form__input"
+                    <input type="text" placeholder="Sizes" id="catalogAddElementSizes" class="card-form__input"
                         formControlName="catalogAddElementSizes">
+                    <label for="catalogAddElementSizes" class="card-form__hint"
+                        *ngIf="!catalogAddElementForm.controls['catalogAddElementSizes'].touched || !catalogAddElementForm.controls['catalogAddElementSizes'].invalid">
+                        Example: 41 42 43 44 45</label>
+                    <label for="catalogAddElementSizes" class="card-form__hint card-form__hint_invalid"
+                        *ngIf="catalogAddElementForm.controls['catalogAddElementSizes'].touched && catalogAddElementForm.controls['catalogAddElementSizes'].invalid">
+                        Please enter valid sizes type like in example</label>
                 </div>
                 <div class="card-form__field">
-                    <input type="number" placeholder="Count 1" min="1" class="card-form__input"
-                        formControlName="catalogAddElementCount">
+                    <input type="number" placeholder="Count 1" min="1" id="catalogAddElementCount"
+                        class="card-form__input" formControlName="catalogAddElementCount">
+                    <label for="catalogAddElementCount" class="card-form__hint card-form__hint_invalid"
+                        *ngIf="catalogAddElementForm.controls['catalogAddElementCount'].touched && catalogAddElementForm.controls['catalogAddElementCount'].invalid">
+                        Please enter valid count number</label>
                 </div>
                 <div class="card-form__field_pos-c">
-                    <button type="submit" class="card-form__add-btn" [disabled]="this.userPermission !== this.adminPermission">
+                    <button type="submit" class="card-form__add-btn"
+                        [disabled]="this.userPermission !== this.adminPermission || catalogAddElementForm.invalid">
                         {{ this.cardFormService.isEditForm ? 'Сохранить' : 'Создать'}}
                     </button>
                 </div>

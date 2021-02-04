@@ -51,7 +51,6 @@
       box-shadow: $sh-cart-form;
     }
   }
-
   &__title {
     margin-bottom: 25px;
     color: $text-dark;
@@ -62,10 +61,10 @@
     justify-content: space-between;
   }
   &__field {
-    margin-bottom: 10px;
+    position: relative;
+    margin-bottom: 20px;
     max-width: 200px;
     width: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -100,6 +99,16 @@
   }
   &__input-file {
     display: none;
+  }
+  &__hint {
+    position: absolute;
+    bottom: -15px;
+    color: $text-form-grey;
+    font-size: 10px;
+
+    &_invalid {
+      color: $text-red;
+    }
   }
   &__add-btn {
     @include mainBtn;
