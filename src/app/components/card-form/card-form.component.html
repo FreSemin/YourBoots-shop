@@ -54,14 +54,14 @@
                 </div>
 
                 <div class="card-form__field">
-                    <input type="text" placeholder="Before Price" id="catalogAddElementBeforePrice"
+                    <input type="number" placeholder="Before Price" id="catalogAddElementBeforePrice"
                         class="card-form__input" formControlName="catalogAddElementBeforePrice">
                     <label for="catalogAddElementBeforePrice" class="card-form__hint card-form__hint_invalid"
                         *ngIf="catalogAddElementForm.controls['catalogAddElementBeforePrice'].touched && catalogAddElementForm.controls['catalogAddElementBeforePrice'].invalid">
                         Please enter valid before sale price</label>
                 </div>
                 <div class="card-form__field">
-                    <input type="text" placeholder="Current Price" id="catalogAddElementCurrentPrice"
+                    <input type="number" placeholder="Current Price" id="catalogAddElementCurrentPrice"
                         class="card-form__input" formControlName="catalogAddElementCurrentPrice">
                     <label for="catalogAddElementCurrentPrice" class="card-form__hint card-form__hint_invalid"
                         *ngIf="catalogAddElementForm.controls['catalogAddElementCurrentPrice'].touched && catalogAddElementForm.controls['catalogAddElementCurrentPrice'].invalid">
