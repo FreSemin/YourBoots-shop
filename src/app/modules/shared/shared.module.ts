@@ -7,10 +7,12 @@ import { OrderCardComponent } from 'src/app/components/order-card/order-card.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from 'src/app/components/menu/menu.component';
 import { RouterModule } from '@angular/router';
+import { LoaderComponent } from 'src/app/components/loader/loader.component';
 
 @NgModule({
 	declarations: [
 		MenuComponent,
+		LoaderComponent,
 		SliderComponent,
 		CatalogCardComponent,
 		ContactModalComponent,
@@ -24,6 +26,7 @@ import { RouterModule } from '@angular/router';
 	],
 	exports: [
 		MenuComponent,
+		LoaderComponent,
 		SliderComponent,
 		CatalogCardComponent,
 		ContactModalComponent,
