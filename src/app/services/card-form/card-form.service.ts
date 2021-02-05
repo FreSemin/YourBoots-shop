@@ -32,7 +32,7 @@ export class CardFormService {
 		catalogAddElementBeforePrice: new FormControl('', Validators.required),
 		catalogAddElementCurrentPrice: new FormControl('', Validators.required),
 		catalogAddElementPriceCurrency: new FormControl('BYN', Validators.required),
-		catalogAddElementSizes: new FormControl([], Validators.required),
+		catalogAddElementSizes: new FormControl([], [Validators.pattern('[0-9\\s]{2,}'), Validators.required]),
 		catalogAddElementCount: new FormControl({ value: 1, disabled: true }, Validators.required),
 	});
 

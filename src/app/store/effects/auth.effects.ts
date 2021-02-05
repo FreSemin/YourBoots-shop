@@ -10,6 +10,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IAuthUpState } from 'src/app/components/models/auth/auth-state.model';
 import { TagContentType } from '@angular/compiler';
+import { MainAppService } from 'src/app/services/main-app/main-app.service';
 
 const _toMilSec: number = 1000;
 
@@ -29,9 +30,11 @@ export class AuthEffects {
 			return this._authService.userSignup(userAuthData);
 		}),
 		switchMap(() => {
+			this._mainAppService.showSuccesMessage('Signup success!');
 			return of(new UserSignupSuccess());
 		}),
 		catchError(() => {
+			this._mainAppService.showErrorMessage('Signup error, something goes wrong, try later');
 			return of(new UserSignupError());
 		})
 	);
@@ -85,9 +88,11 @@ export class AuthEffects {
 
 		}),
 		switchMap((data: IAuthUpState) => {
+			this._mainAppService.showSuccesMessage('Login success as ' + data.userPermission);
 			return of(new UserLoginSuccess(data));
 		}),
 		catchError(() => {
+			this._mainAppService.showErrorMessage('Login error');
 			return of(new UserLoginError());
 		})
 	);
@@ -166,9 +171,11 @@ export class AuthEffects {
 				switchMap((data: { permission: string }) => {
 					authState.userPermission = data.permission;
 
+					this._mainAppService.showSuccesMessage('Auto auth success as ' + data.permission);
 					return of(new AutoAuthSuccess(authState));
 				}),
 				catchError(() => {
+					this._mainAppService.showErrorMessage('Auto auth error');
 					return of(new AutoAuthError());
 				})
 			);
@@ -182,5 +189,6 @@ export class AuthEffects {
 		private _actions$: Actions,
 		private _authGuard: AuthGuard,
 		private _authService: AuthService,
+		private _mainAppService: MainAppService,
 	) { }
 }

@@ -7,6 +7,7 @@ import { ECatalogActions, CatalogGetElementsSucces, CatalogGetElementsError, Cat
 import { catchError, delay, switchMap, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
+import { MainAppService } from 'src/app/services/main-app/main-app.service';
 
 const delayTimeOut: number = 2000;
 
@@ -54,9 +55,11 @@ export class CatalogEffects {
 		delay(delayTimeOut), // wait for db update (fix problem with view update)
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
+			this._mainAppService.showSuccesMessage('Create element success!');
 			return of(new CatalogAddElementSucces());
 		}),
 		catchError((err: any) => {
+			this._mainAppService.showErrorMessage('Create element error!');
 			console.log(err);
 			return of(new CatalogAddElementError());
 		})
@@ -92,9 +95,11 @@ export class CatalogEffects {
 		delay(delayTimeOut),
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
+			this._mainAppService.showSuccesMessage('Update element success!');
 			return of(new CatalogUpdateElementSucces());
 		}),
 		catchError((err: any) => {
+			this._mainAppService.showErrorMessage('Update element error!');
 			return of(new CatalogUpdateElementError());
 		})
 	);
@@ -111,9 +116,11 @@ export class CatalogEffects {
 		delay(delayTimeOut), // wait for db update (fix problem with view update)
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
+			this._mainAppService.showSuccesMessage('Delete element success!');
 			return of(new CatalogDeleteElementSucces());
 		}),
 		catchError((err: any) => {
+			this._mainAppService.showErrorMessage('Delete element error!');
 			console.log(err);
 			return of(new CatalogDeleteElementError());
 		})
@@ -123,5 +130,6 @@ export class CatalogEffects {
 		private _actions$: Actions,
 		private _catalogService: CatalogService,
 		private _http: HttpClient,
+		private _mainAppService: MainAppService,
 	) { }
 }

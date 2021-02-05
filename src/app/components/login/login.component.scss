@@ -14,10 +14,12 @@
     box-sizing: border-box;
   }
   &__field {
+    position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 20px;
 
     &:last-of-type {
       margin-bottom: 0;
@@ -40,6 +42,23 @@
 
     &:focus {
       border-color: $bg-yel;
+    }
+
+    &_valid {
+      border-color: $bg-yel;
+    }
+    &_invalid {
+      border-color: $bg-red;
+    }
+  }
+  &__text {
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    font-size: 10px;
+
+    &_c_red {
+      color: $text-red;
     }
   }
   &__btn {
