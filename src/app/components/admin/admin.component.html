@@ -24,9 +24,9 @@
                 <h3 class="admin__catalog-title">
                     Каталог
                 </h3>
-                <div class="admin__catalog-loader" *ngIf="((catalogService.catalog$) | async).isLoading">
-                    Loading...
-                </div>
+
+                <app-loader [loaderSize]="'md'" *ngIf="((catalogService.catalog$) | async).isLoading"></app-loader>
+
                 <div class="admin__catalog-cards"
                     *ngIf="((catalogService.catalog$) | async).catalogElements.length > 0 && !((catalogService.catalog$) | async).isLoading">
 
