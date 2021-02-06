@@ -88,9 +88,9 @@
                 Каталог
             </h5>
         </div>
-        <div class="catalog__loader" *ngIf="((_catalogService.catalog$) | async).isLoading">
-            Loading...
-        </div>
+
+        <app-loader [loaderSize]="'md'" *ngIf="((_catalogService.catalog$) | async).isLoading"></app-loader>
+
         <div class="catalog__cards"
             *ngIf="((_catalogService.catalog$) | async).catalogElements.length > 0 && !((_catalogService.catalog$) | async).isLoading">
 

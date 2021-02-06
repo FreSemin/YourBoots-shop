@@ -15,7 +15,6 @@ import { MainAppService } from './services/main-app/main-app.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OrdersEffects } from './store/effects/orders.effects';
 import { OrdersFormEffects } from './store/effects/orders-form.effects';
-import { LoaderComponent } from './components/loader/loader.component';
 import { ContactModalEffects } from './store/effects/contact-modal.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material-modules/meterial.module';
@@ -34,7 +33,6 @@ import { AuthEffects } from './store/effects/auth.effects';
 @NgModule({
 	declarations: [
 		AppComponent,
-		LoaderComponent,
 		CustomSnackBarComponent,
 		CustomOrderSnackBarComponent,
 	],
