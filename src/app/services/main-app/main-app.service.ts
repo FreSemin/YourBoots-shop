@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { select, Store } from '@ngrx/store';
 import { CustomSnackBarComponent } from 'src/app/components/custom-snack-bar/custom-snack-bar.component';
+import { ISnackBarData } from 'src/app/components/models/snackBar/snack-bar-data.model';
 import { OpenMenuStart, CloseMenuStart } from 'src/app/store/actions/menu.actions';
 import { selectMenu } from 'src/app/store/selectors/menu.selector';
 import { IAppState } from 'src/app/store/states/app.state';
@@ -64,45 +65,43 @@ export class MainAppService implements OnInit, OnDestroy {
 		}
 	}
 
-	public showSuccesMessage(text: string = ''): void {
+	public showSuccesMessage(): void {
 		this._modalService.isShowSucces = true; // use side service to avoid "Circular dependency"
 		this._snackBar.openFromComponent(CustomSnackBarComponent, {
-			data: text,
 			duration: 5000,
 			horizontalPosition: 'center',
 			verticalPosition: 'top',
 		});
 	}
 
-	public showErrorMessage(text: string = ''): void {
+	public showErrorMessage(): void {
 		this._modalService.isShowSucces = false; // use side service to avoid "Circular dependency"
 		this._snackBar.openFromComponent(CustomSnackBarComponent, {
-			data: text,
 			duration: 5000,
 			horizontalPosition: 'center',
 			verticalPosition: 'top',
 		});
 	}
 
-	// public showAuthSuccessMessage(text: string): void {
-	// 	this._modalService.isShowSucces = true; // use side service to avoid "Circular dependency"
-	// 	this._snackBar.openFromComponent(CustomSnackBarComponent, {
-	// 		data: text,
-	// 		duration: 5000,
-	// 		horizontalPosition: 'center',
-	// 		verticalPosition: 'top',
-	// 	});
-	// }
+	public showDataSuccesMessage(snackBarData: ISnackBarData): void {
+		this._modalService.isShowSucces = true;
+		this._snackBar.openFromComponent(CustomSnackBarComponent, {
+			data: snackBarData,
+			duration: 5000,
+			horizontalPosition: 'center',
+			verticalPosition: 'top',
+		});
+	}
 
-	// public showAuthErrorMessage(text: string): void {
-	// 	this._modalService.isShowSucces = false; // use side service to avoid "Circular dependency"
-	// 	this._snackBar.openFromComponent(CustomSnackBarComponent, {
-	// 		data: text,
-	// 		duration: 5000,
-	// 		horizontalPosition: 'center',
-	// 		verticalPosition: 'top',
-	// 	});
-	// }
+	public showDataErrorMessage(snackBarData: ISnackBarData): void {
+		this._modalService.isShowSucces = false;
+		this._snackBar.openFromComponent(CustomSnackBarComponent, {
+			data: snackBarData,
+			duration: 5000,
+			horizontalPosition: 'center',
+			verticalPosition: 'top',
+		});
+	}
 
 	public showMenu(): void {
 		this._store.dispatch(new OpenMenuStart());
