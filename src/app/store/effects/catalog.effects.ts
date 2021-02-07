@@ -8,6 +8,7 @@ import { catchError, delay, switchMap, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { MainAppService } from 'src/app/services/main-app/main-app.service';
+import { ISnackBarData } from 'src/app/components/models/snackBar/snack-bar-data.model';
 
 const delayTimeOut: number = 2000;
 
@@ -55,11 +56,21 @@ export class CatalogEffects {
 		delay(delayTimeOut), // wait for db update (fix problem with view update)
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
-			this._mainAppService.showSuccesMessage('Create element success!');
+			const snackBarData: ISnackBarData = {
+				text: 'Create element success!',
+				isLogin: false,
+			};
+
+			this._mainAppService.showDataSuccesMessage(snackBarData);
 			return of(new CatalogAddElementSucces());
 		}),
 		catchError((err: any) => {
-			this._mainAppService.showErrorMessage('Create element error!');
+			const snackBarData: ISnackBarData = {
+				text: 'Create element error!',
+				isLogin: false,
+			};
+
+			this._mainAppService.showDataErrorMessage(snackBarData);
 			console.log(err);
 			return of(new CatalogAddElementError());
 		})
@@ -95,11 +106,21 @@ export class CatalogEffects {
 		delay(delayTimeOut),
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
-			this._mainAppService.showSuccesMessage('Update element success!');
+			const snackBarData: ISnackBarData = {
+				text: 'Update element success!',
+				isLogin: false,
+			};
+
+			this._mainAppService.showDataSuccesMessage(snackBarData);
 			return of(new CatalogUpdateElementSucces());
 		}),
 		catchError((err: any) => {
-			this._mainAppService.showErrorMessage('Update element error!');
+			const snackBarData: ISnackBarData = {
+				text: 'Update element error!',
+				isLogin: false,
+			};
+
+			this._mainAppService.showDataErrorMessage(snackBarData);
 			return of(new CatalogUpdateElementError());
 		})
 	);
@@ -116,11 +137,21 @@ export class CatalogEffects {
 		delay(delayTimeOut), // wait for db update (fix problem with view update)
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
-			this._mainAppService.showSuccesMessage('Delete element success!');
+			const snackBarData: ISnackBarData = {
+				text: 'Delete element success!',
+				isLogin: false,
+			};
+
+			this._mainAppService.showDataSuccesMessage(snackBarData);
 			return of(new CatalogDeleteElementSucces());
 		}),
 		catchError((err: any) => {
-			this._mainAppService.showErrorMessage('Delete element error!');
+			const snackBarData: ISnackBarData = {
+				text: 'Delete element error!',
+				isLogin: false,
+			};
+
+			this._mainAppService.showDataErrorMessage(snackBarData);
 			console.log(err);
 			return of(new CatalogDeleteElementError());
 		})
