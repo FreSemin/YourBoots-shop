@@ -36,7 +36,14 @@
   }
   &__title {
     font-size: 28px;
+    font-weight: 900;
     color: $text-dark;
+
+    &_link {
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
   &__header-box {
     margin-bottom: 20px;
@@ -59,9 +66,16 @@
     }
   }
   &__link {
+    display: flex;
+    align-items: baseline;
     color: $text-blue;
     font-size: 16px;
     transition: 0.6s all;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
 
     &_active {
       text-decoration: underline;
@@ -70,10 +84,17 @@
       color: $text-grey;
       pointer-events: none;
     }
+    &_standart {
+      color: $text-dark;
 
-    &:hover {
-      cursor: pointer;
-      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &-ico {
+      margin-right: 5px;
+      font-size: 12px;
     }
   }
   &__info {
