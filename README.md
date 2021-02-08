@@ -27,3 +27,29 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Secret file for server
+
+In this file link to database and 'jwt' string for server work.
+
+- You need to have 'secrets' folder on one level with 'src', 'node_modules',
+- You need to have file 'secrets.js' in folder 'secrets'.
+
+What strings you need?
+| String | Where you can get |
+| ------ | ------ |
+| MongoDB Data Base connection | https://docs.atlas.mongodb.com/driver-connection/ |
+|JWT (Json Web Token) for verify (see example) | you need thing by yourself |
+
+File structure example:
+
+```sh
+const mongoDBConnectStr =
+  mongodb+srv://YourBootsDB:<password>@cluster0.8fws0.mongodb.net/<dbname>?retryWrites=true&w=majority;
+const jwtSecretStr = "secret_this_need_get_by_yourself_for_verify";
+
+module.exports.mongoDBConnectStr = mongoDBConnectStr;
+module.exports.jwtSecretStr = jwtSecretStr;
+```
+
+Also you can delete this folder from ".gitignore" file
