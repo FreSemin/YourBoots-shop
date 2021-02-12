@@ -12,6 +12,7 @@ import { IAuthUpState } from 'src/app/components/models/auth/auth-state.model';
 import { TagContentType } from '@angular/compiler';
 import { MainAppService } from 'src/app/services/main-app/main-app.service';
 import { ISnackBarData } from 'src/app/components/models/snackBar/snack-bar-data.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 const _toMilSec: number = 1000;
 
@@ -28,16 +29,31 @@ export class AuthEffects {
 				password: data.password,
 			};
 
-			return this._authService.userSignup(userAuthData);
-		}),
-		switchMap(() => {
-			const snackBarData: ISnackBarData = {
-				text: 'Signup success!',
-				isLogin: false,
-			};
+			return this._authService.userSignup(userAuthData)
+				.pipe(
+					switchMap(() => {
+						const snackBarData: ISnackBarData = {
+							text: 'Signup success!',
+							isLogin: false,
+						};
 
-			this._mainAppService.showDataSuccesMessage(snackBarData);
-			return of(new UserSignupSuccess());
+						this._mainAppService.showDataSuccesMessage(snackBarData);
+						return of(new UserSignupSuccess());
+					}),
+					catchError((error: HttpErrorResponse) => {
+						const snackBarData: ISnackBarData = {
+							text: 'Signup error, something goes wrong, try later',
+							isLogin: false,
+						};
+
+						if (error.error.errorMessage !== '') {
+							snackBarData.text = error.error.errorMessage;
+						}
+
+						this._mainAppService.showDataErrorMessage(snackBarData);
+						return of(new UserSignupError());
+					})
+				);
 		}),
 		catchError(() => {
 			const snackBarData: ISnackBarData = {
