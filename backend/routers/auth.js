@@ -41,9 +41,16 @@ router.post("/user/signup", (req, res, next) => {
         });
       })
       .catch((err) => {
-        res.status(500).json({
+        const response = {
           error: err,
-        });
+          errorMessage: "",
+        };
+
+        if (err.errors.email.name === "ValidatorError") {
+          response.errorMessage = "Email is already take!";
+        }
+
+        res.status(500).json(response);
       });
   });
 });
