@@ -9,6 +9,7 @@ import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { mimeType } from '../../components/card-form/mime-type.validator';
 import { TYPED_NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 function convertToNumArr(stringToConvert: string): number[] {
 	return stringToConvert.split(' ').map((elString: string) => {
@@ -40,6 +41,7 @@ export class CardFormService {
 		private _store: Store<IAppState>,
 		private _router: Router,
 		private _catalogService: CatalogService,
+		private _authService: AuthService,
 	) { }
 
 	public setCatalogFormDefValue(): void {
@@ -57,6 +59,10 @@ export class CardFormService {
 	}
 
 	public onPickImg(event: Event): void {
+		if (!this._authService.checkForAdminPermission()) {
+			return;
+		}
+
 		const file: File = (event.target as HTMLInputElement).files[0];
 		const reader: FileReader = new FileReader();
 
@@ -74,6 +80,10 @@ export class CardFormService {
 	}
 
 	public addToCataloge(): void {
+		if (!this._authService.checkForAdminPermission()) {
+			return;
+		}
+
 		const sizesArr: number[] = convertToNumArr(this.catalogAddElementForm.get('catalogAddElementSizes').value);
 		const beforePrice: number = +this.catalogAddElementForm.get('catalogAddElementBeforePrice').value;
 
@@ -93,6 +103,10 @@ export class CardFormService {
 	}
 
 	public updateElement(elementId: string): void {
+		if (!this._authService.checkForAdminPermission()) {
+			return;
+		}
+
 		const sizesArr: number[] = convertToNumArr(this.catalogAddElementForm.get('catalogAddElementSizes').value);
 		const beforePrice: number = +this.catalogAddElementForm.get('catalogAddElementBeforePrice').value;
 
