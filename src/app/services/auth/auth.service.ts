@@ -98,6 +98,9 @@ export class AuthService {
 
 	public onUserSingup(form: NgForm): void {
 		if (form.invalid) {
+			form.controls['userEmail'].markAsTouched();
+			form.controls['userPassword'].markAsTouched();
+
 			return;
 		}
 
@@ -105,6 +108,8 @@ export class AuthService {
 			email: form.value.userEmail,
 			password: form.value.userPassword,
 		}));
+
+		form.reset();
 	}
 
 	public userSignup(signupData: {
@@ -119,6 +124,9 @@ export class AuthService {
 
 	public onUserLogin(form: NgForm): void {
 		if (form.invalid) {
+			form.controls['loginEmail'].markAsTouched();
+			form.controls['loginPassword'].markAsTouched();
+
 			return;
 		}
 
