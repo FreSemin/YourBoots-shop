@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -64,6 +65,7 @@ export class CatalogService implements OnInit, OnDestroy {
 		private _http: HttpClient,
 		private _store: Store<IAppState>,
 		private _snackBar: MatSnackBar,
+		private _authService: AuthService,
 	) { }
 
 	public loadCatalog(): void {
@@ -108,6 +110,10 @@ export class CatalogService implements OnInit, OnDestroy {
 	}
 
 	public deleteFromCatalog(elementId: string): void {
+		if (!this._authService.checkForAdminPermission()) {
+			return;
+		}
+
 		this._store.dispatch(new CatalogDeleteElement(elementId));
 	}
 
