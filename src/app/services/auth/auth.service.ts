@@ -134,6 +134,14 @@ export class AuthService {
 			email: form.value.loginEmail,
 			password: form.value.loginPassword,
 		}));
+
+		/*
+			Show errors if request error
+			Need fix with react forms
+			Expected behavior: redirect before see errors
+		*/
+		form.controls['loginEmail'].setErrors({ incorrect: true });
+		form.controls['loginPassword'].setErrors({ incorrect: true });
 	}
 
 	public onUserLogout(): void {
