@@ -29,6 +29,7 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { AuthModule } from './components/auth/auth.module';
 import { AuthEffects } from './store/effects/auth.effects';
+import { ErrorInterceptor } from './error.interceptor';
 
 @NgModule({
 	declarations: [
@@ -71,7 +72,12 @@ import { AuthEffects } from './store/effects/auth.effects';
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptor,
 			multi: true
-		}
+		},
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: ErrorInterceptor,
+			multi: true
+		},
 	],
 	bootstrap: [AppComponent]
 })

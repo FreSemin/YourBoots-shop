@@ -19,6 +19,9 @@ export class AuthService {
 	private _toMilSec: number = 1000;
 	private _authState: IAuthState;
 
+	// tslint:disable-next-line: typedef
+	private _EPermissions = EUserPermission;
+
 	public auth$: Observable<IAuthState> = this._store.pipe(select(selectAuth));
 	public tempUserEmail: string = '';  // need for send get user permission request
 
@@ -96,8 +99,22 @@ export class AuthService {
 		);
 	}
 
+	public checkForAdminPermission(): boolean {
+		const userPermission: string = this._authState.userPermission;
+
+		console.log(userPermission);
+		if (userPermission !== this._EPermissions.admin) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public onUserSingup(form: NgForm): void {
 		if (form.invalid) {
+			form.controls['userEmail'].markAsTouched();
+			form.controls['userPassword'].markAsTouched();
+
 			return;
 		}
 
@@ -105,6 +122,8 @@ export class AuthService {
 			email: form.value.userEmail,
 			password: form.value.userPassword,
 		}));
+
+		form.reset();
 	}
 
 	public userSignup(signupData: {
@@ -119,6 +138,9 @@ export class AuthService {
 
 	public onUserLogin(form: NgForm): void {
 		if (form.invalid) {
+			form.controls['loginEmail'].markAsTouched();
+			form.controls['loginPassword'].markAsTouched();
+
 			return;
 		}
 
@@ -126,6 +148,14 @@ export class AuthService {
 			email: form.value.loginEmail,
 			password: form.value.loginPassword,
 		}));
+
+		/*
+			Show errors if request error
+			Need fix with react forms
+			Expected behavior: redirect before see errors
+		*/
+		form.controls['loginEmail'].setErrors({ incorrect: true });
+		form.controls['loginPassword'].setErrors({ incorrect: true });
 	}
 
 	public onUserLogout(): void {
