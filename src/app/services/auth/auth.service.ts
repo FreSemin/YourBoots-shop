@@ -19,6 +19,9 @@ export class AuthService {
 	private _toMilSec: number = 1000;
 	private _authState: IAuthState;
 
+	// tslint:disable-next-line: typedef
+	private _EPermissions = EUserPermission;
+
 	public auth$: Observable<IAuthState> = this._store.pipe(select(selectAuth));
 	public tempUserEmail: string = '';  // need for send get user permission request
 
@@ -94,6 +97,17 @@ export class AuthService {
 		return this._http.get<{ permission: string }>(
 			'http://localhost:3000/api/auth/permission/' + this.tempUserEmail,
 		);
+	}
+
+	public checkForAdminPermission(): boolean {
+		const userPermission: string = this._authState.userPermission;
+
+		console.log(userPermission);
+		if (userPermission !== this._EPermissions.admin) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public onUserSingup(form: NgForm): void {
