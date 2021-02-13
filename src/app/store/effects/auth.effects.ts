@@ -76,57 +76,68 @@ export class AuthEffects {
 				password: data.password,
 			};
 
-			return this._authService.userLogin(userAuthData);
-		}),
-		switchMap((response: IAuthTokenServerData) => {
-			const token: string = response.token;
-			const expiresInDuration: number = response.expiresIn;
-			const authState: IAuthUpState = {
-				userPermission: '',
-				userEmail: '',
-				isAuthenticated: false,
-			};
+			return this._authService.userLogin(userAuthData)
+				.pipe(
+					switchMap((response: IAuthTokenServerData) => {
+						const token: string = response.token;
+						const expiresInDuration: number = response.expiresIn;
+						const authState: IAuthUpState = {
+							userPermission: '',
+							userEmail: '',
+							isAuthenticated: false,
+						};
 
-			authState.userPermission = response.userPermission;
+						authState.userPermission = response.userPermission;
 
-			authState.userEmail = response.userEmail;
-			this._authService.tempUserEmail = response.userEmail;
+						authState.userEmail = response.userEmail;
+						this._authService.tempUserEmail = response.userEmail;
 
-			if (token !== '') {
-				this._authService.setAuthTimer(expiresInDuration);
+						if (token !== '') {
+							this._authService.setAuthTimer(expiresInDuration);
 
-				authState.isAuthenticated = true;
+							authState.isAuthenticated = true;
 
-				authState.token = token;
+							authState.token = token;
 
-				const now: Date = new Date();
-				const expirationDate: Date = new Date(now.getTime() + expiresInDuration * _toMilSec);
+							const now: Date = new Date();
+							const expirationDate: Date = new Date(now.getTime() + expiresInDuration * _toMilSec);
 
-				this._authService.saveAuthDataLS(new AuthTokenData({
-					token,
-					expirationDate,
-					userEmail: authState.userEmail
-				}));
+							this._authService.saveAuthDataLS(new AuthTokenData({
+								token,
+								expirationDate,
+								userEmail: authState.userEmail
+							}));
 
-				this._authGuard.redirectToAdmin();
+							this._authGuard.redirectToAdmin();
 
-				return of(authState);
-			}
+							return of(authState);
+						}
 
-		}),
-		switchMap((data: IAuthUpState) => {
-			const snackBarData: ISnackBarData = {
-				text: 'Login success as',
-				userPermission: data.userPermission,
-				isLogin: true,
-			};
+					}),
+					switchMap((authState: IAuthUpState) => {
+						const snackBarData: ISnackBarData = {
+							text: 'Login success as',
+							userPermission: authState.userPermission,
+							isLogin: true,
+						};
 
-			this._mainAppService.showDataSuccesMessage(snackBarData);
-			return of(new UserLoginSuccess(data));
+						this._mainAppService.showDataSuccesMessage(snackBarData);
+						return of(new UserLoginSuccess(authState));
+					}),
+					catchError(() => {
+						const snackBarData: ISnackBarData = {
+							text: 'Wrong email or password!',
+							isLogin: false,
+						};
+
+						this._mainAppService.showDataErrorMessage(snackBarData);
+						return of(new UserLoginError());
+					})
+				);
 		}),
 		catchError(() => {
 			const snackBarData: ISnackBarData = {
-				text: 'Login error',
+				text: 'Login error, something goes wrong, try later',
 				isLogin: false,
 			};
 
