@@ -169,9 +169,21 @@ export class AuthEffects {
 			return of(authState);
 		}),
 		switchMap((data: IAuthUpState) => {
+			const snackBarData: ISnackBarData = {
+				text: 'Logout success!',
+				isLogin: false,
+			};
+
+			this._mainAppService.showDataSuccesMessage(snackBarData);
 			return of(new UserLogoutSuccess(data));
 		}),
 		catchError(() => {
+			const snackBarData: ISnackBarData = {
+				text: 'Logout error!',
+				isLogin: false,
+			};
+
+			this._mainAppService.showDataErrorMessage(snackBarData);
 			return of(new UserLogoutError());
 		})
 	);
