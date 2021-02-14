@@ -102,7 +102,6 @@ export class AuthService {
 	public checkForAdminPermission(): boolean {
 		const userPermission: string = this._authState.userPermission;
 
-		console.log(userPermission);
 		if (userPermission !== this._EPermissions.admin) {
 			return false;
 		}
