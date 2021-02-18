@@ -25,6 +25,7 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { AuthEffects } from './store/effects/auth.effects';
 import { ErrorInterceptor } from './error.interceptor';
+import { SnackBarModule } from './components/snack-bar/snack-bar.module';
 
 @NgModule({
 	declarations: [
@@ -36,6 +37,7 @@ import { ErrorInterceptor } from './error.interceptor';
 		AppRoutingModule,
 		HttpClientModule,
 		MaterialModule,
+		SnackBarModule,
 		StoreModule.forRoot(appReducers),
 		EffectsModule.forRoot([
 			CatalogEffects,
