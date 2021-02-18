@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ModalService } from 'src/app/services/modal/modal.service';
-import { ISnackBarData } from '../models/snackBar/snack-bar-data.model';
+import { ISnackBarData } from '../../../models/snackBar/snack-bar-data.model';
 
 @Component({
 	selector: 'app-custom-snack-bar',

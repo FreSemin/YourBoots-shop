@@ -16,7 +16,7 @@ import { selectOrdersForm } from 'src/app/store/selectors/orders-form.selectors'
 import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-form.model';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
+import { CustomOrderSnackBarComponent } from 'src/app/components/snack-bar/components/custom-order-snack-bar/custom-order-snack-bar.component';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { AuthService } from '../auth/auth.service';
 
