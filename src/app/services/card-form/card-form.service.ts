@@ -10,6 +10,8 @@ import { mimeType } from '../../components/card-form/mime-type.validator';
 import { TYPED_NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { MainAppService } from '../main-app/main-app.service';
+import { ISnackBarData } from 'src/app/components/models/snackBar/snack-bar-data.model';
 
 function convertToNumArr(stringToConvert: string): number[] {
 	return stringToConvert.split(' ').map((elString: string) => {
@@ -42,6 +44,7 @@ export class CardFormService {
 		private _router: Router,
 		private _catalogService: CatalogService,
 		private _authService: AuthService,
+		private _mainAppService: MainAppService,
 	) { }
 
 	public setCatalogFormDefValue(): void {
@@ -132,18 +135,28 @@ export class CardFormService {
 				if (!catalog.isLoading) {
 					const catalogElement: ICatalogElement = this._catalogService.getCatalogElement(id);
 
-					if (catalogElement) {
-						this.catalogAddElementForm.setValue({
-							catalogAddElementTitle: catalogElement.title,
-							catalogAddElementImg: catalogElement.img,
-							catalogAddElementBeforePrice: catalogElement.beforePriceNumber,
-							catalogAddElementCurrentPrice: catalogElement.currentPriceNumber,
-							catalogAddElementPriceCurrency: catalogElement.priceCurrency,
-							catalogAddElementSizes: catalogElement.sizes.join(' '),
-							catalogAddElementCount: catalogElement.count,
-						});
-						this.beforeImg = this.catalogAddElementForm.get('catalogAddElementImg').value;
+					if (!catalogElement) {
+						const snackBarData: ISnackBarData = {
+							text: 'Error: element not found!',
+							isLogin: false,
+						};
+
+						this._mainAppService.showDataErrorMessage(snackBarData);
+						this.closeForm();
+
+						return;
 					}
+
+					this.catalogAddElementForm.setValue({
+						catalogAddElementTitle: catalogElement.title,
+						catalogAddElementImg: catalogElement.img,
+						catalogAddElementBeforePrice: catalogElement.beforePriceNumber,
+						catalogAddElementCurrentPrice: catalogElement.currentPriceNumber,
+						catalogAddElementPriceCurrency: catalogElement.priceCurrency,
+						catalogAddElementSizes: catalogElement.sizes.join(' '),
+						catalogAddElementCount: catalogElement.count,
+					});
+					this.beforeImg = this.catalogAddElementForm.get('catalogAddElementImg').value;
 				}
 			});
 	}
