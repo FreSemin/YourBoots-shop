@@ -38,6 +38,7 @@ export class AuthEffects {
 						};
 
 						this._mainAppService.showDataSuccesMessage(snackBarData);
+						this._authService.dispatchUserLogin(userAuthData);
 						return of(new UserSignupSuccess());
 					}),
 					catchError((error: HttpErrorResponse) => {
