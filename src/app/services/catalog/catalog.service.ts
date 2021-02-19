@@ -20,6 +20,8 @@ import { CustomOrderSnackBarComponent } from 'src/app/components/snack-bar/compo
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { AuthService } from '../auth/auth.service';
 
+const BACKEND_URL: string = environment.apiUrl;
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -91,7 +93,7 @@ export class CatalogService implements OnInit, OnDestroy {
 
 	public getCatalogElements(): Observable<ICatalogElement[]> {
 		return this._http.get<ICatalogElement[]>(
-			`http://localhost:3000/api/ctlg`
+			BACKEND_URL + '/ctlg'
 		);
 	}
 
