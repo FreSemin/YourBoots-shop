@@ -139,6 +139,11 @@ export class AuthService {
 	}
 
 	public onUserLogin(form: NgForm): void {
+		const authData: IAuthData = {
+			email: '',
+			password: '',
+		};
+
 		if (form.invalid) {
 			form.controls['loginEmail'].markAsTouched();
 			form.controls['loginPassword'].markAsTouched();
@@ -146,10 +151,10 @@ export class AuthService {
 			return;
 		}
 
-		this._store.dispatch(new UserLogin({
-			email: form.value.loginEmail,
-			password: form.value.loginPassword,
-		}));
+		authData.email = form.value.loginEmail;
+		authData.password = form.value.loginPassword;
+
+		this.dispatchUserLogin(authData);
 
 		/*
 			Show errors if request error
@@ -158,6 +163,13 @@ export class AuthService {
 		*/
 		form.controls['loginEmail'].setErrors({ incorrect: true });
 		form.controls['loginPassword'].setErrors({ incorrect: true });
+	}
+
+	public dispatchUserLogin(loginData: IAuthData): void {
+		this._store.dispatch(new UserLogin({
+			email: loginData.email,
+			password: loginData.password,
+		}));
 	}
 
 	public onUserLogout(): void {
