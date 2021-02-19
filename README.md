@@ -45,7 +45,7 @@ File structure example:
 
 ```sh
 const mongoDBConnectStr =
-  mongodb+srv://YourBootsDB:<password>@cluster0.8fws0.mongodb.net/<dbname>?retryWrites=true&w=majority;
+  mongodb+srv://<DBName>:<password>@cluster0.8fws0.mongodb.net/<dbname>?retryWrites=true&w=majority;
 const jwtSecretStr = "secret_this_need_get_by_yourself_for_verify";
 
 module.exports.mongoDBConnectStr = mongoDBConnectStr;
