@@ -10,6 +10,9 @@ import { AuthTokenData, EUserPermission, IAuthTokenData, IAuthTokenServerData } 
 import { AutoAuth, UserLogin, UserLogout, UserSignup } from 'src/app/store/actions/auth.actions';
 import { selectAuth } from 'src/app/store/selectors/auth.selector';
 import { IAppState } from 'src/app/store/states/app.state';
+import { environment } from 'src/environments/environment';
+
+const BACKEND_URL: string = environment.apiUrl;
 
 @Injectable({
 	providedIn: 'root'
@@ -95,14 +98,13 @@ export class AuthService {
 
 	public getPermission(): Observable<{ permission: string }> {
 		return this._http.get<{ permission: string }>(
-			'http://localhost:3000/api/auth/permission/' + this.tempUserEmail,
+			`${BACKEND_URL}/auth/permission/${this.tempUserEmail}`,
 		);
 	}
 
 	public checkForAdminPermission(): boolean {
 		const userPermission: string = this._authState.userPermission;
 
-		console.log(userPermission);
 		if (userPermission !== this._EPermissions.admin) {
 			return false;
 		}
@@ -131,7 +133,7 @@ export class AuthService {
 		password: string,
 	}): Observable<any> {
 		return this._http.post<any>(
-			'http://localhost:3000/api/auth/user/signup',
+			`${BACKEND_URL}/auth/user/signup`,
 			signupData
 		);
 	}
@@ -167,7 +169,7 @@ export class AuthService {
 		password: string,
 	}): Observable<IAuthTokenServerData> {
 		return this._http.post<IAuthTokenServerData>(
-			'http://localhost:3000/api/auth/user/login',
+			`${BACKEND_URL}/auth/user/login`,
 			loginData
 		);
 	}

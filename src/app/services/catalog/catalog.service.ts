@@ -16,9 +16,11 @@ import { selectOrdersForm } from 'src/app/store/selectors/orders-form.selectors'
 import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-form.model';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
+import { CustomOrderSnackBarComponent } from 'src/app/components/snack-bar/components/custom-order-snack-bar/custom-order-snack-bar.component';
 import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { AuthService } from '../auth/auth.service';
+
+const BACKEND_URL: string = environment.apiUrl;
 
 @Injectable({
 	providedIn: 'root'
@@ -91,7 +93,7 @@ export class CatalogService implements OnInit, OnDestroy {
 
 	public getCatalogElements(): Observable<ICatalogElement[]> {
 		return this._http.get<ICatalogElement[]>(
-			`http://localhost:3000/api/ctlg`
+			BACKEND_URL + '/ctlg'
 		);
 	}
 

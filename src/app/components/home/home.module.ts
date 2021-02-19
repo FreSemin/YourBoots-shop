@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 @NgModule({
@@ -13,8 +12,6 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
 	imports: [
 		CommonModule,
 		HomeRoutingModule,
-		FormsModule,
-		ReactiveFormsModule,
 		SharedModule,
 	]
 })

@@ -2,7 +2,7 @@ import { OnDestroy, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { select, Store } from '@ngrx/store';
-import { CustomSnackBarComponent } from 'src/app/components/custom-snack-bar/custom-snack-bar.component';
+import { CustomSnackBarComponent } from 'src/app/components/snack-bar/components/custom-snack-bar/custom-snack-bar.component';
 import { ISnackBarData } from 'src/app/components/models/snackBar/snack-bar-data.model';
 import { OpenMenuStart, CloseMenuStart } from 'src/app/store/actions/menu.actions';
 import { selectMenu } from 'src/app/store/selectors/menu.selector';
