@@ -9,7 +9,9 @@ import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { MainAppService } from 'src/app/services/main-app/main-app.service';
 import { ISnackBarData } from 'src/app/components/models/snackBar/snack-bar-data.model';
+import { environment } from 'src/environments/environment';
 
+const BACKEND_URL: string = environment.apiUrl;
 const delayTimeOut: number = 2000;
 
 @Injectable()
@@ -48,7 +50,7 @@ export class CatalogEffects {
 			catalogElData.append('count', newCatalogEl.count.toString());
 
 			await this._http.post(
-				'http://localhost:3000/api/ctlg',
+				BACKEND_URL + '/ctlg',
 				catalogElData
 			)
 				.toPromise(); // don't work without Promise
@@ -98,7 +100,7 @@ export class CatalogEffects {
 			}
 
 			await this._http.put(
-				'http://localhost:3000/api/ctlg/' + updatedElement.id,
+				`${BACKEND_URL}/ctlg/${updatedElement.id}`,
 				updatedElData
 			)
 				.toPromise();
@@ -131,7 +133,7 @@ export class CatalogEffects {
 		tap(async (deleteAction: CatalogDeleteElement) => {
 			const elementId: string = deleteAction.payload;
 
-			await this._http.delete('http://localhost:3000/api/ctlg/' + elementId)
+			await this._http.delete(`${BACKEND_URL}/ctlg/${elementId}`)
 				.toPromise();  // need to wait for async operation
 		}),
 		delay(delayTimeOut), // wait for db update (fix problem with view update)
