@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 
 const allowCors = require("./cors");
 
-const catalogRoutes = require("./routers/catalog.router");
+const catalogRoutes = require("./routers/catalog");
 const authRoutes = require("./routers/auth");
 
 const mongoose = require("mongoose");
