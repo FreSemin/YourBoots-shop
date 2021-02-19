@@ -14,6 +14,7 @@ const app = express();
 
 mongoose
   .connect(
+    // process.env.MONGO_CONNECT_STR,  // just example for study
     `${secretsFile.mongoDBConnectStr}`, // place in "secrets" folder
     {
       useNewUrlParser: true,
