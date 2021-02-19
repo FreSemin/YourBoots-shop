@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const secretsFile = require("../../secrets/secrets");
+const secretFile = require("../../secrets/secrets");
 
 const User = require("../models/user");
 
@@ -69,7 +69,7 @@ exports.userLogin = (req, res, next) => {
       }
       const token = jwt.sign(
         { email: fetchedUser.email, userPermission: fetchedUser.permission },
-        secretsFile.jwtSecretStr,
+        secretFile.jwtSecretStr,
         { expiresIn: "1h" }
       );
       res.status(200).json({

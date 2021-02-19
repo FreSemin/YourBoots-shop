@@ -8,14 +8,14 @@ const catalogRoutes = require("./routers/catalog");
 const authRoutes = require("./routers/auth");
 
 const mongoose = require("mongoose");
-const secretsFile = require("../secrets/secrets");
+const secretFile = require("../secrets/secrets");
 
 const app = express();
 
 mongoose
   .connect(
     // process.env.MONGO_CONNECT_STR,  // just example for study
-    `${secretsFile.mongoDBConnectStr}`, // place in "secrets" folder
+    `${secretFile.mongoDBConnectStr}`, // place in "secrets" folder
     {
       useNewUrlParser: true,
       useCreateIndex: true,
