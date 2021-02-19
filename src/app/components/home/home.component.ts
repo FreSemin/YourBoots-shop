@@ -16,12 +16,10 @@ export class HomeComponent implements OnInit {
 	constructor(
 		public _catalogService: CatalogService,
 		public modalService: ModalService,
-		public _mainAppService: MainAppService,
 	) { }
 
 	public ngOnInit(): void {
 		this._catalogService.loadCatalog();
 		this._catalogService.loadOrders();
-		this._mainAppService.setCookiesDuration();
 	}
 }
