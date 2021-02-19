@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const allowCors = require("./cors");
 
 const catalogRoutes = require("./routers/catalog");
-const authRoutes = require("./routers/auth");
+const userRoutes = require("./routers/user");
 
 const mongoose = require("mongoose");
 const secretFile = require("../secrets/secrets");
@@ -40,6 +40,6 @@ app.use("/images", express.static(path.join("backend/images")));
 // short link because don't work with long url: path + id
 app.use("/api/ctlg", catalogRoutes);
 
-app.use("/api/auth", authRoutes);
+app.use("/api/auth", userRoutes);
 
 module.exports = app;
