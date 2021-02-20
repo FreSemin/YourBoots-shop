@@ -15,14 +15,15 @@
     }
   }
   &__box {
+    margin: 0 15px;
     padding: 20px 15px;
-    border-radius: 6px;
     width: 100%;
     max-width: 600px;
     min-height: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 6px;
     background: $bg-white;
     box-shadow: $sh-cart-form;
     box-sizing: border-box;
@@ -133,5 +134,20 @@
   }
   &__body {
     width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .auth {
+    &__header-box {
+      flex-direction: column;
+    }
+    &__info {
+      margin-top: 10px;
+      flex-direction: column;
+    }
+    &__user {
+      margin-bottom: 10px;
+    }
   }
 }
