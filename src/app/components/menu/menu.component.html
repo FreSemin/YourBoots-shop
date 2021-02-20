@@ -61,6 +61,9 @@
                     <a href="#catalog" class="mb-menu__link" (click)="mainAppService.hideMenu()">Каталог</a>
                     <a href="#contact" class="mb-menu__link" (click)="mainAppService.hideMenu()">Контакты</a>
                     <a href="#about" class="mb-menu__link" (click)="mainAppService.hideMenu()">О нас</a>
+                    <a routerLink="auth" class="menu__auth mb-menu__auth">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
                     <a routerLink="cart" class="menu__cart mb-menu__cart" (click)="mainAppService.hideMenu()">
                         <div class="menu__cart-counter"
                             *ngIf="(catalogService.orders$ | async).ordersElements.length > 0">
