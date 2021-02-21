@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { CatalogService } from 'src/app/services/catalog/catalog.service';
 import { ECatalogActions, CatalogGetElementsSucces, CatalogGetElementsError, CatalogGetElements, CatalogAddElement, CatalogAddElementSucces, CatalogAddElementError, CatalogDeleteElement, CatalogDeleteElementSucces, CatalogDeleteElementError, CatalogUpdateElement, CatalogUpdateElementError, CatalogUpdateElementSucces } from '../actions/catalog.actions';
-import { catchError, delay, switchMap, tap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { MainAppService } from 'src/app/services/main-app/main-app.service';
@@ -12,7 +12,6 @@ import { ISnackBarData } from 'src/app/components/models/snackBar/snack-bar-data
 import { environment } from 'src/environments/environment';
 
 const BACKEND_URL: string = environment.apiUrl;
-const delayTimeOut: number = 2000;
 
 @Injectable()
 export class CatalogEffects {
@@ -37,7 +36,7 @@ export class CatalogEffects {
 	@Effect()
 	public addCatalogElement$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogAddElement>(ECatalogActions.AddElement),
-		tap(async (addAction: CatalogAddElement) => {
+		switchMap((addAction: CatalogAddElement) => {
 			const newCatalogEl: ICatalogElement = addAction.payload;
 			const catalogElData: FormData = new FormData();
 
@@ -49,13 +48,11 @@ export class CatalogEffects {
 			catalogElData.append('sizes', newCatalogEl.sizes.toString());
 			catalogElData.append('count', newCatalogEl.count.toString());
 
-			await this._http.post(
+			return this._http.post(
 				BACKEND_URL + '/ctlg',
 				catalogElData
-			)
-				.toPromise(); // don't work without Promise
+			);
 		}),
-		delay(delayTimeOut), // wait for db update (fix problem with view update)
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
 			const snackBarData: ISnackBarData = {
@@ -81,7 +78,7 @@ export class CatalogEffects {
 	@Effect()
 	public updateCatalogElement$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogUpdateElement>(ECatalogActions.UpdateElement),
-		tap(async (updateAction: CatalogUpdateElement) => {
+		switchMap((updateAction: CatalogUpdateElement) => {
 			const updatedElement: ICatalogElement = updateAction.payload;
 			let updatedElData: ICatalogElement | FormData = null;
 
@@ -99,13 +96,11 @@ export class CatalogEffects {
 				updatedElData = updatedElement;
 			}
 
-			await this._http.put(
+			return this._http.put(
 				`${BACKEND_URL}/ctlg/${updatedElement.id}`,
 				updatedElData
-			)
-				.toPromise();
+			);
 		}),
-		delay(delayTimeOut),
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
 			const snackBarData: ISnackBarData = {
@@ -130,13 +125,11 @@ export class CatalogEffects {
 	@Effect()
 	public deleteCatalogElement$: Observable<any> = this._actions$.pipe(
 		ofType<CatalogDeleteElement>(ECatalogActions.DeleteElement),
-		tap(async (deleteAction: CatalogDeleteElement) => {
+		switchMap((deleteAction: CatalogDeleteElement) => {
 			const elementId: string = deleteAction.payload;
 
-			await this._http.delete(`${BACKEND_URL}/ctlg/${elementId}`)
-				.toPromise();  // need to wait for async operation
+			return this._http.delete(`${BACKEND_URL}/ctlg/${elementId}`);
 		}),
-		delay(delayTimeOut), // wait for db update (fix problem with view update)
 		tap(() => this._catalogService.loadCatalog()),
 		switchMap(() => {
 			const snackBarData: ISnackBarData = {
