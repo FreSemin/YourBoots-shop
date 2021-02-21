@@ -27,8 +27,7 @@ export class CatalogEffects {
 			});
 			return of(new CatalogGetElementsSucces(catalogElements));
 		}),
-		catchError((err: any) => {
-			console.log(err);
+		catchError(() => {
 			return of(new CatalogGetElementsError());
 		})
 	);
@@ -63,14 +62,13 @@ export class CatalogEffects {
 			this._mainAppService.showDataSuccesMessage(snackBarData);
 			return of(new CatalogAddElementSucces());
 		}),
-		catchError((err: any) => {
+		catchError(() => {
 			const snackBarData: ISnackBarData = {
 				text: 'Create element error!',
 				isLogin: false,
 			};
 
 			this._mainAppService.showDataErrorMessage(snackBarData);
-			console.log(err);
 			return of(new CatalogAddElementError());
 		})
 	);
@@ -140,14 +138,13 @@ export class CatalogEffects {
 			this._mainAppService.showDataSuccesMessage(snackBarData);
 			return of(new CatalogDeleteElementSucces());
 		}),
-		catchError((err: any) => {
+		catchError(() => {
 			const snackBarData: ISnackBarData = {
 				text: 'Delete element error!',
 				isLogin: false,
 			};
 
 			this._mainAppService.showDataErrorMessage(snackBarData);
-			console.log(err);
 			return of(new CatalogDeleteElementError());
 		})
 	);
