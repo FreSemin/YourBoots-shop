@@ -36,6 +36,8 @@
     }
   }
   &__add {
+    margin: 0 15px;
+
     &-form {
       position: relative;
       z-index: 106;
@@ -59,10 +61,22 @@
   &__box-fields {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &__box-half {
+    margin: 0 15px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: flex-start;
+  }
+  &__images {
+    flex-direction: column;
   }
   &__field {
     position: relative;
     margin-bottom: 20px;
+    min-width: 180px;
     max-width: 200px;
     width: 100%;
     display: flex;
@@ -79,8 +93,6 @@
     }
   }
   &__field-img {
-    margin-left: 20px;
-    margin-right: 20px;
   }
   &__label {
     margin-bottom: 5px;
@@ -129,6 +141,25 @@
 
     &_error {
       color: $text-red;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .card-form {
+    &__title {
+      text-align: center;
+    }
+    &__box-fields {
+      justify-content: center;
+      flex-direction: column;
+    }
+    &__add {
+      &-form {
+        height: 96vh;
+        justify-content: flex-start;
+        overflow: scroll;
+      }
     }
   }
 }

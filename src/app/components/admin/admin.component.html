@@ -37,6 +37,13 @@
 
                 </div>
 
+                <div class="admin__empty"
+                    *ngIf="!((catalogService.catalog$) | async).isLoading && ((catalogService.catalog$) | async).catalogElements.length === 0">
+                    <p class="admin__empty-text">
+                        Каталог пуст!
+                    </p>
+                </div>
+
                 <div class="admin__add-box">
                     <a routerLink="add" class="admin__add-btn">
                         + Добавить
