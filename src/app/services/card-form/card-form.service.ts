@@ -158,7 +158,8 @@ export class CardFormService {
 					});
 					this.beforeImg = this.catalogAddElementForm.get('catalogAddElementImg').value;
 				}
-			});
+			})
+			.unsubscribe();
 	}
 
 	public openForm(elementId?: string): void {
