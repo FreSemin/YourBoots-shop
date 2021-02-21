@@ -18,7 +18,9 @@ exports.createElement = (req, res, next) => {
     count: req.body.count,
   });
   catalogElement.save();
-  res.status(201);
+  res.status(201).json({
+    message: "Create element success!",
+  });
 };
 
 exports.updateElement = async (req, res, next) => {
@@ -44,12 +46,16 @@ exports.updateElement = async (req, res, next) => {
     { _id: req.params.id },
     updatedCatalogElement
   ).then(() => {
-    res.status(200);
+    res.status(200).json({
+      message: "Update element success!",
+    });;
   });
 };
 
 exports.deleteElement = async (req, res, next) => {
   await CatalogElement.deleteOne({ _id: req.params.id }).then(() => {
-    res.status(200);
+    res.status(200).json({
+      message: "Delete element success!",
+    });;
   });
 };
