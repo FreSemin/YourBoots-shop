@@ -39,6 +39,14 @@
                 Home
               </a>
             </li>
+            <li class="auth__el" *ngIf="userPermission === adminPermission || userPermission === moderPermission">
+              <a [routerLink]="['/', 'admin']" class="auth__link auth__link_standart">
+                <span class="auth__link-ico">
+                  <i class="fas fa-user-shield"></i>
+                </span>
+                Admin
+              </a>
+            </li>
             <li class="auth__el">
               <a routerLink="signup" routerLinkActive="auth__link_active" class="auth__link"
                 [ngClass]="{'auth__link_disabled': this.isAuthenticated}">

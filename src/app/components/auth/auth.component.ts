@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { IAuthState } from '../models/auth/auth-state.model';
+import { EUserPermission } from '../models/authTokenData/authTokenData.model';
 
 @Component({
 	selector: 'app-auth',
@@ -14,6 +15,10 @@ export class AuthComponent implements OnInit, OnDestroy {
 	public isAuthenticated: boolean = false;
 	public userEmail: string = '';
 
+	public userPermission: string = '';
+	public adminPermission: string = EUserPermission.admin;
+	public moderPermission: string = EUserPermission.moderator;
+
 	constructor(
 		public authService: AuthService
 	) { }
@@ -23,6 +28,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 			.subscribe((state: IAuthState) => {
 				this.isAuthenticated = state.isAuthenticated;
 				this.userEmail = state.userEmail;
+				this.userPermission = state.userPermission;
 			});
 	}
 
