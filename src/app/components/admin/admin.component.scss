@@ -69,6 +69,20 @@
       flex-wrap: wrap;
     }
   }
+  &__empty {
+    margin-top: 20px;
+    min-height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+      font-size: 16px;
+      color: $text-dark;
+      font-weight: 900;
+    }
+  }
   &__add-box {
     width: 100%;
     display: flex;
