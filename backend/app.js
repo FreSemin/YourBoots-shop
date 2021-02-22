@@ -8,7 +8,7 @@ const catalogRoutes = require("./routers/catalog");
 const userRoutes = require("./routers/user");
 
 const mongoose = require("mongoose");
-const secretFile = require("../secrets/secrets");
+const secretFile = require("./secrets/secrets");
 
 const app = express();
 
