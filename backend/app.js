@@ -8,13 +8,12 @@ const catalogRoutes = require("./routers/catalog");
 const userRoutes = require("./routers/user");
 
 const mongoose = require("mongoose");
-const secretFile = require("../secrets/secrets");
+const secretFile = require("./secrets/secrets");
 
 const app = express();
 
 mongoose
   .connect(
-    // process.env.MONGO_CONNECT_STR,  // just example for study
     `${secretFile.mongoDBConnectStr}`, // place in "secrets" folder
     {
       useNewUrlParser: true,
@@ -34,7 +33,10 @@ app.use(allowCors);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/images", express.static(path.join("backend/images")));
+app.use(
+  "/images",
+  express.static(path.join(process.env.CATALOG_IMAGES_PATH + "images"))
+);
 
 // ctlg - catalog
 // short link because don't work with long url: path + id
