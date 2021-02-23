@@ -20,7 +20,8 @@
         <div class="catalog__card-box">
             <div class="catalog__price">
                 <p class="catalog__price-values">
-                    <span class="catalog__price-number catalog__price-number_strike">
+                    <span class="catalog__price-number catalog__price-number_strike"
+                        *ngIf="catalogElement.beforePriceNumber !== 0">
                         {{ catalogElement.beforePriceNumber }}
                     </span>
                     <span class="catalog__price-number">
