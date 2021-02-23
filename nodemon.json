@@ -1,6 +1,5 @@
 {
   "env": {
-    "MONGO_CONNECT_STR": "connect str example",
     "CATALOG_IMAGES_PATH": "backend/"
   }
 }
