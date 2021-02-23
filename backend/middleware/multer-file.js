@@ -15,7 +15,7 @@ const fileStorage = multer.diskStorage({
       error = null;
     }
 
-    cb(error, "images");
+    cb(error, `${process.env.CATALOG_IMAGES_PATH}images`);
   },
   filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(" ").join("-");
