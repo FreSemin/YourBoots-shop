@@ -32,7 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 In this file link to database and 'jwt' string for server work.
 
-- You need to have 'secrets' folder on one level with 'src', 'node_modules',
+- You need to have 'secrets' folder in 'backend' folder,
 - You need to have file 'secrets.js' in folder 'secrets'.
 
 What strings you need?
