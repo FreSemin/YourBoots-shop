@@ -32,7 +32,7 @@ export class CardFormService {
 		catalogAddElementImg: new FormControl(null, {
 			validators: [Validators.required], asyncValidators: [mimeType]
 		}),
-		catalogAddElementBeforePrice: new FormControl('', Validators.required),
+		catalogAddElementBeforePrice: new FormControl(''),
 		catalogAddElementCurrentPrice: new FormControl('', Validators.required),
 		catalogAddElementPriceCurrency: new FormControl('BYN', Validators.required),
 		catalogAddElementSizes: new FormControl([], [Validators.pattern('[0-9\\s]{2,}'), Validators.required]),
@@ -93,7 +93,7 @@ export class CardFormService {
 		const catalogElement: ICatalogElement = new CatalogElement({
 			title: this.catalogAddElementForm.get('catalogAddElementTitle').value,
 			img: this.catalogAddElementForm.get('catalogAddElementImg').value,
-			beforePriceNumber: (beforePrice > 0) ? beforePrice : null,
+			beforePriceNumber: (beforePrice > 0) ? beforePrice : 0,
 			currentPriceNumber: +this.catalogAddElementForm.get('catalogAddElementCurrentPrice').value,
 			priceCurrency: this.catalogAddElementForm.get('catalogAddElementPriceCurrency').value,
 			sizes: sizesArr,
