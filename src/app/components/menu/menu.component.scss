@@ -75,6 +75,12 @@
       }
     }
   }
+  &__auth {
+    margin-right: 25px;
+    color: $text-dark;
+    font-size: 16px;
+    font-weight: 300;
+  }
   &__cart {
     position: relative;
     margin-top: 3px;
@@ -193,6 +199,9 @@
         transform: translateX(0);
       }
     }
+  }
+  &__auth {
+    margin: 10px 0;
   }
   &__cart {
     margin-top: 30px;

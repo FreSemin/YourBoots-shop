@@ -1,0 +1,165 @@
+@import "../../../variables.scss";
+@import "../../../mixins.scss";
+
+.card-form {
+  &__wrapper {
+    position: fixed;
+    z-index: 104;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__bg {
+    position: absolute;
+    z-index: 105;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: $bg-black-transp;
+  }
+  &__close-box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  &__close-btn {
+    font-size: 18px;
+    color: $text-dark;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__add {
+    margin: 0 15px;
+
+    &-form {
+      position: relative;
+      z-index: 106;
+      padding: 20px;
+      width: 100%;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 6px;
+      background: $bg-white;
+      box-shadow: $sh-cart-form;
+    }
+  }
+  &__title {
+    margin-bottom: 25px;
+    color: $text-dark;
+    font-size: 26px;
+  }
+  &__box-fields {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &__box-half {
+    margin: 0 15px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: flex-start;
+  }
+  &__images {
+    flex-direction: column;
+  }
+  &__field {
+    position: relative;
+    margin-bottom: 20px;
+    min-width: 180px;
+    max-width: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: flex-start;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &_pos-c {
+      align-items: center;
+    }
+  }
+  &__field-img {
+  }
+  &__label {
+    margin-bottom: 5px;
+    width: 100%;
+    font-size: 14px;
+    color: $text-dark;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__input {
+    padding: 5px 10px;
+    width: 100%;
+    border: 1px solid $bg-grey;
+  }
+  &__input-file {
+    display: none;
+  }
+  &__hint {
+    position: absolute;
+    bottom: -15px;
+    color: $text-form-grey;
+    font-size: 10px;
+
+    &_invalid {
+      color: $text-red;
+    }
+  }
+  &__add-btn {
+    @include mainBtn;
+  }
+  &__file-btn {
+    @include fileBtn;
+  }
+  &__img-preview {
+    margin: 0 auto;
+    width: 180px;
+    height: 150px;
+    object-fit: contain;
+  }
+  &__img-name {
+    margin: 5px 0;
+    font-size: 12px;
+    color: $text-dark;
+
+    &_error {
+      color: $text-red;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .card-form {
+    &__title {
+      text-align: center;
+    }
+    &__box-fields {
+      justify-content: center;
+      flex-direction: column;
+    }
+    &__add {
+      &-form {
+        height: 96vh;
+        justify-content: flex-start;
+        overflow: scroll;
+      }
+    }
+  }
+}

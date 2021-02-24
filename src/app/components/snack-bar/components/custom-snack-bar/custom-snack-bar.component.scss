@@ -1,0 +1,39 @@
+@import "../../../../../variables.scss";
+@import "../../../../../custom-material-styles.scss";
+
+.c-snack-bar {
+  font-size: 16px;
+
+  &_succes {
+    color: $text-green;
+  }
+  &_error {
+    color: $text-red;
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__text {
+    display: flex;
+    align-items: center;
+
+    &:last-child {
+      margin-left: 5px;
+    }
+
+    &_important {
+      color: $text-dark-important;
+      text-decoration: underline;
+    }
+  }
+  &__logout {
+    color: $text-grey-dark;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

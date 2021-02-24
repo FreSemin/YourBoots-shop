@@ -1,5 +1,6 @@
 import { routerReducer } from '@ngrx/router-store';
 import { ActionReducerMap } from '@ngrx/store';
+import { authReducer } from './reducers/auth.reducer';
 import { catalogReducer } from './reducers/catalog.reducer';
 import { contactModalReducer } from './reducers/contact-modal.reducer';
 import { menuReducer } from './reducers/menu.reducer';
@@ -14,4 +15,5 @@ export const appReducers: ActionReducerMap<IAppState, any> = {
 	orders: ordersReducer,
 	ordersForm: ordersFormReducer,
 	contactModal: contactModalReducer,
+	authorization: authReducer,
 };

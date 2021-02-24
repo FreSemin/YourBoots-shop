@@ -1,7 +1,8 @@
 export const environment = {
   production: true,
   assetsUrl: '/assets/',
-  imgsUrl: '/assets/imgs/',
+  apiUrl: 'http://nodeyourboots-env-3.eba-gp3c3ms9.us-east-2.elasticbeanstalk.com/api',
+  imgsUrl: '/assets/images/',
   emailjsServiceID: 'service_yourBootsProd',
   emailjsTemplateID: 'template_YourBootsProd',
   emailjsRecallTemplateID: 'template_recallRequest',

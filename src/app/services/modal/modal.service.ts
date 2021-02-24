@@ -33,8 +33,8 @@ export class ModalService implements OnInit {
 	) { }
 
 	public getDataToSend(): Observable<IContactModalDataToSend> {
-		this.dataToSend.userName = this.contactModalForm.controls['userName'].value;
-		this.dataToSend.userTel = this.contactModalForm.controls['userPhone'].value;
+		this.dataToSend.userName = this.contactModalForm.get('userName').value;
+		this.dataToSend.userTel = this.contactModalForm.get('userPhone').value;
 
 		return of(this.dataToSend);
 	}
