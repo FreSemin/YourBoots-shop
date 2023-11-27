@@ -1,0 +1,113 @@
+@import "../../../variables.scss";
+@import "../../../mixins.scss";
+
+.admin {
+  &__container {
+    margin: 20px auto 0 auto;
+    max-width: 1090px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__header {
+    width: 100%;
+  }
+  &__page-title {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    color: $text-dark;
+  }
+  &__title {
+    font-size: 28px;
+  }
+  &__inf {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  &__body {
+    margin-bottom: 100px;
+  }
+  &__nav {
+    &-list {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__el {
+    margin-right: 25px;
+    color: $text-dark;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: lowercase;
+    transition: all 0.6s;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+  &__link {
+    color: $text-dark;
+  }
+  &__catalog {
+    width: 100%;
+    &-title {
+      margin-top: 20px;
+      font-size: 24px;
+      color: $text-black;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    &-cards {
+      margin: 20px auto 0 auto;
+      max-width: 1090px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+  }
+  &__empty {
+    margin-top: 20px;
+    min-height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+      font-size: 16px;
+      color: $text-dark;
+      font-weight: 900;
+    }
+  }
+  &__add-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__add-btn {
+    margin-top: 20px;
+    @include mainBtn;
+  }
+
+  &__input {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border: 1px solid $bg-grey;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 1090px) {
+  .admin {
+    &__container {
+      margin: 20px 15px 0 15px;
+    }
+  }
+}

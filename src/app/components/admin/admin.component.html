@@ -1,0 +1,62 @@
+<div class="admin">
+    <div class="admin__container">
+        <header class="admin__header">
+            <div class="admin__page-title">
+                <h2 class="admin__title">
+                    Admin page
+                </h2>
+                <p class="admin__inf">
+                    {{ 'Admin email: ' + (authService.auth$ | async).userEmail }}
+                </p>
+            </div>
+
+            <nav class="admin__nav">
+                <ul class="admin__nav-list">
+                    <li class="admin__el"><a routerLink="/" class="admin__link">Главная</a></li>
+                    <li class="admin__el" (click)="authService.onUserLogout()">Log out</li>
+                </ul>
+            </nav>
+        </header>
+        <main class="admin__body">
+
+            <!-- Catalog: Start -->
+            <div class="admin__catalog">
+                <h3 class="admin__catalog-title">
+                    Каталог
+                </h3>
+
+                <app-loader [loaderSize]="'md'" *ngIf="((catalogService.catalog$) | async).isLoading"></app-loader>
+
+                <div class="admin__catalog-cards"
+                    *ngIf="((catalogService.catalog$) | async).catalogElements.length > 0 && !((catalogService.catalog$) | async).isLoading">
+
+                    <app-catalog-card *ngFor="let catalogEl of (catalogService.catalog$ | async).catalogElements"
+                        [catalogElement]="catalogEl" [isProd]="false"
+                        (onDeleteFromCatalog)="catalogService.deleteFromCatalog($event)">
+                    </app-catalog-card>
+
+                </div>
+
+                <div class="admin__empty"
+                    *ngIf="!((catalogService.catalog$) | async).isLoading && ((catalogService.catalog$) | async).catalogElements.length === 0">
+                    <p class="admin__empty-text">
+                        Каталог пуст!
+                    </p>
+                </div>
+
+                <div class="admin__add-box">
+                    <a routerLink="add" class="admin__add-btn">
+                        + Добавить
+                    </a>
+                </div>
+
+                <!-- CatalogForm -->
+                <router-outlet></router-outlet>
+                <!-- CatalogForm -->
+
+            </div>
+            <!-- Catalog: End -->
+
+        </main>
+    </div>
+</div>

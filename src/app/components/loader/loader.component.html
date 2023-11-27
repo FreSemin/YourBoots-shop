@@ -1,6 +1,17 @@
-<div class="loader">
+<!-- Default loader: Start -->
+<div class="loader" *ngIf="loaderSize === ''">
     <div class="loader__container">
         <div class="loader__box" id="loader">
         </div>
     </div>
 </div>
+<!-- Default loader: End -->
+
+<!-- Scalable loader: Start -->
+<div class="loader" *ngIf="loaderSize !== '' ">
+    <div [class]="'loader__size-container ' +  'loader__size-container_sz_' + loaderSize">
+        <div class="loader__box" id="loader">
+        </div>
+    </div>
+</div>
+<!-- Scalable loader: End -->

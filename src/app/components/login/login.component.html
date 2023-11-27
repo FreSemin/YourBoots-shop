@@ -1,0 +1,38 @@
+<div class="login">
+    <div class="login__container">
+        <form class="login__form" #loginForm="ngForm" (submit)="this.authService.onUserLogin(loginForm)">
+            <div class="login__field">
+                <label for="loginEmail" class="login__label">
+                    Name
+                </label>
+                <input type="text" name="loginEmail" ngModel id="loginEmail" class="login__input" required email
+                    #loginEmailInput="ngModel" [ngClass]="{
+                        'login__input_valid': loginEmailInput.valid && loginEmailInput.touched,
+                        'login__input_invalid': loginEmailInput.invalid && loginEmailInput.touched
+                    }">
+                <p class="login__text login__text_c_red" *ngIf="loginEmailInput.invalid && loginEmailInput.touched">
+                    Please enter valid name
+                </p>
+            </div>
+            <div class="login__field">
+                <label for="loginPassword" class="login__label">
+                    Password
+                </label>
+                <input type="password" name="loginPassword" ngModel id="loginPassword" class="login__input" required
+                    #loginPasswordInput="ngModel" [ngClass]="{
+                        'login__input_valid': loginPasswordInput.valid && loginPasswordInput.touched,
+                        'login__input_invalid': loginPasswordInput.invalid && loginPasswordInput.touched
+                    }">
+                <p class="login__text login__text_c_red"
+                    *ngIf="loginPasswordInput.invalid && loginPasswordInput.touched">
+                    Please enter valid password
+                </p>
+            </div>
+            <div class="login__field">
+                <button type="submit" class="login__btn" [disabled]="loginForm.touched && loginForm.invalid">
+                    Log in
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+{
+  "env": {
+    "CATALOG_IMAGES_PATH": "backend/"
+  }
+}

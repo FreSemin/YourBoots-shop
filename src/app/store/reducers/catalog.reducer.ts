@@ -7,6 +7,24 @@ export function catalogReducer(state: ICatalog = initialCatalogState, action: Cu
 
 	switch (action.type) {
 
+		case ECatalogActions.AddElement:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case ECatalogActions.AddElementSucces:
+			return {
+				...state,
+				isLoading: false,
+			};
+
+		case ECatalogActions.AddElementError:
+			return {
+				...state,
+				isLoading: false,
+			};
+
 		case ECatalogActions.GetElements:
 			return {
 				...state,
@@ -28,6 +46,42 @@ export function catalogReducer(state: ICatalog = initialCatalogState, action: Cu
 			};
 
 		case ECatalogActions.GetElementsError:
+			return {
+				...state,
+				isLoading: false,
+			};
+
+		case ECatalogActions.UpdateElement:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case ECatalogActions.UpdateElementSucces:
+			return {
+				...state,
+				isLoading: false,
+			};
+
+		case ECatalogActions.UpdateElementError:
+			return {
+				...state,
+				isLoading: false,
+			};
+
+		case ECatalogActions.DeleteElement:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case ECatalogActions.DeleteElementSucces:
+			return {
+				...state,
+				isLoading: false,
+			};
+
+		case ECatalogActions.DeleteElementError:
 			return {
 				...state,
 				isLoading: false,

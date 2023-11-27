@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { CatalogElement, ICatalogElement } from 'src/app/components/models/catalogElement/catalog-element.model';
 import { IAppState } from 'src/app/store/states/app.state';
 import { select, Store } from '@ngrx/store';
-import { CatalogGetElements } from 'src/app/store/actions/catalog.actions';
+import { CatalogDeleteElement, CatalogGetElements } from 'src/app/store/actions/catalog.actions';
 import { selectCatalog } from 'src/app/store/selectors/catalog.selectors';
 import { Observable } from 'rxjs/internal/Observable';
-import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
 import { AddElementToOrders, ClearOrdersList, DeleteOrder, GetOrdersLS, UpdateOrdersLSSucces } from 'src/app/store/actions/orders.actions';
 import { of } from 'rxjs';
 import { selectOrders } from 'src/app/store/selectors/orders.selectors';
@@ -17,7 +16,11 @@ import { selectOrdersForm } from 'src/app/store/selectors/orders-form.selectors'
 import { IOrdersDataToSend } from 'src/app/components/models/orders-form/orders-form.model';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CustomOrderSnackBarComponent } from 'src/app/components/custom-order-snack-bar/custom-order-snack-bar.component';
+import { CustomOrderSnackBarComponent } from 'src/app/components/snack-bar/components/custom-order-snack-bar/custom-order-snack-bar.component';
+import { ICatalog } from 'src/app/components/models/catalog/catalog.model';
+import { AuthService } from '../auth/auth.service';
+
+const BACKEND_URL: string = environment.apiUrl;
 
 @Injectable({
 	providedIn: 'root'
@@ -64,6 +67,7 @@ export class CatalogService implements OnInit, OnDestroy {
 		private _http: HttpClient,
 		private _store: Store<IAppState>,
 		private _snackBar: MatSnackBar,
+		private _authService: AuthService,
 	) { }
 
 	public loadCatalog(): void {
@@ -74,9 +78,22 @@ export class CatalogService implements OnInit, OnDestroy {
 		this._store.dispatch(new GetOrdersLS());
 	}
 
-	public getCatalogElements(): Observable<ICatalog> {
-		return this._http.get<ICatalog>(
-			`${this.assetsUrl}json/catalog.json`
+	public getCatalogElement(id: string): ICatalogElement {
+		let findedElement: ICatalogElement = null;
+
+		this.catalog$.subscribe((catalog: ICatalog) => {
+			findedElement = catalog.catalogElements.find((element: ICatalogElement) => {
+				return element.id === id;
+			});
+		})
+			.unsubscribe();
+
+		return findedElement;
+	}
+
+	public getCatalogElements(): Observable<ICatalogElement[]> {
+		return this._http.get<ICatalogElement[]>(
+			BACKEND_URL + '/ctlg'
 		);
 	}
 
@@ -92,6 +109,14 @@ export class CatalogService implements OnInit, OnDestroy {
 	public setOrdersLS(ordersElements: ICatalogElement[]): void {
 		localStorage.setItem(CatalogService._catalogOrderListKey, JSON.stringify(ordersElements));
 		this._store.dispatch(new UpdateOrdersLSSucces(ordersElements));
+	}
+
+	public deleteFromCatalog(elementId: string): void {
+		if (!this._authService.checkForAdminPermission()) {
+			return;
+		}
+
+		this._store.dispatch(new CatalogDeleteElement(elementId));
 	}
 
 	public addCartToOrder(elementOrder: ICatalogElement): void {
@@ -178,9 +203,9 @@ export class CatalogService implements OnInit, OnDestroy {
 	public getDataToSend(): Observable<IOrdersDataToSend> {
 		this.dataToSend.userOrders = [];
 
-		this.dataToSend.userName = this.ordersForm.controls['userName'].value;
-		this.dataToSend.userTel = this.ordersForm.controls['userPhone'].value;
-		this.dataToSend.userAdress = this.ordersForm.controls['userAdress'].value;
+		this.dataToSend.userName = this.ordersForm.get('userName').value;
+		this.dataToSend.userTel = this.ordersForm.get('userPhone').value;
+		this.dataToSend.userAdress = this.ordersForm.get('userAdress').value;
 		this.dataToSend.beforePrice = this.ordersBeforeSum;
 		this.dataToSend.currentPrice = this.ordersCurrentSum;
 

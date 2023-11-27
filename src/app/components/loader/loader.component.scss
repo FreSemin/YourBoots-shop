@@ -14,6 +14,23 @@
     align-items: center;
     background: $bg-white;
   }
+  &__size-container {
+    position: relative;
+    z-index: 102;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_sz_sml {
+      width: fit-content;
+    }
+    &_sz_md {
+      width: 100%;
+      min-height: 300px;
+    }
+  }
   &__box {
     width: 50px;
     height: 50px;
@@ -45,4 +62,3 @@
     border: 3px solid $bg-grey;
   }
 }
-

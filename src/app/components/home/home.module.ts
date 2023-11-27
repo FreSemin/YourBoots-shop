@@ -3,23 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { CatalogCardComponent } from '../catalog-card/catalog-card.component';
-import { SliderComponent } from '../slider/slider.component';
-import { ContactModalComponent } from '../contact-modal/contact-modal.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 @NgModule({
 	declarations: [
 		HomeComponent,
-		SliderComponent,
-		CatalogCardComponent,
-		ContactModalComponent
 	],
 	imports: [
 		CommonModule,
 		HomeRoutingModule,
-		FormsModule,
-		ReactiveFormsModule,
+		SharedModule,
 	]
 })
 export class HomeModule { }

@@ -1,23 +1,35 @@
 export interface ICatalogElement {
+	_id?: string;  // id from backend
+	id?: string;
 	title: string;
-	img: string;
+	img: File | string; // File for put request
 	priceCurrency: string;
-	beforePriceNumber: number;
+	beforePriceNumber?: number;
 	currentPriceNumber: number;
-	sizes: number[] | number;
+	sizes: number[];
 	count?: number;
 }
 
 export class CatalogElement implements ICatalogElement {
+	public id: string;
 	public title: string;
-	public img: string;
+	public img: File | string;
 	public beforePriceNumber: number;
 	public currentPriceNumber: number;
 	public priceCurrency: string;
-	public sizes: number[] | number;
+	public sizes: number[];
 	public count: number;
 
 	constructor(catalogElement: ICatalogElement, newCount?: number, newSize?: number) {
+
+		// tslint:disable-next-line: strict-boolean-expressions
+		if (catalogElement._id) {
+			this.id = catalogElement._id;
+			// tslint:disable-next-line: strict-boolean-expressions
+		} else if (catalogElement.id) {
+			this.id = catalogElement.id;
+		}
+
 		this.title = catalogElement.title;
 		this.img = catalogElement.img;
 		this.priceCurrency = catalogElement.priceCurrency;
@@ -40,6 +52,7 @@ export class CatalogElement implements ICatalogElement {
 	}
 
 	public setSize(size: number): void {
-		this.sizes = size;
+		this.sizes = [];
+		this.sizes.push(size);
 	}
 }

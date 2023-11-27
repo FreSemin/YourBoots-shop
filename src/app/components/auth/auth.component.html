@@ -1,0 +1,81 @@
+<app-loader *ngIf="(this.authService.auth$ | async).isLoading"></app-loader>
+
+<div class="auth">
+  <div class="auth__container auth__container_bg_grey">
+    <div class="auth__box">
+      <header class="auth__header">
+        <div class="auth__header-box">
+          <div class="auth__page-title">
+            <a routerLink="/auth" class="auth__title auth__title_link">
+              Authorization
+            </a>
+          </div>
+
+          <div class="auth__info" *ngIf=" this.userEmail !== '' && this.isAuthenticated">
+            <div class="auth__user">
+              <p class="auth__text">
+                {{ this.userEmail }}
+              </p>
+              <div class="auth__ico auth__ico_user">
+                <i class="fas fa-user-check"></i>
+              </div>
+            </div>
+            <div class="auth__btn" (click)="this.authService.onUserLogout()">
+              Log out
+              <div class="auth__ico auth__ico_logout">
+                <i class="fas fa-sign-in-alt"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="auth__nav">
+          <ul class="auth__nav-list">
+            <li class="auth__el">
+              <a routerLink="" class="auth__link auth__link_standart">
+                <span class="auth__link-ico">
+                  <i class="fas fa-home"></i>
+                </span>
+                Home
+              </a>
+            </li>
+            <li class="auth__el" *ngIf="userPermission === adminPermission || userPermission === moderPermission">
+              <a [routerLink]="['/', 'admin']" class="auth__link auth__link_standart">
+                <span class="auth__link-ico">
+                  <i class="fas fa-user-shield"></i>
+                </span>
+                Admin
+              </a>
+            </li>
+            <li class="auth__el">
+              <a routerLink="signup" routerLinkActive="auth__link_active" class="auth__link"
+                [ngClass]="{'auth__link_disabled': this.isAuthenticated}">
+                Sign Up
+              </a>
+            </li>
+            <li class="auth__el">
+              <a routerLink="login" routerLinkActive="auth__link_active" class="auth__link"
+                [ngClass]="{'auth__link_disabled': this.isAuthenticated}">
+                Log In
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="auth__body">
+
+        <div class="auth__content" *ngIf="this.isAuthenticated">
+          <p class="auth__msg-text">
+            You are already authorized!
+          </p>
+        </div>
+
+        <!-- Signup or Login -->
+        <router-outlet *ngIf="!this.isAuthenticated"></router-outlet>
+        <!-- Signup or Login -->
+
+      </main>
+    </div>
+  </div>
+</div>

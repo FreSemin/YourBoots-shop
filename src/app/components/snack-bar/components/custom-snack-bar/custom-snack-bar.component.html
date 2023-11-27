@@ -1,0 +1,29 @@
+<span class="c-snack-bar" *ngIf="data.text ===''" [ngClass]="{
+        'c-snack-bar_succes': this.modalService.isShowSucces,
+        'c-snack-bar_error': !this.modalService.isShowSucces
+    }">
+    {{
+    this.modalService.isShowSucces
+    ? 'Отправлено успешно!'
+    : 'Упс, что-то пошло не так, попробуйте позже или свяжитесь с нами.'
+    }}
+</span>
+<div class="c-snack-bar" *ngIf="data.text !== ''">
+    <div class="c-snack-bar__box">
+        <div class="c-snack-bar__text" [ngClass]="{
+            'c-snack-bar_succes': this.modalService.isShowSucces,
+            'c-snack-bar_error': !this.modalService.isShowSucces
+            }">
+            {{ data.text }}
+            <p class="c-snack-bar__text c-snack-bar__text_important" *ngIf="data.isLogin">
+                {{ data.userPermission }}
+            </p>
+        </div>
+
+
+        <div class="c-snack-bar__text c-snack-bar__logout" *ngIf="data.isLogin"
+            (click)="this.authService.onUserLogout()">
+            Logout
+        </div>
+    </div>
+</div>
