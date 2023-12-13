@@ -1,6 +1,6 @@
 # YourBootsShopApp
 
-[See app](https://yourboots.netlify.app)
+[App Demo](https://yourboots.netlify.app)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 
