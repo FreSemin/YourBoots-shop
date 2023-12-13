@@ -1,6 +1,6 @@
 # YourBootsShopApp
 
-[App Demo](https://yourboots.netlify.app)
+[App Demo](https://fresemin.github.io/YourBoots/)
 
 ###
 
