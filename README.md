@@ -2,6 +2,27 @@
 
 [App Demo](https://yourboots.netlify.app)
 
+###
+
+#### About
+
+The online store was created to provide customers with a convenient and seamless shopping experience, offering a wide range of products and easy access to make their purchases from the comfort of their own homes.
+
+#### Features:
+
+- User
+  - See items of online catalog;
+  - Create orders;
+  - Get information about order to email;
+- Admin
+  - Create items for catalog;
+  - Apploud images for catalog items;
+  - Update catalog items;
+  - Delete catalog items;
+  - Get users orders to email;
+
+###
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
 
 ## Development server
